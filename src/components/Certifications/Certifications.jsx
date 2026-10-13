@@ -57,6 +57,36 @@ export default function Certifications() {
           })}
         </div>
 
+        {/* Certificate Sample Mockup Card */}
+        <div className="certificate-mockup-showcase">
+          <div className="certificate-mockup-card">
+            <div className="certificate-mockup-media">
+              <img
+                src="/images/sample-certificate-mockup.jpg"
+                alt="Official Certificate of Completion at The Coding Zone"
+                className="certificate-mockup-img"
+                loading="lazy"
+              />
+              <div className="certificate-stamp-badge">
+                <span>Official Parchment Credential</span>
+              </div>
+            </div>
+            <div className="certificate-mockup-info">
+              <span className="badge badge-teal">Verifiable Course Credential</span>
+              <h3 className="cert-preview-title">Physical & Verifiable Course Certificate</h3>
+              <p className="cert-preview-text">
+                Every student who successfully completes their modules receives an official, embossed certificate signed by Founder <strong>Priyanka Desurkar</strong> (B.E & M.Tech).
+              </p>
+              <div className="cert-feature-tags">
+                <span className="cert-feature-tag">🏅 Official Institute Seal</span>
+                <span className="cert-feature-tag">📄 Heavy Linen Finish</span>
+                <span className="cert-feature-tag">🔗 QR Code Verification</span>
+                <span className="cert-feature-tag">🎓 College Portfolio Ready</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Tools & Tech ticker / grid */}
         <div className="tools-card">
           <div className="tools-header">

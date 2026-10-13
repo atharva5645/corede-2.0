@@ -92,13 +92,15 @@
 /* Mobile marquee for stat pill */
 .hero-stat-marquee-wrap {
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
   overflow: hidden;
   border-radius: var(--radius-pill);
   border: 1px solid var(--color-border);
   background: #FFFFFF;
   padding: 0.25rem 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
 .hero-stat-marquee-track {
@@ -147,11 +149,11 @@
 
 .hero-title-text {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 6.2vw, 4.5rem);
-  font-weight: 900;
+  font-size: clamp(2.15rem, 6.8vw, 4.5rem);
+  font-weight: 600;
   color: var(--color-text-title);
   letter-spacing: -0.03em;
-  line-height: 1.1;
+  line-height: 1.15;
   margin: 0;
 }
 
@@ -313,27 +315,149 @@
   color: var(--color-primary);
 }
 
+/* Hero Visual Showcase */
+.hero-visual-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 820px;
+  margin-top: 0.5rem;
+}
+
+.hero-visual-card {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.hero-visual-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 50px rgba(242, 106, 27, 0.12);
+}
+
+.hero-visual-img {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-visual-badge-overlay {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.live-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  display: inline-block;
+  animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.hero-visual-caption {
+  position: absolute;
+  bottom: 0.85rem;
+  right: 0.85rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--color-text-title);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
 @media (max-width: 640px) {
   .hero-section {
-    padding-top: calc(var(--navbar-height) + 2rem);
-    padding-bottom: 3.5rem;
-    gap: 1.75rem;
+    padding-top: calc(var(--navbar-height) + 1.5rem);
+    padding-bottom: 3rem;
+    padding-inline: 1rem;
+    gap: 1.5rem;
   }
 
   .hero-cta-group {
     flex-direction: column;
     width: 100%;
+    gap: 0.75rem;
   }
 
   .hero-btn-primary,
   .hero-btn-secondary {
     width: 100%;
+    height: 50px;
     justify-content: center;
+    font-size: 1rem;
+  }
+
+  .hero-visual-card {
+    border-radius: var(--radius-lg);
+  }
+
+  .hero-visual-img {
+    aspect-ratio: 16 / 10;
+    max-height: 230px;
+  }
+
+  .hero-visual-badge-overlay {
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 0.6875rem;
+    padding: 0.2rem 0.55rem;
+  }
+
+  .hero-visual-caption {
+    bottom: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.6875rem;
+    padding: 0.2rem 0.5rem;
+    max-width: 68%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .hero-tech-chip {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     padding: 6px;
+  }
+
+  .hero-mentor-badge {
+    padding: 0.45rem 0.85rem;
+    border-radius: var(--radius-lg);
+    font-size: 0.78rem;
+    text-align: left;
+    max-width: 100%;
   }
 }

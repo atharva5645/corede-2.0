@@ -112,6 +112,21 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* Institute Center Entrance Photo */}
+            <div className="center-photo-container">
+              <div className="center-photo-wrap">
+                <img
+                  src="/images/institute-belagavi-center.jpg"
+                  alt="The Coding Zone Center Entrance in Vadagaon, Belagavi"
+                  className="center-photo-img"
+                  loading="lazy"
+                />
+                <div className="center-photo-badge">
+                  <span>Vadagaon Main Road Center</span>
+                </div>
+              </div>
+            </div>
+
             {/* Google Map Box */}
             <div className="map-container">
               <iframe
@@ -149,6 +164,16 @@ export default function Contact() {
             ) : (
               <form onSubmit={handleSubmit} className="demo-form">
                 <div className="form-header">
+                  {/* Demo Flyer Poster Banner */}
+                  <div className="demo-poster-wrap">
+                    <img
+                      src="/images/free-demo-session-poster.jpg"
+                      alt="45-Minute Free Interactive Coding Demo Flyer"
+                      className="demo-poster-img"
+                      loading="lazy"
+                    />
+                  </div>
+
                   <div className="form-badge">
                     <Sparkles size={14} /> Zero Cost · No Obligation
                   </div>

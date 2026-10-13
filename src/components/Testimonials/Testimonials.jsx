@@ -65,6 +65,7 @@ export default function Testimonials() {
       color: t.color,
       role: t.role,
       location: t.location,
+      avatar: t.avatar,
     },
     text: t.quote,
   }));

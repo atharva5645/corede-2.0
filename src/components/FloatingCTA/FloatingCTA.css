@@ -50,17 +50,30 @@
 
 @media (max-width: 640px) {
   .floating-cta-container {
-    bottom: 1.25rem;
-    right: 1.25rem;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    right: 1rem;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
   }
 
   .floating-text {
     display: none;
   }
 
+  .floating-btn {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+    touch-action: manipulation;
+  }
+
+  .floating-btn-phone {
+    width: 44px;
+    height: 44px;
+  }
+
   .floating-btn-whatsapp {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     padding: 0;
     justify-content: center;
   }

@@ -45,7 +45,7 @@
 .benefit-title {
   font-family: var(--font-heading);
   font-size: 0.875rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-text-main);
   margin-bottom: 0.25rem;
 }
@@ -59,7 +59,7 @@
 .inclusions-label {
   font-family: var(--font-heading);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-text-muted);
@@ -134,7 +134,7 @@
 .founder-name {
   font-family: var(--font-heading);
   font-size: 1.125rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #fff;
   margin-bottom: 0.25rem;
 }
@@ -183,6 +183,74 @@
   color: var(--color-secondary);
 }
 
+/* Classroom Showcase Card */
+.classroom-showcase-card {
+  margin-top: 1.5rem;
+  background: var(--color-bg-base);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.classroom-showcase-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.classroom-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  max-height: 320px;
+  overflow: hidden;
+  background: var(--color-bg-subtle);
+}
+
+.classroom-showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 10%;
+  display: block;
+}
+
+.classroom-img-badge {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.classroom-caption {
+  padding: 1rem 1.25rem;
+  background: #FFFFFF;
+}
+
+.classroom-caption-title {
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-title);
+  margin-bottom: 0.25rem;
+}
+
+.classroom-caption-text {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
 /* Vision */
 .vision-card {
   background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));
@@ -193,7 +261,7 @@
 .vision-label {
   font-family: var(--font-heading);
   font-size: 0.6875rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-primary);
@@ -225,7 +293,7 @@
 .stats-title {
   font-family: var(--font-heading);
   font-size: clamp(1.75rem, 3vw, 2.25rem);
-  font-weight: 800;
+  font-weight: 600;
   color: #fff;
   margin-bottom: 0.75rem;
 }
@@ -277,7 +345,56 @@
   .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
 @media (max-width: 640px) {
-  .benefits-grid { grid-template-columns: 1fr; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { gap: 2rem; }
+  .benefits-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+  .benefit-card { padding: 1rem; }
+  
+  .founder-header {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+  .founder-photo {
+    width: 68px;
+    height: 68px;
+  }
+  .founder-name {
+    font-size: 1.05rem;
+  }
+  .founder-body {
+    padding: 1.25rem;
+  }
+  .founder-quote {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .classroom-img-wrap {
+    aspect-ratio: 16 / 10;
+    max-height: 240px;
+  }
+  .classroom-caption {
+    padding: 0.85rem 1rem;
+  }
+
+  .stats-section {
+    padding-block: 3rem;
+  }
+  .stats-header {
+    margin-bottom: 2rem;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+  .stat-card {
+    padding: 1.25rem 0.75rem 1rem;
+  }
+  .stat-number {
+    font-size: 2.2rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+  }
 }

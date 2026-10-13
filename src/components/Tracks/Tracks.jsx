@@ -18,6 +18,21 @@ function TrackCard({ track }) {
       className={`track-card track-${track.color} ${inView ? 'visible' : ''}`}
       aria-label={track.title}
     >
+      {/* Banner Image */}
+      {track.banner && (
+        <div className="track-banner-wrap">
+          <img
+            src={track.banner}
+            alt={`${track.title} banner`}
+            className="track-banner-img"
+            loading="lazy"
+          />
+          <div className="track-banner-overlay-badge">
+            <span>{track.number}</span>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="track-header">
         <span className="track-number">{track.number}</span>
@@ -33,13 +48,42 @@ function TrackCard({ track }) {
       <div className="track-body">
         <p className="track-section-label">⭐ Featured Projects</p>
         <ul className="track-projects" role="list">
-          {track.projects.map((p, i) => (
-            <li key={i} className="track-project-item">
-              <CheckCircle2 size={14} className="check-icon" aria-hidden="true" />
-              <span>{p}</span>
-            </li>
-          ))}
+          {track.projects.map((p, i) => {
+            const name = typeof p === 'string' ? p : p.name;
+            const preview = typeof p === 'object' ? p.preview : null;
+            return (
+              <li key={i} className="track-project-item">
+                <CheckCircle2 size={14} className="check-icon" aria-hidden="true" />
+                <span className="track-project-name">{name}</span>
+                {preview && (
+                  <span className="project-badge-pill">
+                    Preview Ready
+                  </span>
+                )}
+              </li>
+            );
+          })}
         </ul>
+
+        {/* Featured Project Showcase Image */}
+        {track.projects.some(p => typeof p === 'object' && p.preview) && (
+          <div className="track-project-preview-wrap">
+            <span className="track-preview-sublabel">Student Output Showcase:</span>
+            {track.projects.filter(p => typeof p === 'object' && p.preview).slice(0, 1).map((p, idx) => (
+              <div key={idx} className="track-preview-card">
+                <img
+                  src={p.preview}
+                  alt={`${p.name} preview`}
+                  className="track-preview-img"
+                  loading="lazy"
+                />
+                <div className="track-preview-title-bar">
+                  <span>{p.name}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
 
         <p className="track-section-label" style={{ marginTop: '1.25rem' }}>🛠 Tools & Technologies</p>
         <div className="tech-tags">

@@ -110,6 +110,27 @@ export default function About() {
                 </div>
               </div>
 
+              {/* Classroom Lab in Action */}
+              <div className="classroom-showcase-card">
+                <div className="classroom-img-wrap">
+                  <img
+                    src="/images/classroom-mentorship-session.jpg"
+                    alt="Priyanka Ma'am mentoring a student at The Coding Zone"
+                    className="classroom-showcase-img"
+                    loading="lazy"
+                  />
+                  <div className="classroom-img-badge">
+                    <span>1-on-1 Personalized Mentorship</span>
+                  </div>
+                </div>
+                <div className="classroom-caption">
+                  <p className="classroom-caption-title">Practical Lab Environment</p>
+                  <p className="classroom-caption-text">
+                    Hands-on learning where concepts are immediately converted into functional programs with guided instructor feedback.
+                  </p>
+                </div>
+              </div>
+
               {/* Vision */}
               <div className="vision-card" style={{ marginTop: '1.5rem' }}>
                 <p className="vision-label">Our Vision</p>

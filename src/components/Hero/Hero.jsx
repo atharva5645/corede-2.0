@@ -114,6 +114,25 @@ export default function Hero() {
         </a>
       </div>
 
+      {/* Hero Visual Showcase */}
+      <div className="hero-visual-container">
+        <div className="hero-visual-card">
+          <div className="hero-visual-badge-overlay">
+            <span className="live-pulse-dot" />
+            <span>100% Practical Project-Driven Classes</span>
+          </div>
+          <img
+            src="/images/hero-student-coding.jpg"
+            alt="Student coding practically at The Coding Zone"
+            className="hero-visual-img"
+            loading="eager"
+          />
+          <div className="hero-visual-caption">
+            <span>Vadagaon Lab · Grade 9–12 & Diploma Batches</span>
+          </div>
+        </div>
+      </div>
+
       {/* Tech Logos Row */}
       <div className="hero-tech-row" aria-label="Technologies taught">
         {techLogos.map((item) => (

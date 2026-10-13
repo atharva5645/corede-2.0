@@ -116,13 +116,14 @@ export const TRACKS = [
     title: 'Front End Development',
     color: 'teal',
     accentColor: '#0F7B83',
+    banner: '/images/track-frontend-banner.png',
     moduleRange: 'Modules 1 – 7',
     tagline: 'Build beautiful, interactive websites from scratch.',
     projects: [
-      'Responsive Todo List App (HTML + CSS)',
-      'Registration Form Web Page (HTML)',
-      'Pokémon Website with Live API (JS)',
-      'Complete Restaurant Website (HTML, CSS, JS)',
+      { name: 'Responsive Todo List App (HTML + CSS)' },
+      { name: 'Registration Form Web Page (HTML)' },
+      { name: 'Personal Developer Portfolio (HTML, CSS, JS)', preview: '/images/project-portfolio-website.png' },
+      { name: 'Complete Restaurant Website (HTML, CSS, JS)', preview: '/images/track-frontend-banner.png' },
     ],
     tools: ['HTML5', 'CSS3', 'JavaScript', 'ES6', 'Git', 'GitHub', 'Netlify', 'VS Code'],
     modules: [
@@ -183,13 +184,14 @@ export const TRACKS = [
     title: 'Python & AI Programming',
     color: 'orange',
     accentColor: '#F26A1B',
+    banner: '/images/track-python-ai-banner.png',
     moduleRange: 'Modules 8 – 15',
     tagline: 'From Python basics to Machine Learning & AI applications.',
     projects: [
-      'Rock Paper Scissors Game (Python)',
-      'Roll-a-Dice Simulator (Python)',
-      'Sentiment Analysis of Product Reviews',
-      'Image Classifier using TensorFlow',
+      { name: 'Rock Paper Scissors Game (Python)' },
+      { name: 'Roll-a-Dice Simulator (Python)' },
+      { name: 'Sentiment Analysis of Product Reviews' },
+      { name: 'Image Classifier using TensorFlow', preview: '/images/project-ai-classifier-dashboard.png' },
     ],
     tools: ['Python', 'Tkinter', 'NumPy', 'Pandas', 'Matplotlib', 'Seaborn', 'Flask', 'TensorFlow', 'Google Colab'],
     modules: [
@@ -277,6 +279,7 @@ export const TESTIMONIALS = [
     location: 'Australia',
     initials: 'HR',
     color: '#0F7B83',
+    avatar: '/images/avatar-hemill-ravani.jpg',
   },
   {
     quote: "Priyanka Ma'am is a truly dedicated coding teacher. She went to great lengths to ensure my son understood the basics.",
@@ -285,6 +288,7 @@ export const TESTIMONIALS = [
     location: 'Australia',
     initials: 'AR',
     color: '#F26A1B',
+    avatar: '/images/avatar-avani-ravani.jpg',
   },
   {
     quote: 'Highly recommended. An amazing place for kids to learn technical skills practically, giving them a head start into the technical world.',
@@ -293,6 +297,7 @@ export const TESTIMONIALS = [
     location: 'Dandeli, Karnataka',
     initials: 'SS',
     color: '#7C3AED',
+    avatar: '/images/avatar-sweta-sawant.jpg',
   },
   {
     quote: 'One of the best places to learn coding. It has improved my logical thinking, creativity, and confidence.',
@@ -301,5 +306,6 @@ export const TESTIMONIALS = [
     location: 'Dandeli, Karnataka',
     initials: 'SS',
     color: '#B47A10',
+    avatar: '/images/avatar-shreyash-sawant.jpg',
   },
 ];

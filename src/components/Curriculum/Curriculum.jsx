@@ -78,6 +78,18 @@ export default function Curriculum() {
           </p>
         </div>
 
+        {/* Learning Journey Roadmap Poster */}
+        <div className="curriculum-roadmap-wrap">
+          <div className="curriculum-roadmap-card">
+            <img
+              src="/images/curriculum-roadmap-poster.jpg"
+              alt="15-Module Learning Journey Roadmap at The Coding Zone"
+              className="curriculum-roadmap-img"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
         {/* Tab Switcher */}
         <div className="tab-switcher" role="tablist" aria-label="Learning tracks">
           {TRACKS.map(track => (

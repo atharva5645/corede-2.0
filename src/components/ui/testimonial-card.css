@@ -57,11 +57,13 @@
 }
 
 .author-avatar-img {
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: var(--radius-pill);
   object-fit: cover;
   flex-shrink: 0;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .author-avatar-initials {
@@ -106,7 +108,19 @@
 
 @media (max-width: 640px) {
   .testimonial-marquee-card {
-    width: 300px;
-    padding: 1.25rem;
+    width: 290px;
+    max-width: 82vw;
+    padding: 1.25rem 1.15rem;
+  }
+  .card-text {
+    font-size: 0.8875rem;
+    line-height: 1.55;
+    margin-bottom: 1.15rem;
+  }
+  .author-name {
+    font-size: 0.875rem;
+  }
+  .author-handle {
+    font-size: 0.75rem;
   }
 }

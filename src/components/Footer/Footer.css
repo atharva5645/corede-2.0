@@ -62,8 +62,9 @@
 }
 
 .footer-heading {
+  font-family: var(--font-heading);
   font-size: 0.9375rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #FFFFFF;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -181,12 +182,31 @@ a.footer-contact-row:hover {
 }
 
 @media (max-width: 640px) {
+  .site-footer {
+    padding-top: 3.5rem;
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 2.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-heading {
+    margin-bottom: 1rem;
+  }
+
+  .footer-whatsapp-btn {
+    width: 100%;
+    min-height: 48px;
+    justify-content: center;
+    touch-action: manipulation;
   }
 
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
+    gap: 1rem;
   }
 }

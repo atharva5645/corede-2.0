@@ -47,7 +47,7 @@
 .track-title {
   font-family: var(--font-heading);
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-text-main);
   margin-bottom: 0.5rem;
 }
@@ -136,7 +136,160 @@
   color: #fff;
 }
 
+/* Track Banner Image */
+.track-banner-wrap {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: var(--color-bg-subtle);
+}
+
+.track-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  transition: transform 0.5s ease;
+}
+
+.track-card:hover .track-banner-img {
+  transform: scale(1.04);
+}
+
+.track-banner-overlay-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Project Badge Pill */
+.project-badge-pill {
+  margin-left: auto;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+  background: rgba(15, 123, 131, 0.1);
+  color: var(--color-secondary);
+  border: 1px solid rgba(15, 123, 131, 0.2);
+  white-space: nowrap;
+}
+
+.track-orange .project-badge-pill {
+  background: rgba(242, 106, 27, 0.1);
+  color: var(--color-primary);
+  border-color: rgba(242, 106, 27, 0.2);
+}
+
+/* Featured Project Preview */
+.track-project-preview-wrap {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed var(--color-border);
+}
+
+.track-preview-sublabel {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.65rem;
+  font-family: var(--font-heading);
+}
+
+.track-preview-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  background: #090D16;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.track-preview-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+.track-preview-img {
+  width: 100%;
+  aspect-ratio: 16 / 10.5;
+  height: auto;
+  min-height: 240px;
+  max-height: 320px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.track-preview-title-bar {
+  padding: 0.65rem 0.85rem;
+  background: rgba(255, 255, 255, 0.98);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-text-title);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
-  .tracks-grid { grid-template-columns: 1fr; }
+  .tracks-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .track-banner-wrap {
+    height: 200px;
+  }
+  .track-banner-overlay-badge {
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.68rem;
+  }
+  .track-header {
+    padding: 1.5rem 1.25rem 1.25rem;
+  }
+  .track-title {
+    font-size: 1.35rem;
+  }
+  .track-body {
+    padding: 1.25rem;
+  }
+  .track-preview-card {
+    border-radius: var(--radius-md);
+  }
+  .track-preview-img {
+    min-height: 200px;
+    aspect-ratio: 16 / 10.5;
+  }
+  .track-preview-title-bar {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  .track-footer {
+    padding: 1.25rem;
+  }
+  .track-footer .btn {
+    width: 100%;
+    min-height: 48px;
+    justify-content: center;
+    font-size: 0.95rem;
+  }
 }

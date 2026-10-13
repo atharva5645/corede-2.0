@@ -67,28 +67,37 @@
 
 .hamburger {
   display: none;
-  width: 40px; height: 40px;
-  border-radius: var(--radius-sm);
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
-  align-items: center; justify-content: center;
+  align-items: center;
+  justify-content: center;
   color: var(--color-text-main);
-  background: none;
+  background: var(--color-bg-base);
   cursor: pointer;
-  transition: background-color var(--transition);
+  touch-action: manipulation;
+  transition: background-color var(--transition), border-color var(--transition);
 }
 .hamburger:hover { background: var(--color-bg-alt); }
+.hamburger:active { transform: scale(0.96); }
 
 /* Mobile drawer */
 .mobile-drawer {
   display: none;
   position: fixed;
   top: var(--navbar-height);
-  left: 0; right: 0;
-  background: var(--color-bg-base);
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--color-border);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
   z-index: 29;
-  padding: 1rem 1.5rem 1.5rem;
+  padding: 1.25rem 1.25rem calc(1.75rem + env(safe-area-inset-bottom, 0px));
   transform: translateY(-8px);
   opacity: 0;
   transition: transform var(--transition), opacity var(--transition);
@@ -102,22 +111,29 @@
 }
 
 .mobile-nav-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
   padding: 0.75rem 1rem;
   font-family: var(--font-heading);
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 500;
-  color: var(--color-text-body);
+  color: var(--color-text-title);
   border-radius: var(--radius-md);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem;
+  touch-action: manipulation;
   transition: color var(--transition), background-color var(--transition);
 }
-.mobile-nav-link:hover { color: var(--color-primary); background: var(--color-primary-light); }
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+}
 
 /* Responsive */
 @media (max-width: 768px) {
   .desktop-nav { display: none; }
-  .hamburger { display: flex; }
   .navbar-actions .btn { display: none; }
   .hamburger { display: flex; }
+  .navbar-brand-logo { max-height: 42px; }
 }

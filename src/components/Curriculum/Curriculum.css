@@ -1,31 +1,104 @@
 .curriculum-section { background: var(--color-bg-base); }
 
-/* Learning Journey Roadmap Poster */
+/* Learning Journey Roadmap Poster — Adapted for Wide Banner Format */
 .curriculum-roadmap-wrap {
-  max-width: 1040px;
-  margin: 2.5rem auto 2.5rem;
+  position: relative;
+  max-width: 1220px;
+  width: 100%;
+  margin: 2.5rem auto 3rem;
   padding-inline: 0.5rem;
+  perspective: 1000px;
 }
 
 .curriculum-roadmap-card {
   position: relative;
+  width: 100%;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  border: 1px solid var(--color-border);
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.07);
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
   background: #FFFFFF;
   transition: transform var(--transition), box-shadow var(--transition);
+  transform-style: preserve-3d;
 }
 
 .curriculum-roadmap-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(15, 123, 131, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 55px rgba(15, 123, 131, 0.15);
+}
+
+.curriculum-float-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  font-family: var(--font-heading);
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: var(--color-text-title);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.curriculum-float-badge.float-left {
+  top: 10%;
+  left: -18px;
+}
+
+.curriculum-float-badge.float-right {
+  bottom: 12%;
+  right: -18px;
+}
+
+.curriculum-badge-img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .curriculum-float-badge {
+    display: none;
+  }
 }
 
 .curriculum-roadmap-img {
   width: 100%;
   height: auto;
   display: block;
+}
+
+.curriculum-roadmap-desktop {
+  display: block;
+  aspect-ratio: 2800 / 1060;
+  object-fit: cover;
+}
+
+.curriculum-roadmap-mobile {
+  display: none;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .curriculum-roadmap-desktop {
+    display: none;
+  }
+
+  .curriculum-roadmap-mobile {
+    display: block;
+    width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    background: #FAFAFA;
+  }
 }
 
 /* Tab Switcher */

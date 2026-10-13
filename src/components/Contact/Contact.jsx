@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Phone, Mail, MapPin, Send, MessageSquare, CheckCircle, Clock, Sparkles } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SITE } from '../../data/siteData';
 import './Contact.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -14,6 +18,87 @@ export default function Contact() {
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const sectionRef = useRef(null);
+  const infoCardRef = useRef(null);
+  const formCardRef = useRef(null);
+  const centerPhotoRef = useRef(null);
+  const posterImgRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header entrance
+      gsap.from('.contact-header-wrap', {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 85%',
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+      });
+
+      // Split column reveal (left card slides from left, right card from right)
+      if (infoCardRef.current) {
+        gsap.from(infoCardRef.current, {
+          scrollTrigger: {
+            trigger: infoCardRef.current,
+            start: 'top 85%',
+          },
+          x: -40,
+          opacity: 0,
+          duration: 0.85,
+          ease: 'power3.out',
+        });
+      }
+
+      if (formCardRef.current) {
+        gsap.from(formCardRef.current, {
+          scrollTrigger: {
+            trigger: formCardRef.current,
+            start: 'top 85%',
+          },
+          x: 40,
+          opacity: 0,
+          duration: 0.85,
+          ease: 'power3.out',
+        });
+      }
+
+      // Parallax scroll on center entrance photo
+      if (centerPhotoRef.current) {
+        gsap.to(centerPhotoRef.current, {
+          yPercent: 12,
+          scale: 1.08,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.center-photo-wrap',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.4,
+          },
+        });
+      }
+
+      // Parallax scroll on demo poster
+      if (posterImgRef.current) {
+        gsap.to(posterImgRef.current, {
+          yPercent: 10,
+          scale: 1.05,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.demo-poster-wrap',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.3,
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,9 +122,9 @@ export default function Contact() {
   };
 
   return (
-    <section className="section section-alt contact-section" id="contact" aria-labelledby="contact-heading">
+    <section ref={sectionRef} className="section section-alt contact-section" id="contact" aria-labelledby="contact-heading">
       <div className="container">
-        <div className="text-center">
+        <div className="text-center contact-header-wrap">
           <span className="section-eyebrow">Get In Touch</span>
           <h2 className="section-title" id="contact-heading">
             Book Your Free Demo Class Today
@@ -51,7 +136,7 @@ export default function Contact() {
 
         <div className="contact-grid">
           {/* Left Column: Direct Info & Map */}
-          <div className="contact-info-card">
+          <div ref={infoCardRef} className="contact-info-card">
             <div className="contact-card-header">
               <span className="badge badge-teal">Institute Information</span>
               <h3 className="contact-card-title">Visit or Contact Us in Belagavi</h3>
@@ -112,10 +197,11 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Institute Center Entrance Photo */}
+            {/* Institute Center Entrance Photo with GSAP Parallax */}
             <div className="center-photo-container">
               <div className="center-photo-wrap">
                 <img
+                  ref={centerPhotoRef}
                   src="/images/institute-belagavi-center.jpg"
                   alt="The Coding Zone Center Entrance in Vadagaon, Belagavi"
                   className="center-photo-img"
@@ -143,7 +229,7 @@ export default function Contact() {
           </div>
 
           {/* Right Column: Demo Booking Form */}
-          <div className="demo-form-card">
+          <div ref={formCardRef} className="demo-form-card">
             {submitted ? (
               <div className="form-success-state">
                 <div className="success-icon-wrap">
@@ -164,9 +250,10 @@ export default function Contact() {
             ) : (
               <form onSubmit={handleSubmit} className="demo-form">
                 <div className="form-header">
-                  {/* Demo Flyer Poster Banner */}
+                  {/* Demo Flyer Poster Banner with Parallax */}
                   <div className="demo-poster-wrap">
                     <img
+                      ref={posterImgRef}
                       src="/images/free-demo-session-poster.jpg"
                       alt="45-Minute Free Interactive Coding Demo Flyer"
                       className="demo-poster-img"

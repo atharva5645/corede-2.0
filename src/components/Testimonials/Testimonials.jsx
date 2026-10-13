@@ -1,7 +1,12 @@
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn } from "@/lib/utils";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { TESTIMONIALS } from "@/data/siteData";
 import './Testimonials.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function TestimonialsSection({ 
   title,
@@ -9,8 +14,48 @@ export function TestimonialsSection({
   testimonials,
   className 
 }) {
+  const sectionRef = useRef(null);
+  const marqueeWrapperRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header entrance
+      gsap.from('.testimonials-header-block', {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 85%',
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+      });
+
+      // Responsive tilt/skew on the marquee track based on user scrolling velocity (nickho style dynamic feel)
+      if (marqueeWrapperRef.current) {
+        ScrollTrigger.create({
+          trigger: marqueeWrapperRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          onUpdate: (self) => {
+            const skew = Math.max(-4, Math.min(4, self.getVelocity() / 300));
+            gsap.to(marqueeWrapperRef.current, {
+              skewX: skew,
+              overwrite: 'auto',
+              duration: 0.5,
+              ease: 'power2.out',
+            });
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="testimonials"
       aria-labelledby="testimonials-heading"
       className={cn(
@@ -21,7 +66,7 @@ export function TestimonialsSection({
       )}
     >
       <div className="mx-auto flex max-w-container flex-col items-center gap-4 text-center sm:gap-16">
-        <div className="flex flex-col items-center gap-4 px-4 sm:gap-8">
+        <div className="flex flex-col items-center gap-4 px-4 sm:gap-8 testimonials-header-block">
           <span className="section-eyebrow">Student Stories</span>
           <h2
             id="testimonials-heading"
@@ -34,7 +79,7 @@ export function TestimonialsSection({
           </p>
         </div>
 
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+        <div ref={marqueeWrapperRef} className="relative flex w-full flex-col items-center justify-center overflow-hidden">
           <div className="group flex overflow-hidden p-2 [--gap:1rem] [gap:var(--gap)] flex-row [--duration:40s]">
             <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row group-hover:[animation-play-state:paused]">
               {[...Array(4)].map((_, setIndex) => (

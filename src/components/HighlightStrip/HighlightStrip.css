@@ -11,15 +11,46 @@
 }
 
 .highlight-item {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
   border-right: 1px solid var(--color-border);
   transition: background-color var(--transition);
+  overflow: hidden;
 }
 .highlight-item:last-child { border-right: none; }
 .highlight-item:hover { background: var(--color-bg-alt); }
+
+.highlight-text-wrap {
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.highlight-png-wrap {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  opacity: 0.35;
+  transition: opacity var(--transition), transform var(--transition);
+  z-index: 1;
+}
+
+.highlight-item:hover .highlight-png-wrap {
+  opacity: 0.85;
+  transform: scale(1.18);
+}
+
+.highlight-badge-png {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
 .highlight-icon {
   width: 48px; height: 48px;

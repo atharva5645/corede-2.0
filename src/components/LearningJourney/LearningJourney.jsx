@@ -1,335 +1,503 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Sparkles, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Sparkles, ArrowRight } from 'lucide-react';
 import './LearningJourney.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FIVE_STEPS = [
+// 4 Guided Milestones data
+const JOURNEY_STEPS = [
   {
     num: '01',
-    label: 'Enrol',
-    pillType: 'soft',
+    tag: '1:1 Diagnostic',
     title: 'Consultation & Roadmap',
-    desc: 'Free 1:1 diagnostic assessment with Founder Priyanka Desurkar to map your child’s learning path.',
-    color: '#0F7B83', // Brand teal
-    badgeColor: '#EDF9FA',
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=80', // mentor consultation laptop
-    tag: '1:1 Assessment',
+    desc: 'Free 1:1 diagnostic assessment with founder to evaluate logic, problem-solving skills, and map your child’s personalized coding journey.',
+    color: '#7C3AED', // Purple
+    lightColor: '#F5F3FF',
+    glowColor: 'rgba(124, 58, 237, 0.35)',
+    dCx: 180,
+    dCy: 300,
+    dAlign: 'bottom',
+    dTrigger: 0.08,
   },
   {
     num: '02',
-    label: 'Spark',
-    subLabel: 'Bitesize Content',
-    pillType: 'split',
-    splitTop: '#F26A1B', // Brand orange
-    splitBottom: '#0F7B83', // Brand teal
+    tag: 'Modern Web',
     title: 'Frontend Foundations',
-    desc: 'Master semantic HTML5, modern CSS3 layout, and build responsive portfolio sites.',
-    color: '#F26A1B',
-    badgeColor: '#FFF4ED',
-    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&auto=format&fit=crop&q=80', // modern website design on laptop
-    tag: 'Hands-on Projects',
+    desc: 'Master semantic HTML5, modern CSS3 layout styling, and build hands-on interactive responsive web projects from scratch.',
+    color: '#00C0D4', // Vibrant Cyan
+    lightColor: '#ECFEFF',
+    glowColor: 'rgba(0, 192, 212, 0.35)',
+    dCx: 440,
+    dCy: 550,
+    dAlign: 'top',
+    dTrigger: 0.33,
   },
   {
     num: '03',
-    label: 'Engage',
-    pillType: 'soft',
-    title: 'Interactive Logic & Games',
-    desc: 'Build problem-solving confidence with JavaScript DOM triggers, state, and browser mini-games.',
-    color: '#0284C7',
-    badgeColor: '#F0F9FF',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80', // clean code on screen
-    tag: 'Algorithmic Thinking',
+    tag: 'Python & Logic',
+    title: 'Logic & Python Apps',
+    desc: 'Develop algorithmic problem-solving confidence with Python programming, OOP structures, and interactive desktop GUI applications.',
+    color: '#F26A1B', // Brand Orange
+    lightColor: '#FFF4ED',
+    glowColor: 'rgba(242, 106, 27, 0.35)',
+    dCx: 714,
+    dCy: 160,
+    dAlign: 'bottom',
+    dTrigger: 0.64,
   },
   {
     num: '04',
-    label: 'Ignite',
-    subLabel: 'Live + Projects',
-    pillType: 'split',
-    splitTop: '#F26A1B',
-    splitBottom: '#7C3AED',
-    title: 'Python Mastery & GUIs',
-    desc: 'Develop desktop applications and automation tools with OOP classes and Tkinter windows.',
-    color: '#F26A1B',
-    badgeColor: '#FFF4ED',
-    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80', // python code matrix screen
-    tag: 'OOP Architecture',
-  },
-  {
-    num: '05',
-    label: 'Achieve',
-    pillType: 'soft',
-    title: 'AI Machine Learning & Certs',
-    desc: 'Train image classifiers in TensorFlow and graduate with verifiable physical credentials.',
-    color: '#0F7B83',
-    badgeColor: '#EDF9FA',
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&auto=format&fit=crop&q=80', // students celebrating graduation/cert
-    tag: 'Verified Credentials',
+    tag: 'AI & Certification',
+    title: 'AI Projects & Certification',
+    desc: 'Train intelligent machine learning models, build an impressive portfolio of live tools, and graduate with verified physical credentials.',
+    color: '#EC4899', // Pink / Magenta
+    lightColor: '#FDF2F8',
+    glowColor: 'rgba(236, 72, 153, 0.35)',
+    dCx: 1020,
+    dCy: 440,
+    dAlign: 'top',
+    dTrigger: 0.89,
   },
 ];
 
+// Desktop Landscape Highway path with continuous cubic beziers (zero arc jumps)
+const DESKTOP_ROAD_PATH =
+  'M 0 300 H 260 C 285.4 300, 306 320.6, 306 346 V 504 C 306 529.4, 326.6 550, 352 550 H 528 C 553.4 550, 574 529.4, 574 504 V 206 C 574 180.6, 594.6 160, 620 160 H 808 C 833.4 160, 854 180.6, 854 206 V 394 C 854 419.4, 874.6 440, 900 440 H 1200';
+
 export default function LearningJourney() {
   const sectionRef = useRef(null);
-  const pathRef = useRef(null);
-  const tracerRef = useRef(null);
+
+  // Desktop landscape refs
+  const dPathRef = useRef(null);
+  const dProgressRef = useRef(null);
+  const dTravelerRef = useRef(null);
+  const dCoreRef = useRef(null);
+  const dBarRef = useRef(null);
+
+  // Mobile vertical timeline refs
+  const mTimelineRef = useRef(null);
+  const mTrailRef = useRef(null);
+  const mTravelerRef = useRef(null);
+  const mCoreRef = useRef(null);
+
+  const activeST = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const path = pathRef.current;
-      const tracer = tracerRef.current;
-      if (!path) return;
+      const mm = gsap.matchMedia();
 
-      const pathLength = path.getTotalLength();
+      // ============================================================
+      // 1. DESKTOP LANDSCAPE ANIMATION (> 768px)
+      // ============================================================
+      mm.add('(min-width: 769px)', () => {
+        const path = dPathRef.current;
+        const progressPath = dProgressRef.current;
+        const traveler = dTravelerRef.current;
+        const travelerCore = dCoreRef.current;
+        if (!path) return;
 
-      // Setup drawing stroke
-      gsap.set(path, {
-        strokeDasharray: pathLength,
-        strokeDashoffset: pathLength,
-      });
+        const pathLength = path.getTotalLength();
 
-      // Animate circuit path drawing on scroll
-      // Relaxed scroll range so the tracer line trails comfortably within the user's viewport
-      gsap.to(path, {
-        strokeDashoffset: 0,
-        ease: 'power1.out',
-        scrollTrigger: {
+        if (progressPath) {
+          progressPath.style.strokeDasharray = `${pathLength} ${pathLength}`;
+          progressPath.style.strokeDashoffset = `${pathLength}`;
+        }
+
+        const startPt = path.getPointAtLength(0);
+        if (traveler && startPt) {
+          traveler.setAttribute('transform', `translate(${startPt.x}, ${startPt.y})`);
+        }
+
+        const st = ScrollTrigger.create({
           trigger: sectionRef.current,
-          start: 'top 55%',
-          end: 'bottom 90%',
-          scrub: 1.4,
+          start: 'top top',
+          end: '+=1600',
+          pin: true,
+          pinSpacing: true,
+          scrub: 0.8,
+          anticipatePin: 1,
           onUpdate: (self) => {
-            // Apply slight trailing factor (max 0.96) so the line and tracer never run off the end ahead of user sight
-            const progress = Math.min(1, Math.max(0, self.progress * 0.97));
+            const progress = Math.min(1, Math.max(0, self.progress));
+            const dist = Math.min(pathLength, Math.max(0, progress * pathLength));
+            const pt = path.getPointAtLength(dist);
 
-            // Desktop SVG line tracer
-            if (tracer) {
-              const point = path.getPointAtLength(progress * pathLength);
-              gsap.set(tracer, {
-                attr: { cx: point.x, cy: point.y },
-              });
+            if (traveler && pt && !isNaN(pt.x) && !isNaN(pt.y)) {
+              traveler.setAttribute('transform', `translate(${pt.x}, ${pt.y})`);
             }
 
-            // Mobile vertical spine line and tracer dot animation
-            const mobileFill = document.querySelector('.lj-mobile-line-fill');
-            const mobileDot = document.querySelector('.lj-mobile-tracer-dot');
-            if (mobileFill) {
-              mobileFill.style.height = `${progress * 100}%`;
+            if (progressPath) {
+              progressPath.style.strokeDashoffset = `${pathLength * (1 - progress)}`;
             }
-            if (mobileDot) {
-              mobileDot.style.top = `${progress * 100}%`;
+
+            if (dBarRef.current) {
+              dBarRef.current.style.width = `${progress * 100}%`;
+            }
+
+            if (travelerCore) {
+              if (progress < 0.2) travelerCore.setAttribute('fill', '#7C3AED');
+              else if (progress < 0.5) travelerCore.setAttribute('fill', '#00C0D4');
+              else if (progress < 0.78) travelerCore.setAttribute('fill', '#F26A1B');
+              else travelerCore.setAttribute('fill', '#EC4899');
+            }
+
+            JOURNEY_STEPS.forEach((step) => {
+              const isPassed = progress >= step.dTrigger;
+              const nodeEl = document.getElementById(`lj-d-node-${step.num}`);
+              const cardEl = document.getElementById(`lj-d-card-${step.num}`);
+              if (nodeEl) nodeEl.classList.toggle('is-active', isPassed);
+              if (cardEl) cardEl.classList.toggle('is-active', isPassed);
+            });
+
+            const summaryEl = document.getElementById('lj-d-summary');
+            if (summaryEl) {
+              summaryEl.classList.toggle('is-active', progress >= 0.94);
             }
           },
-        },
+        });
+
+        activeST.current = st;
+        return () => st.kill();
       });
 
-      // Card brightening effect: Cards stay visible on page, they brighten and highlight when active
-      const items = gsap.utils.toArray('.lj-step-item');
-      items.forEach((item) => {
-        const dot = item.querySelector('.lj-node-dot');
-        const card = item.querySelector('.lj-card');
-        const pill = item.querySelector('.lj-pill');
+      // ============================================================
+      // 2. MOBILE CLEAN VERTICAL TIMELINE ANIMATION (<= 768px)
+      // Natural vertical scroll: zero clutter, zero overlap, readable cards
+      // ============================================================
+      mm.add('(max-width: 768px)', () => {
+        const timeline = mTimelineRef.current;
+        const trail = mTrailRef.current;
+        const traveler = mTravelerRef.current;
+        const travelerCore = mCoreRef.current;
+        if (!timeline) return;
 
-        ScrollTrigger.create({
-          trigger: item,
-          start: 'top 75%',
-          end: 'bottom 25%',
-          toggleClass: { targets: item, className: 'is-active' },
-        });
+        const st = ScrollTrigger.create({
+          trigger: timeline,
+          start: 'top 70%',
+          end: 'bottom 40%',
+          scrub: 0.6,
+          onUpdate: (self) => {
+            const progress = Math.min(1, Math.max(0, self.progress));
 
-        // Entrance animation: cards enter once and STAY visible (never disappear on scroll back up/down)
-        gsap.from(card, {
-          y: 20,
-          duration: 0.6,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: item,
-            start: 'top 90%',
-            once: true, // Remains permanently in DOM
+            // Move mobile vertical traveler dot and trail
+            if (trail) {
+              trail.style.height = `${progress * 100}%`;
+            }
+            if (traveler) {
+              traveler.style.top = `${progress * 100}%`;
+            }
+
+            if (travelerCore) {
+              if (progress < 0.25) travelerCore.style.background = '#7C3AED';
+              else if (progress < 0.5) travelerCore.style.background = '#00C0D4';
+              else if (progress < 0.75) travelerCore.style.background = '#F26A1B';
+              else travelerCore.style.background = '#EC4899';
+            }
+
+            // Activate cards as traveler dot passes them
+            JOURNEY_STEPS.forEach((step, idx) => {
+              const triggerPoint = idx / 3.4; // 0, ~0.29, ~0.58, ~0.88
+              const isPassed = progress >= triggerPoint;
+              const itemEl = document.getElementById(`lj-m-item-${step.num}`);
+              if (itemEl) {
+                itemEl.classList.toggle('is-active', isPassed);
+              }
+            });
+
+            const summaryEl = document.getElementById('lj-m-summary');
+            if (summaryEl) {
+              summaryEl.classList.toggle('is-active', progress >= 0.92);
+            }
           },
         });
+
+        activeST.current = st;
+        return () => st.kill();
       });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  return (
-    <section ref={sectionRef} className="learning-journey-section" id="learning-journey" aria-labelledby="journey-heading">
-      <div className="container lj-container">
-        
-        {/* Section Header matching website clean light palette */}
-        <div className="text-center lj-header">
-          <span className="section-eyebrow">
-            <Sparkles size={14} /> Structured Pathway
-          </span>
-          <h2 className="section-title" id="journey-heading">
-            Your 5-Step Learning Journey
-          </h2>
-          <p className="section-subtitle">
-            From foundational logic to training AI models, follow a guided pathway with continuous mentor feedback.
-          </p>
-        </div>
+  // Jump to specific milestone on click (desktop)
+  const handleStepClick = useCallback((progressTarget) => {
+    if (!activeST.current) return;
+    const st = activeST.current;
+    const targetScroll = st.start + progressTarget * (st.end - st.start);
+    window.scrollTo({
+      top: targetScroll,
+      behavior: 'smooth',
+    });
+  }, []);
 
-        {/* 5-Step Connecting Dots Circuit */}
-        <div className="lj-stage">
+  return (
+    <section
+      ref={sectionRef}
+      className="learning-journey-section"
+      id="learning-journey"
+      aria-label="Learning Journey Pathway"
+    >
+      {/* ============================================================
+          DESKTOP VIEW: Full Landscape Format (Edge-to-Edge)
+          ============================================================ */}
+      <div className="lj-desktop-view">
+        <div className="lj-landscape-board">
           
-          {/* Desktop Circuit SVG dotted line */}
+          {/* Highway SVG Circuit */}
           <svg
-            className="lj-circuit-svg lj-desktop-svg"
-            viewBox="0 0 760 920"
+            className="lj-landscape-svg"
+            viewBox="0 0 1200 680"
             fill="none"
             preserveAspectRatio="none"
             aria-hidden="true"
           >
             <defs>
-              <linearGradient id="ljCircuitGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#0F7B83" />
-                <stop offset="25%" stopColor="#F26A1B" />
-                <stop offset="50%" stopColor="#0284C7" />
-                <stop offset="75%" stopColor="#F26A1B" />
-                <stop offset="100%" stopColor="#0F7B83" />
+              <linearGradient id="ljDProgressGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#7C3AED" />
+                <stop offset="35%" stopColor="#00C0D4" />
+                <stop offset="68%" stopColor="#F26A1B" />
+                <stop offset="100%" stopColor="#EC4899" />
               </linearGradient>
 
-              <filter id="ljTracerGlow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
-                <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
+              <filter id="dRoadShadow" x="-10%" y="-10%" width="130%" height="130%">
+                <feDropShadow dx="0" dy="6" stdDeviation="6" floodColor="#0F172A" floodOpacity="0.12" />
               </filter>
+
+              <filter id="dNodeShadow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="4" stdDeviation="5" floodColor="#000000" floodOpacity="0.22" />
+              </filter>
+
+              <radialGradient id="dTravelerAura" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#F26A1B" stopOpacity="0.6" />
+                <stop offset="50%" stopColor="#F26A1B" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#F26A1B" stopOpacity="0" />
+              </radialGradient>
             </defs>
 
-            {/* Inactive Dotted Background Path */}
+            {/* Road Asphalt */}
             <path
-              className="lj-bg-path"
-              d="M 120 70
-                 H 640
-                 V 255
-                 H 120
-                 V 440
-                 H 640
-                 V 625
-                 H 120
-                 V 810
-                 H 380"
+              ref={dPathRef}
+              className="lj-road-asphalt"
+              d={DESKTOP_ROAD_PATH}
+              stroke="#374151"
+              strokeWidth="54"
+              strokeLinecap="butt"
+              strokeLinejoin="round"
+              filter="url(#dRoadShadow)"
             />
 
-            {/* Active Drawing Progressive Grey Path */}
+            {/* Road Border Accent */}
             <path
-              ref={pathRef}
-              className="lj-active-path"
-              d="M 120 70
-                 H 640
-                 V 255
-                 H 120
-                 V 440
-                 H 640
-                 V 625
-                 H 120
-                 V 810
-                 H 380"
-              stroke="#475569"
+              className="lj-road-subtle-border"
+              d={DESKTOP_ROAD_PATH}
+              stroke="#1F2937"
+              strokeWidth="56"
+              strokeLinecap="butt"
+              strokeLinejoin="round"
+              opacity="0.25"
             />
 
-            {/* Luminous Tracer Dot */}
-            <circle
-              ref={tracerRef}
-              className="lj-tracer-dot"
-              cx="120"
-              cy="70"
-              r="6.5"
+            {/* White Lane Markings */}
+            <path
+              className="lj-road-white-dash"
+              d={DESKTOP_ROAD_PATH}
+              stroke="#FFFFFF"
+              strokeWidth="3.5"
+              strokeDasharray="14 16"
+              strokeLinecap="round"
             />
+
+            {/* Neon Trail Drawn on Scroll */}
+            <path
+              ref={dProgressRef}
+              className="lj-road-active-trail"
+              d={DESKTOP_ROAD_PATH}
+              stroke="url(#ljDProgressGrad)"
+              strokeWidth="5"
+              strokeLinecap="round"
+            />
+
+            {/* 4 Milestones */}
+            {JOURNEY_STEPS.map((step) => (
+              <g
+                key={step.num}
+                id={`lj-d-node-${step.num}`}
+                className="lj-milestone-node"
+                transform={`translate(${step.dCx}, ${step.dCy})`}
+                onClick={() => handleStepClick(step.dTrigger)}
+                role="button"
+                tabIndex="0"
+                aria-label={`Step ${step.num}: ${step.title}`}
+              >
+                <circle className="lj-node-ripple" r="28" fill={step.color} opacity="0" />
+                <circle
+                  className="lj-node-outer-ring"
+                  r="21"
+                  fill="#FFFFFF"
+                  stroke={step.color}
+                  strokeWidth="5.5"
+                  filter="url(#dNodeShadow)"
+                />
+                <circle className="lj-node-gap-ring" r="12.5" fill="#FFFFFF" />
+                <circle className="lj-node-center-dot" r="8.5" fill={step.color} />
+              </g>
+            ))}
+
+            {/* Glitch-Free Traveler Dot */}
+            <g
+              ref={dTravelerRef}
+              className="lj-traveler-group"
+              transform="translate(0, 300)"
+            >
+              <circle className="lj-traveler-halo" r="20" fill="url(#dTravelerAura)" />
+              <circle
+                className="lj-traveler-rim"
+                r="9.5"
+                fill="#FFFFFF"
+                stroke="#1E293B"
+                strokeWidth="2.5"
+                filter="url(#dNodeShadow)"
+              />
+              <circle ref={dCoreRef} className="lj-traveler-core" r="5.5" fill="#7C3AED" />
+            </g>
           </svg>
 
-          {/* Mobile Vertical Track Line (Live Connected Spine) */}
-          <div className="lj-mobile-line-track" aria-hidden="true">
-            <div className="lj-mobile-line-bg" />
-            <div className="lj-mobile-line-fill" />
-            <div className="lj-mobile-tracer-dot" />
+          {/* Top-Left Header */}
+          <div className="lj-title-block">
+            <span className="lj-eyebrow">
+              <Sparkles size={13} className="lj-eyebrow-icon" /> Structured Pathway
+            </span>
+            <h2 className="lj-main-title">Key Steps in Your Learning Journey</h2>
+            <p className="lj-main-subtitle">4 Key Steps to Master Modern Coding & AI</p>
           </div>
 
-          {/* 5 Milestone Step Blocks */}
-          <div className="lj-steps-list">
-            {FIVE_STEPS.map((step, idx) => {
-              const isEven = idx % 2 === 0;
+          {/* Step Text Cards */}
+          {JOURNEY_STEPS.map((step) => (
+            <div
+              key={step.num}
+              id={`lj-d-card-${step.num}`}
+              className={`lj-step-card lj-card-${step.num} align-${step.dAlign}`}
+              onClick={() => handleStepClick(step.dTrigger)}
+              role="button"
+              tabIndex="0"
+            >
+              <div className="lj-step-num" style={{ color: step.color }}>
+                {step.num}
+              </div>
+              <h3 className="lj-step-title">{step.title}</h3>
+              <p className="lj-step-desc">{step.desc}</p>
+            </div>
+          ))}
 
-              return (
-                <div
-                  key={step.num}
-                  className={`lj-step-item ${isEven ? 'step-align-left' : 'step-align-right'}`}
-                >
-                  {/* Step Connector Dot on the line */}
-                  <div className="lj-node-anchor">
-                    <div
-                      className="lj-node-dot"
-                      style={{ borderColor: step.color }}
-                    >
-                      <span
-                        className="lj-node-center"
-                        style={{ background: step.color }}
-                      />
-                    </div>
-                  </div>
+          {/* Bottom-Right Summary Paragraph */}
+          <div id="lj-d-summary" className="lj-summary-block">
+            <p className="lj-summary-text">
+              A successful learning journey involves clearly defining objectives, building real-world projects through hands-on practice, and continuous 1:1 mentorship. Utilizing modern developer tools from foundational logic to production AI empowers young learners to adapt with confidence to tomorrow’s tech world.
+            </p>
+          </div>
 
-                  {/* Header Pill matching reference layout */}
-                  <div className="lj-pill-row">
-                    {step.pillType === 'split' ? (
-                      <div className="lj-pill lj-pill-split">
-                        <div
-                          className="lj-pill-split-top"
-                          style={{ background: step.splitTop }}
-                        >
-                          <span className="lj-pill-icon">✳</span>
-                          <span>{step.label}</span>
-                        </div>
-                        <div
-                          className="lj-pill-split-bottom"
-                          style={{ background: step.splitBottom }}
-                        >
-                          <span>{step.subLabel}</span>
-                        </div>
-                      </div>
-                    ) : (
-                      <div
-                        className="lj-pill lj-pill-soft"
-                        style={{
-                          background: step.badgeColor,
-                          borderColor: `${step.color}35`,
-                        }}
-                      >
-                        <span className="lj-pill-dot" style={{ background: step.color }} />
-                        <span className="lj-pill-text" style={{ color: step.color }}>{step.label}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Structured Visual Card (Compact, Concise, Photographic) */}
-                  <div className="lj-card">
-                    <div className="lj-card-thumbnail-wrap">
-                      <img
-                        src={step.image}
-                        alt={step.title}
-                        className="lj-card-thumbnail"
-                        loading="lazy"
-                      />
-                      <span className="lj-card-tag">{step.tag}</span>
-                      <span className="lj-step-number">Step {step.num}</span>
-                    </div>
-
-                    <div className="lj-card-body">
-                      <h3 className="lj-card-title">{step.title}</h3>
-                      <p className="lj-card-desc">{step.desc}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+          {/* Bottom Progress Bar */}
+          <div className="lj-progress-bar-track" aria-hidden="true">
+            <div ref={dBarRef} className="lj-progress-bar-fill" style={{ width: '0%' }} />
           </div>
 
         </div>
+      </div>
 
+      {/* ============================================================
+          MOBILE VIEW: Clean Vertical Highway Timeline (<= 768px)
+          Thoughtfully engineered for mobile: zero overlap, uncluttered
+          ============================================================ */}
+      <div className="lj-mobile-view">
+        <div className="lj-mobile-container">
+          
+          {/* Header */}
+          <div className="lj-m-header">
+            <span className="lj-eyebrow">
+              <Sparkles size={12} className="lj-eyebrow-icon" /> Structured Pathway
+            </span>
+            <h2 className="lj-m-title">Key Steps in Your Learning Journey</h2>
+            <p className="lj-m-subtitle">4 Guided Milestones to Master Modern Coding & AI</p>
+          </div>
+
+          {/* Vertical Highway Timeline */}
+          <div ref={mTimelineRef} className="lj-mobile-timeline">
+            
+            {/* The Left Vertical Highway Spine */}
+            <div className="lj-m-road-track" aria-hidden="true">
+              {/* Asphalt Road Surface */}
+              <div className="lj-m-road-surface" />
+              {/* White Dashed Centerline */}
+              <div className="lj-m-road-dashes" />
+              {/* Active Neon Gradient Trail */}
+              <div ref={mTrailRef} className="lj-m-road-trail" />
+              {/* Animated Traveler Dot */}
+              <div ref={mTravelerRef} className="lj-m-traveler-dot">
+                <span className="lj-m-traveler-pulse" />
+                <span className="lj-m-traveler-rim" />
+                <span ref={mCoreRef} className="lj-m-traveler-core" />
+              </div>
+            </div>
+
+            {/* List of 4 Spacious, Uncluttered Cards */}
+            <div className="lj-m-cards-list">
+              {JOURNEY_STEPS.map((step) => (
+                <div
+                  key={step.num}
+                  id={`lj-m-item-${step.num}`}
+                  className="lj-m-step-item"
+                >
+                  {/* Concentric Target Node directly on the road */}
+                  <div className="lj-m-node-anchor">
+                    <div
+                      className="lj-m-target-node"
+                      style={{ '--step-color': step.color }}
+                    >
+                      <span className="lj-m-node-ripple" />
+                      <span className="lj-m-node-outer" />
+                      <span className="lj-m-node-gap" />
+                      <span className="lj-m-node-inner" />
+                    </div>
+                  </div>
+
+                  {/* Card Content Card */}
+                  <div className="lj-m-card-box">
+                    <div className="lj-m-card-top">
+                      <span
+                        className="lj-m-step-num"
+                        style={{ color: step.color }}
+                      >
+                        {step.num}
+                      </span>
+                      <span
+                        className="lj-m-tag"
+                        style={{
+                          color: step.color,
+                          background: step.lightColor,
+                        }}
+                      >
+                        {step.tag}
+                      </span>
+                    </div>
+
+                    <h3 className="lj-m-card-title">{step.title}</h3>
+                    <p className="lj-m-card-desc">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+
+          {/* Mobile Summary Card */}
+          <div id="lj-m-summary" className="lj-m-summary-card">
+            <p className="lj-m-summary-text">
+              A successful learning journey involves clearly defining objectives, building real-world projects through hands-on practice, and continuous 1:1 mentorship.
+            </p>
+          </div>
+
+        </div>
       </div>
     </section>
   );

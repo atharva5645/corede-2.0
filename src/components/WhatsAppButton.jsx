@@ -55,7 +55,6 @@ export default function WhatsAppButton() {
         aria-label="Chat with CoreDe on WhatsApp"
         title="WhatsApp"
       >
-        <span className="whatsapp-ripple" aria-hidden="true"></span>
         <svg
           className="whatsapp-icon"
           viewBox="0 0 448 512"

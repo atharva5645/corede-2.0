@@ -1,65 +1,145 @@
 /* ==========================================================================
-   CoreDe Design System & CSS Foundation
-   Strict adherence to rules.md:
-   - Monochromatic foundation (clean white, deep ink #080d1a, architectural borders)
-   - Limited deliberate accents (CoreDe Primary Blue #0053B4 + Primary Green #00802F)
-   - No giant blurred orbs, no starry-sky / dot grids, no purple/pink neon
-   - Strong typographic scaling with deliberate letter spacing and weight contrast
+   CoreDe Design System — Clay.com Light Editorial Foundation
+   Ultra-bold grotesque typography, warm off-white canvas, full device-width.
    ========================================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 :root {
-  /* Architectural Monochromatic Palette */
-  --bg-canvas: #ffffff;
-  --bg-canvas-subtle: #f8fafc;
-  --bg-surface: #ffffff;
-  --bg-surface-elevated: #ffffff;
-  --bg-surface-muted: #f1f5f9;
+  /* ==========================================================================
+     Clay.com Light Canvas — Warm Off-White
+     ========================================================================== */
+  --bg-canvas:        #eeecea;   /* clay.com signature warm off-white */
+  --bg-subtle:        #e6e4e0;   /* slightly deeper warm gray */
+  --bg-surface:       #f5f4f2;   /* card surfaces — soft white */
+  --bg-surface-muted: #ebe9e6;   /* muted panels */
+  --bg-dark:          #0d0d0d;   /* footer / inverted panels */
+  --bg-dark-surface:  #1a1a1a;
+  --bg-white:         #ffffff;
 
-  --ink-primary: #090e17;
-  --ink-secondary: #334155;
-  --ink-muted: #64748b;
-  --ink-subtle: #94a3b8;
+  /* Typographic Ink — near-black on warm white */
+  --ink-primary:   #0a0a0a;      /* almost black — clay's primary text */
+  --ink-secondary: #1a1a1a;
+  --ink-muted:     #5a5a5a;
+  --ink-subtle:    #999999;
+  --ink-inverse:   #ffffff;
+  --ink-inverse-muted: rgba(255, 255, 255, 0.65);
 
-  --border-hairline: rgba(9, 14, 23, 0.08);
-  --border-strong: rgba(9, 14, 23, 0.16);
-  --border-focus: #0053B4;
+  /* Precise Hairlines — soft on light */
+  --border-hairline: rgba(10, 10, 10, 0.08);
+  --border-medium:   rgba(10, 10, 10, 0.14);
+  --border-strong:   rgba(10, 10, 10, 0.24);
+  --border-focus:    #0a0a0a;
 
-  /* Deliberate Brand Accents */
-  --color-blue: #0053B4;
-  --color-blue-dark: #003e87;
-  --color-blue-soft: #f0f6ff;
+  /* Brand Accent */
+  --color-brand:        #0a0a0a;
+  --color-brand-hover:  #1c1c1c;
+  --color-brand-subtle: rgba(10, 10, 10, 0.07);
+  --color-blue:         #1a6cff;
+  --color-blue-dark:    #1255cc;
+  --color-blue-soft:    rgba(26, 108, 255, 0.08);
 
-  --color-green: #00802F;
-  --color-green-dark: #006626;
-  --color-green-soft: #edf8f1;
+  /* Verification Green */
+  --color-green:      #16a34a;
+  --color-green-dark: #15803d;
+  --color-green-soft: rgba(22, 163, 74, 0.08);
 
-  --color-dark: #000000;
-  --color-light-gray: #A6A6A6;
+  /* ==========================================================================
+     Light Glassmorphism — Frosted white, subtle, professional
+     ========================================================================== */
+  --glass-nav-bg:     rgba(238, 236, 234, 0.82);
+  --glass-nav-blur:   blur(20px);
+  --glass-nav-border: rgba(10, 10, 10, 0.06);
+  --glass-nav-shadow: 0 1px 0 rgba(10, 10, 10, 0.06);
 
-  /* Typography */
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, 'Courier New', monospace;
+  --glass-card-bg:          rgba(255, 255, 255, 0.70);
+  --glass-card-blur:        blur(12px);
+  --glass-card-border:      1px solid rgba(10, 10, 10, 0.08);
+  --glass-card-shadow:      0 4px 24px rgba(0, 0, 0, 0.06);
+  --glass-card-border-subtle: 1px solid rgba(10, 10, 10, 0.05);
 
-  /* Deliberate Tactile Radii (Pill for user-requested elements, crisp 6px/8px for technical panels) */
-  --radius-pill: 9999px;
-  --radius-panel: 8px;
-  --radius-card: 10px;
-  --radius-sm: 4px;
+  --glass-modal-bg:       rgba(255, 255, 255, 0.96);
+  --glass-modal-blur:     blur(24px);
+  --glass-modal-backdrop: rgba(0, 0, 0, 0.30);
+  --glass-modal-shadow:   0 32px 72px -16px rgba(0, 0, 0, 0.22);
+  --glass-modal-overlay:  rgba(0, 0, 0, 0.28);
 
-  /* Custom Tactile Timing Functions (Rules.md: subtle cubic-bezier, no generic flips) */
-  --ease-tactile: cubic-bezier(0.16, 1, 0.3, 1);
-  --duration-fast: 160ms;
-  --duration-medium: 260ms;
+  --glass-fallback-nav-bg:  #eeecea;
+  --glass-fallback-card-bg: #f5f4f2;
 
-  /* Hairline Shadows (subtle, non-muddy) */
-  --shadow-hairline: 0 1px 2px rgba(9, 14, 23, 0.04);
-  --shadow-nav: 0 10px 30px -6px rgba(9, 14, 23, 0.08), 0 0 0 1px rgba(9, 14, 23, 0.06);
-  --shadow-card: 0 8px 24px -4px rgba(9, 14, 23, 0.06), 0 0 0 1px rgba(9, 14, 23, 0.06);
-  --shadow-modal: 0 24px 60px -12px rgba(9, 14, 23, 0.2), 0 0 0 1px rgba(9, 14, 23, 0.08);
+  /* ==========================================================================
+     Clay.com Typography — Ultra-bold Inter / system grotesque
+     ========================================================================== */
+  --font-sans:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  /* Clay-style enormous, bold, tight-tracked fluid type */
+  --text-hero:    clamp(3.25rem, 5.8vw, 6.2rem);
+  --text-display: clamp(2.75rem, 5vw, 5rem);
+  --text-h2:      clamp(2.25rem, 3.8vw, 3.75rem);
+  --text-h3:      clamp(1.5rem, 2.2vw, 2.25rem);
+  --text-lead:    clamp(1.125rem, 1.5vw, 1.35rem);
+  --text-body:    1.0625rem;
+  --text-sm:      0.9375rem;
+  --text-eyebrow: 0.8125rem;
+  --text-xs:      0.75rem;
+
+  /* Clay tracking — very tight on large headings */
+  --tracking-hero:    -0.045em;
+  --tracking-display: -0.04em;
+  --tracking-heading: -0.035em;
+  --tracking-title:   -0.025em;
+  --tracking-normal:  -0.01em;
+  --tracking-eyebrow: 0.08em;
+  --tracking-wide:    0.12em;
+
+  /* ==========================================================================
+     Full-Width Layout System — Device-proportional, expansive left to right
+     ========================================================================== */
+  --container-max: 100%;
+  --gutter:        clamp(1.25rem, 3.2vw, 3.5rem);
+  --space-section: clamp(5rem, 9vw, 11rem);
+  --section-pad-y: clamp(5rem, 9vw, 11rem);
+  --space-block:   clamp(2.5rem, 4.5vw, 5.5rem);
+  --space-gap:     clamp(1.25rem, 2.2vw, 2.25rem);
+  --grid-gap:      clamp(1.25rem, 2.2vw, 2.25rem);
+
+  /* Radii */
+  --radius-pill:  9999px;
+  --radius-chip:  9999px;
+  --radius-card:  18px;
+  --radius-panel: 12px;
+  --radius-modal: 16px;
+  --radius-input: 8px;
+  --radius-sm:    6px;
+
+  /* ==========================================================================
+     Micro-Interactions
+     ========================================================================== */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast:   180ms;
+  --duration-base:   300ms;
+  --duration-slow:   480ms;
+
+  /* Shadows — soft on light background */
+  --shadow-nav:   0 1px 0 rgba(10, 10, 10, 0.07);
+  --shadow-card:  0 4px 24px rgba(0, 0, 0, 0.07);
+  --shadow-hover: 0 16px 48px -8px rgba(0, 0, 0, 0.14);
+  --shadow-modal: 0 32px 72px -16px rgba(0, 0, 0, 0.22);
+
+  /* Compatibility aliases */
+  --ease-tactile:       cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-medium:    300ms;
+  --radius-full:        9999px;
+  --radius-md:          12px;
+  --bg-surface-elevated: #f5f4f2;
 }
 
-/* Reset */
+/* ==========================================================================
+   Reset & Base
+   ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -73,16 +153,17 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-size: 16px;
 }
 
-/* Crisp Clean Canvas — NO blurred orbs, NO dot grids */
 body {
   min-height: 100vh;
   line-height: 1.55;
+  letter-spacing: var(--tracking-normal);
   color: var(--ink-primary);
-  background: #ffffff;
+  background: var(--bg-canvas);
   overflow-x: hidden;
-  position: relative;
 }
 
 a {
@@ -97,22 +178,125 @@ button {
   cursor: pointer;
 }
 
-img {
-  max-width: 100%;
+img, svg {
   display: block;
+  max-width: 100%;
 }
 
-/* High-precision scrollbar */
-::-webkit-scrollbar {
-  width: 7px;
+/* Clay's very heavy heading weight */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ink-primary);
+  line-height: 1.08;
+  letter-spacing: var(--tracking-heading);
+  font-weight: 800;
 }
-::-webkit-scrollbar-track {
-  background: #f8fafc;
+
+/* ==========================================================================
+   Layout Primitives
+   ========================================================================== */
+.clay-container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0 var(--gutter);
+  width: 100%;
+  box-sizing: border-box;
 }
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
+
+.clay-section {
+  padding: var(--section-pad-y) 0;
+  position: relative;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+
+/* Light glassmorphism — subtle frosted white card */
+.glass-surface {
+  background: var(--glass-card-bg);
+  backdrop-filter: var(--glass-card-blur);
+  -webkit-backdrop-filter: var(--glass-card-blur);
+  border: var(--glass-card-border);
+  box-shadow: var(--glass-card-shadow);
+  border-radius: var(--radius-card);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-surface {
+    background: var(--glass-fallback-card-bg);
+    border: 1px solid var(--border-hairline);
+  }
+}
+
+/* Primary Button — Clay's dark pill on light bg */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--ink-primary);
+  color: #ffffff !important;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-pill);
+  border: none;
+  transition: background-color var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.btn-primary:hover {
+  background-color: #222222;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button — ghost border on light bg */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--ink-secondary) !important;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-medium);
+  transition: border-color var(--duration-fast) var(--ease-out),
+              background-color var(--duration-fast) var(--ease-out),
+              color var(--duration-fast) var(--ease-out);
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.btn-secondary:hover {
+  border-color: var(--ink-primary);
+  color: var(--ink-primary) !important;
+  background-color: rgba(10, 10, 10, 0.04);
+}
+
+.clay-eyebrow {
+  display: inline-block;
+  font-size: var(--text-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

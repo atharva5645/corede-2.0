@@ -24,19 +24,23 @@ export default function ClientLogoMarquee() {
   ];
 
   return (
-    <section className="logo-marquee-section">
-      <div className="section-container">
-        <p className="marquee-eyebrow">TRUSTED BY GLOBAL INNOVATORS &amp; ENTERPRISES</p>
+    <section className="client-marquee-section" aria-label="Clients & Partners">
+      <div className="clay-container marquee-header-container">
+        <span className="clay-eyebrow marquee-eyebrow">
+          TRUSTED BY GLOBAL INNOVATORS &amp; ENTERPRISES
+        </span>
       </div>
-      <div className="marquee-track-wrapper">
+
+      {/* Hairline-framed infinite marquee ticker */}
+      <div className="marquee-hairline-boundary">
         <div className="marquee-track">
           {brandLogos.map((logo, idx) => (
-            <div key={`logo-1-${idx}`} className="marquee-logo-card">
+            <div key={`logo-1-${idx}`} className="marquee-logo-item">
               <img src={logo.src} alt={logo.name} className="marquee-logo-img" />
             </div>
           ))}
           {brandLogos.map((logo, idx) => (
-            <div key={`logo-2-${idx}`} className="marquee-logo-card">
+            <div key={`logo-2-${idx}`} className="marquee-logo-item">
               <img src={logo.src} alt={logo.name} className="marquee-logo-img" />
             </div>
           ))}

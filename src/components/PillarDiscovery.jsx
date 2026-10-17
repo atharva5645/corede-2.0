@@ -15,7 +15,6 @@ export default function PillarDiscovery({ onOpenQuote }) {
   const objectives = [
     {
       id: 'roi',
-      theme: 'emerald',
       icon: TrendingUp,
       title: 'Maximize ROI & Sales',
       recommendation: {
@@ -26,7 +25,6 @@ export default function PillarDiscovery({ onOpenQuote }) {
     },
     {
       id: 'scale',
-      theme: 'blue',
       icon: Cpu,
       title: 'Scale Tech Infrastructure',
       recommendation: {
@@ -37,7 +35,6 @@ export default function PillarDiscovery({ onOpenQuote }) {
     },
     {
       id: 'website',
-      theme: 'purple',
       icon: Monitor,
       title: 'Launch High-Perf Website',
       recommendation: {
@@ -48,7 +45,6 @@ export default function PillarDiscovery({ onOpenQuote }) {
     },
     {
       id: 'mobile',
-      theme: 'orange',
       icon: Smartphone,
       title: 'Build Mobile Ecosystem',
       recommendation: {
@@ -62,28 +58,29 @@ export default function PillarDiscovery({ onOpenQuote }) {
   const activeRec = objectives.find(o => o.id === selectedObjective);
 
   return (
-    <section className="pillar-discovery-section" id="pillar-discovery">
-      <div className="section-container">
+    <section className="pillar-discovery-section" id="pillar-discovery" aria-label="Find Your Pillar">
+      <div className="clay-container">
         
         <div className="pillar-discovery-header">
-          <span className="section-eyebrow">STRATEGIC PILLAR DISCOVERY</span>
-          <h2 className="section-heading">
-            Not Sure Where to Start? <span className="text-highlight-green">Find Your Pillar.</span>
+          <span className="clay-eyebrow">STRATEGIC PILLAR DISCOVERY</span>
+          <h2 className="pillar-heading">
+            Not Sure Where to Start? <span className="pillar-heading-accent">Find Your Pillar.</span>
           </h2>
           <p className="pillar-subtitle">
             Use our interactive consultant to identify the high-impact solution for your business.
           </p>
         </div>
 
-        <div className="pillar-interactive-card">
+        {/* Interactive Frosted Glass Surface */}
+        <div className="pillar-interactive-card glass-surface">
           <div className="pillar-card-progress">
-            <span className="step-tag">
+            <span className="pillar-step-badge">
               {selectedObjective ? 'STEP 2 OF 2: RECOMMENDED STRATEGY' : 'STEP 1 OF 2: CHOOSE OBJECTIVE'}
             </span>
           </div>
 
           {!selectedObjective ? (
-            <div>
+            <div className="pillar-step-view">
               <h3 className="pillar-question-heading">What is your primary digital objective?</h3>
               <div className="pillar-options-grid">
                 {objectives.map((obj) => {
@@ -92,13 +89,14 @@ export default function PillarDiscovery({ onOpenQuote }) {
                     <button
                       key={obj.id}
                       type="button"
-                      className={`pillar-option-btn pillar-btn-${obj.theme}`}
+                      className="pillar-option-btn"
                       onClick={() => setSelectedObjective(obj.id)}
                     >
-                      <div className={`pillar-option-icon icon-badge-${obj.theme}`}>
-                        <Icon size={22} strokeWidth={2.2} />
+                      <div className="pillar-option-icon-box">
+                        <Icon size={20} />
                       </div>
                       <span className="pillar-option-title">{obj.title}</span>
+                      <ArrowRight size={16} className="pillar-option-arrow" />
                     </button>
                   );
                 })}
@@ -107,7 +105,7 @@ export default function PillarDiscovery({ onOpenQuote }) {
           ) : (
             <div className="pillar-result-view">
               <div className="pillar-result-badge">
-                <CheckCircle2 size={18} className="result-check-icon" />
+                <CheckCircle2 size={16} className="result-check-icon" />
                 <span>MATCH IDENTIFIED: {activeRec.recommendation.bestFit}</span>
               </div>
               <h3 className="pillar-result-title">{activeRec.recommendation.track}</h3>
@@ -116,7 +114,7 @@ export default function PillarDiscovery({ onOpenQuote }) {
               <div className="pillar-result-actions">
                 <button
                   type="button"
-                  className="btn-quote-pill"
+                  className="btn-primary pillar-cta-btn"
                   onClick={onOpenQuote}
                 >
                   <span>Request Custom Blueprint for this Pillar</span>
@@ -124,10 +122,10 @@ export default function PillarDiscovery({ onOpenQuote }) {
                 </button>
                 <button
                   type="button"
-                  className="btn-brochure-pill"
+                  className="btn-secondary pillar-reset-btn"
                   onClick={() => setSelectedObjective(null)}
                 >
-                  <RotateCcw size={15} />
+                  <RotateCcw size={14} />
                   <span>Choose Another Objective</span>
                 </button>
               </div>

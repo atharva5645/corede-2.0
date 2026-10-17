@@ -59,7 +59,7 @@ export default function Features({ onOpenBrochure, onOpenQuote }) {
 
   return (
     <section className="features-editorial-section" id="services">
-      <div className="section-container">
+      <div className="clay-container">
         
         {/* Section Header with Typographic Hierarchy */}
         {/* Market Evidence Header (from user reference image) */}

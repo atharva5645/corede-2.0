@@ -22,8 +22,11 @@ function App() {
 
   return (
     <div className="app-layout">
-      {/* Floating Pill Navbar matching Image 2 design & Image 1 content */}
-      <Navbar onOpenBrochure={() => setIsBrochureOpen(true)} />
+      {/* Fixed Translucent Navbar matching Clay design */}
+      <Navbar 
+        onOpenBrochure={() => setIsBrochureOpen(true)} 
+        onOpenQuote={() => setIsQuoteOpen(true)}
+      />
 
       {/* Main Base Website Structure with Complete Content from http://127.0.0.1:5000/ */}
       <main className="main-content">
@@ -55,7 +58,10 @@ function App() {
       />
 
       {/* Base Structure Footer */}
-      <Footer onOpenBrochure={() => setIsBrochureOpen(true)} />
+      <Footer 
+        onOpenBrochure={() => setIsBrochureOpen(true)} 
+        onOpenQuote={() => setIsQuoteOpen(true)}
+      />
 
       {/* Floating WhatsApp Action Button */}
       <WhatsAppButton />

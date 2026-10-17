@@ -1,65 +1,66 @@
 import React from 'react';
+import { TechLogoMap } from './icons/TechIcons';
 
 export default function TechStack() {
   const categories = [
     {
       name: 'FRONTEND',
       items: [
-        { name: 'React', color: '#61dafb' },
-        { name: 'Next.js', color: '#0f172a' },
-        { name: 'TypeScript', color: '#3178c6' },
-        { name: 'Vue.js', color: '#42b883' },
-        { name: 'Angular', color: '#dd0031' }
+        { name: 'React', key: 'React' },
+        { name: 'Next.js', key: 'Next.js' },
+        { name: 'TypeScript', key: 'TypeScript' },
+        { name: 'Vue.js', key: 'Vue.js' },
+        { name: 'Angular', key: 'Angular' }
       ]
     },
     {
       name: 'BACKEND',
       items: [
-        { name: 'Node.js', color: '#5fa04e' },
-        { name: '.Net Core', color: '#512bd4' },
-        { name: 'Laravel', color: '#ff2d20' },
-        { name: 'Python', color: '#3776ab' },
-        { name: 'Go', color: '#00add8' }
+        { name: 'Node.js', key: 'Node.js' },
+        { name: '.NET Core', key: '.NET Core' },
+        { name: 'Laravel', key: 'Laravel' },
+        { name: 'Python', key: 'Python' },
+        { name: 'Go', key: 'Go' }
       ]
     },
     {
       name: 'DATABASE',
       items: [
-        { name: 'PostgreSQL', color: '#336791' },
-        { name: 'MongoDB', color: '#13aa52' },
-        { name: 'MySQL', color: '#00758f' },
-        { name: 'Redis', color: '#dc382d' },
-        { name: 'ElasticSearch', color: '#005571' }
+        { name: 'PostgreSQL', key: 'PostgreSQL' },
+        { name: 'MongoDB', key: 'MongoDB' },
+        { name: 'MySQL', key: 'MySQL' },
+        { name: 'Redis', key: 'Redis' },
+        { name: 'ElasticSearch', key: 'ElasticSearch' }
       ]
     },
     {
       name: 'CLOUD & DEVOPS',
       items: [
-        { name: 'AWS', color: '#ff9900' },
-        { name: 'Azure', color: '#0089d6' },
-        { name: 'Docker', color: '#2496ed' },
-        { name: 'Kubernetes', color: '#326ce5' },
-        { name: 'Terraform', color: '#844fba' }
+        { name: 'AWS', key: 'AWS' },
+        { name: 'Azure', key: 'Azure' },
+        { name: 'Docker', key: 'Docker' },
+        { name: 'Kubernetes', key: 'Kubernetes' },
+        { name: 'Terraform', key: 'Terraform' }
       ]
     },
     {
       name: 'BLOCKCHAIN',
       items: [
-        { name: 'Ethereum', color: '#627eea' },
-        { name: 'Solidity', color: '#6366f1' },
-        { name: 'Polkadot', color: '#e6007a' },
-        { name: 'Rust', color: '#f74c00' },
-        { name: 'Hyperledger', color: '#2563eb' }
+        { name: 'Ethereum', key: 'Ethereum' },
+        { name: 'Solidity', key: 'Solidity' },
+        { name: 'Polkadot', key: 'Polkadot' },
+        { name: 'Rust', key: 'Rust' },
+        { name: 'Hyperledger', key: 'Hyperledger' }
       ]
     }
   ];
 
   return (
-    <section className="tech-stack-section" id="tech-stack">
-      <div className="section-container">
+    <section className="tech-stack-section" id="tech-stack" aria-label="Technology Stack">
+      <div className="clay-container">
         <div className="tech-stack-header">
-          <span className="section-eyebrow">TECHNOLOGY STACK</span>
-          <h2 className="section-heading">Mission-Critical Technologies We Master.</h2>
+          <span className="clay-eyebrow">TECHNOLOGY STACK</span>
+          <h2 className="tech-stack-heading">Mission-Critical Technologies We Master.</h2>
         </div>
 
         <div className="tech-stack-grid">
@@ -67,20 +68,23 @@ export default function TechStack() {
             <div key={idx} className="tech-category-group">
               <span className="tech-category-label">{cat.name}</span>
               <div className="tech-pill-list">
-                {cat.items.map((tech, techIdx) => (
-                  <span 
-                    key={techIdx} 
-                    className="tech-pill-item"
-                    style={{ '--pill-color': tech.color }}
-                  >
+                {cat.items.map((tech, techIdx) => {
+                  const IconComponent = TechLogoMap[tech.key];
+                  return (
                     <span 
-                      className="tech-pill-dot" 
-                      style={{ backgroundColor: tech.color }} 
-                      aria-hidden="true"
-                    />
-                    <span className="tech-pill-name">{tech.name}</span>
-                  </span>
-                ))}
+                      key={techIdx} 
+                      className="tech-pill-chip glass-surface"
+                      title={tech.name}
+                    >
+                      {IconComponent && (
+                        <span className="tech-pill-logo-wrap" aria-hidden="true">
+                          <IconComponent size={18} />
+                        </span>
+                      )}
+                      <span className="tech-pill-name">{tech.name}</span>
+                    </span>
+                  );
+                })}
               </div>
             </div>
           ))}

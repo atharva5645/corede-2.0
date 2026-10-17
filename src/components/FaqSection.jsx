@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { ChevronDown, MessageSquare, Wrench } from 'lucide-react';
+import { Plus, MessageSquare, Wrench } from 'lucide-react';
 
 export default function FaqSection() {
-  const [openIdx, setOpenIdx] = useState(1); // Default open second item matching reference
+  const [openIdx, setOpenIdx] = useState(1); // Default open second item
 
   const faqs = [
     {
@@ -24,43 +24,47 @@ export default function FaqSection() {
   ];
 
   return (
-    <section className="faq-section" id="faqs">
-      <div className="section-container">
+    <section className="faq-section" id="faqs" aria-label="Frequently Asked Questions">
+      <div className="clay-container">
         
-        <div className="faq-header">
-          <span className="section-eyebrow">COMMON ENQUIRIES</span>
-          <h2 className="section-heading">
-            FAQs &amp; <span className="text-highlight-green">Expert Insights.</span>
-          </h2>
+        <div className="faq-header-layout">
+          <div className="faq-header-left">
+            <span className="clay-eyebrow">COMMON ENQUIRIES</span>
+            <h2 className="faq-section-heading">
+              FAQs &amp; <span className="faq-heading-accent">Expert Insights.</span>
+            </h2>
+          </div>
+
           <div className="faq-quick-triggers">
             <a 
               href="https://wa.me/918951029849?text=Hello%20CoreDe%20Innovation,%20I%20want%20sales%20information" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="faq-trigger-pill"
+              className="btn-secondary faq-trigger-pill"
             >
-              <MessageSquare size={15} />
-              <span>💼 Sales Inquiry</span>
+              <MessageSquare size={14} />
+              <span>Sales Inquiry</span>
             </a>
             <a 
               href="https://wa.me/919008110807?text=Hello%20CoreDe%20Innovation,%20I%20need%20support" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="faq-trigger-pill"
+              className="btn-secondary faq-trigger-pill"
             >
-              <Wrench size={15} />
-              <span>🛠 Technical Support</span>
+              <Wrench size={14} />
+              <span>Technical Support</span>
             </a>
           </div>
         </div>
 
-        <div className="faq-accordion-list">
+        {/* Signature Clay FAQ: Full-width hairline-divided list */}
+        <div className="faq-hairline-list">
           {faqs.map((faq, idx) => {
             const isOpen = openIdx === idx;
             return (
               <div 
                 key={idx} 
-                className={`faq-accordion-item ${isOpen ? 'is-open' : ''}`}
+                className={`faq-item-row ${isOpen ? 'is-open' : ''}`}
               >
                 <button
                   type="button"
@@ -69,10 +73,9 @@ export default function FaqSection() {
                   aria-expanded={isOpen}
                 >
                   <span className="faq-question-text">{faq.q}</span>
-                  <ChevronDown 
-                    size={18} 
-                    className={`faq-chevron ${isOpen ? 'rotate-180' : ''}`} 
-                  />
+                  <span className={`faq-toggle-icon ${isOpen ? 'is-rotated' : ''}`} aria-hidden="true">
+                    <Plus size={20} />
+                  </span>
                 </button>
                 {isOpen && (
                   <div className="faq-answer-panel">

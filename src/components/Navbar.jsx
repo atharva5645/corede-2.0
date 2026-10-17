@@ -1,24 +1,60 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { 
   ChevronDown, 
   Download, 
   Menu, 
   X, 
-  FileText
+  FileText,
+  ArrowRight,
+  Phone,
+  Mail
 } from 'lucide-react';
 
-export default function Navbar({ onOpenBrochure }) {
+export default function Navbar({ onOpenBrochure, onOpenQuote }) {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [brochureDropdownOpen, setBrochureDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
   const navRef = useRef(null);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
+  const activeDropdownRef = useRef(activeDropdown);
+  activeDropdownRef.current = activeDropdown;
+  const mobileMenuOpenRef = useRef(mobileMenuOpen);
+  mobileMenuOpenRef.current = mobileMenuOpen;
 
+  // Scroll direction detection — hides on scroll-down, pops on scroll-up
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const diff = currentScrollY - lastScrollY.current;
+
+          // At top of page — always show, transparent
+          if (currentScrollY < 20) {
+            setNavHidden(false);
+            setScrolled(false);
+          } else {
+            setScrolled(true);
+            // Sensitive to scroll direction changes (> 6px) — do NOT hide if dropdown is open!
+            if (diff > 6 && !mobileMenuOpenRef.current && !activeDropdownRef.current) {
+              setNavHidden(true);
+            } else if (diff < -6) {
+              setNavHidden(false);
+            }
+          }
+
+          lastScrollY.current = currentScrollY;
+          ticking.current = false;
+        });
+        ticking.current = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -29,9 +65,31 @@ export default function Navbar({ onOpenBrochure }) {
         setBrochureDropdownOpen(false);
       }
     };
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setActiveDropdown(null);
+        setBrochureDropdownOpen(false);
+      }
+    };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
+
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   const servicesData = [
     {
@@ -122,36 +180,47 @@ export default function Navbar({ onOpenBrochure }) {
   ];
 
   return (
-    <header className={`navbar-wrapper ${scrolled ? 'is-scrolled' : ''}`} ref={navRef}>
-      <div className="navbar-pill">
+    <header 
+      className={`clay-navbar ${scrolled ? 'is-scrolled' : ''} ${navHidden ? 'is-hidden' : ''}`} 
+      ref={navRef}
+    >
+      <div className="clay-container navbar-inner">
         {/* Brand Logo */}
         <a href="/" className="navbar-brand" aria-label="CoreDe Home">
           <img 
             src="/logo.png" 
             alt="CoreDe Logo" 
             className="navbar-logo-img" 
+            style={{ filter: 'none' }}
           />
         </a>
 
         {/* Desktop Navigation Links */}
         <nav className="navbar-links" aria-label="Main Navigation">
-          {/* Services with Mega Menu */}
-          <div 
-            className="nav-item-dropdown"
-            onMouseEnter={() => setActiveDropdown('services')}
-            onMouseLeave={() => setActiveDropdown(null)}
-          >
+          {/* Services with Mega Menu — Click to toggle, persistent and does not disappear on hover/mouse movement */}
+          <div className="nav-item-dropdown">
             <button 
               type="button" 
               className={`nav-link-btn ${activeDropdown === 'services' ? 'active' : ''}`}
-              onClick={() => setActiveDropdown(activeDropdown === 'services' ? null : 'services')}
+              onClick={(e) => {
+                e.stopPropagation();
+                setBrochureDropdownOpen(false);
+                setActiveDropdown(prev => prev === 'services' ? null : 'services');
+              }}
+              aria-expanded={activeDropdown === 'services'}
+              id="services-nav-trigger"
             >
               <span>Services</span>
-              <ChevronDown size={14} className={`nav-caret ${activeDropdown === 'services' ? 'rotated' : ''}`} />
+              <ChevronDown size={17} className={`nav-caret ${activeDropdown === 'services' ? 'rotated' : ''}`} />
             </button>
 
             {activeDropdown === 'services' && (
-              <div className="mega-menu-full-window">
+              <div 
+                className="mega-menu-full-window"
+                onClick={(e) => e.stopPropagation()}
+                role="region"
+                aria-label="Services Directory"
+              >
                 <div className="mega-menu-inner-grid">
                   {servicesData.map((col, cIdx) => (
                     <div key={cIdx} className="mega-menu-col">
@@ -199,17 +268,20 @@ export default function Navbar({ onOpenBrochure }) {
           </div>
         </nav>
 
-        {/* Right CTA Actions: Brochure Dropdown */}
+        {/* Right Actions: Brochure + Quote CTA */}
         <div className="navbar-actions">
+          {/* Brochure Dropdown */}
           <div className="brochure-dropdown-container">
             <button 
               type="button" 
-              className="navbar-cta-pill"
+              className="navbar-brochure-btn"
               onClick={() => setBrochureDropdownOpen(!brochureDropdownOpen)}
               aria-label="Download Brochures"
+              aria-expanded={brochureDropdownOpen}
             >
-              <Download size={15} />
-              <span>Brochure ⬇</span>
+              <Download size={17} />
+              <span>Brochure</span>
+              <ChevronDown size={16} className={`nav-caret ${brochureDropdownOpen ? 'rotated' : ''}`} />
             </button>
 
             {brochureDropdownOpen && (
@@ -220,7 +292,7 @@ export default function Navbar({ onOpenBrochure }) {
                   className="brochure-dropdown-item"
                   onClick={() => setBrochureDropdownOpen(false)}
                 >
-                  <FileText size={16} />
+                  <FileText size={17} />
                   <span>📄 Booklet</span>
                 </a>
                 <a 
@@ -229,12 +301,23 @@ export default function Navbar({ onOpenBrochure }) {
                   className="brochure-dropdown-item"
                   onClick={() => setBrochureDropdownOpen(false)}
                 >
-                  <FileText size={16} />
-                  <span>📄 Broucher</span>
+                  <FileText size={17} />
+                  <span>📄 Brochure</span>
                 </a>
               </div>
             )}
           </div>
+
+          {/* Primary CTA Button */}
+          <button 
+            type="button" 
+            className="btn-primary navbar-cta-btn"
+            onClick={onOpenQuote}
+            id="nav-quote-btn"
+          >
+            <span>Request a Quote</span>
+            <ArrowRight size={17} />
+          </button>
 
           {/* Mobile Menu Toggle Button */}
           <button 
@@ -242,50 +325,86 @@ export default function Navbar({ onOpenBrochure }) {
             className="mobile-toggle-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle mobile menu"
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Slideout */}
-      {mobileMenuOpen && (
+      {/* Full-Screen Dark Mobile Menu Overlay */}
+      {mobileMenuOpen && typeof document !== 'undefined' && createPortal(
         <div className="mobile-drawer-overlay" onClick={() => setMobileMenuOpen(false)}>
           <div className="mobile-drawer-sheet" onClick={(e) => e.stopPropagation()}>
             <div className="mobile-drawer-header">
-              <img src="/logo.png" alt="CoreDe Logo" className="mobile-logo" />
+              <a href="/" onClick={() => setMobileMenuOpen(false)}>
+                <img src="/logo.png" alt="CoreDe Logo" className="mobile-logo" style={{ filter: 'none' }} />
+              </a>
               <button 
                 type="button" 
                 className="close-drawer-btn"
                 onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close menu"
               >
-                <X size={20} />
+                <X size={22} />
               </button>
             </div>
 
             <nav className="mobile-drawer-nav">
-              <a href="#services" onClick={() => setMobileMenuOpen(false)}>Digital Marketing</a>
-              <a href="#services" onClick={() => setMobileMenuOpen(false)}>Design &amp; UI/UX</a>
-              <a href="#services" onClick={() => setMobileMenuOpen(false)}>Content Strategy</a>
-              <a href="#services" onClick={() => setMobileMenuOpen(false)}>Production &amp; Media</a>
-              <a href="#services" onClick={() => setMobileMenuOpen(false)}>Technology &amp; Web</a>
+              <span className="mobile-nav-eyebrow">NAVIGATION</span>
+              <a href="#services" onClick={() => setMobileMenuOpen(false)}>Services</a>
               <a href="/career" onClick={() => setMobileMenuOpen(false)}>Careers</a>
               <a href="/internship" onClick={() => setMobileMenuOpen(false)}>Internship</a>
               <a href="/workshop/" onClick={() => setMobileMenuOpen(false)}>Workshop</a>
+              
+              <div className="mobile-nav-divider" />
+              
+              <span className="mobile-nav-eyebrow">SERVICES DIRECTORY</span>
+              <a href="#services" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>Digital Marketing</a>
+              <a href="#services" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>Design &amp; UI/UX</a>
+              <a href="#services" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>Content Strategy</a>
+              <a href="#services" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>Production &amp; Media</a>
+              <a href="#services" className="mobile-sublink" onClick={() => setMobileMenuOpen(false)}>Technology &amp; Web</a>
             </nav>
 
+            <div className="mobile-drawer-actions">
+              <button 
+                type="button" 
+                className="btn-primary mobile-quote-btn"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onOpenQuote) onOpenQuote();
+                }}
+              >
+                <span>Request a Quote</span>
+                <ArrowRight size={16} />
+              </button>
+
+              <div className="mobile-brochure-row">
+                <a href="/Booklet.pdf" download className="btn-secondary mobile-brochure-link">
+                  <Download size={14} />
+                  <span>Booklet</span>
+                </a>
+                <a href="/Broucher.pdf" download className="btn-secondary mobile-brochure-link">
+                  <Download size={14} />
+                  <span>Brochure</span>
+                </a>
+              </div>
+            </div>
+
             <div className="mobile-drawer-footer">
-              <a href="/Booklet.pdf" download className="btn-primary-pill" style={{ marginBottom: '10px' }}>
-                <Download size={14} />
-                <span>Download Booklet</span>
-              </a>
-              <a href="/Broucher.pdf" download className="btn-secondary-pill">
-                <Download size={14} />
-                <span>Download Brochure</span>
-              </a>
+              <div className="mobile-contact-item">
+                <Phone size={14} />
+                <span>+91 8951029849</span>
+              </div>
+              <div className="mobile-contact-item">
+                <Mail size={14} />
+                <span>info@corede.in</span>
+              </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </header>
   );

@@ -1,0 +1,128 @@
+.bounce-cards {
+  position: relative;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  margin: 0 auto;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bounce-cards__stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: auto;
+  transform-origin: center center;
+}
+
+.bounce-cards__card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--bounce-cards-width, 260px);
+  height: var(--bounce-cards-height, 250px);
+  box-sizing: border-box;
+  border: 1px solid #E5E7EB;
+  border-radius: var(--bounce-cards-radius, 20px);
+  background: #FFFFFF;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06);
+  transform: translate(-50%, -50%) scale(0);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform;
+  pointer-events: auto;
+  cursor: pointer;
+  outline: none;
+}
+
+.bounce-cards__card[data-active] {
+  border-color: #0F172A;
+  box-shadow: 0 20px 40px -12px rgba(15, 23, 42, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+}
+
+.bounce-cards__card:focus-visible {
+  border-color: #0F172A;
+  outline: 2px solid #0F172A;
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Process Card Content Layout & Editorial Typography
+   ========================================================================== */
+.process-card-content {
+  width: 100%;
+  height: 100%;
+  padding: 32px 28px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  pointer-events: none;
+}
+
+.process-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.process-card-number {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+  color: #CBD5E1;
+  letter-spacing: -0.04em;
+  font-family: inherit;
+  transition: color 0.25s ease;
+}
+
+.bounce-cards__card[data-active] .process-card-number {
+  color: #94A3B8;
+}
+
+.process-card-icon-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.bounce-cards__card[data-active] .process-card-icon-badge {
+  background-color: #0F172A;
+  border-color: #0F172A;
+  color: #FFFFFF;
+  transform: scale(1.05);
+}
+
+.process-card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.process-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0F172A;
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.process-card-desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: #475569;
+  margin: 0;
+}

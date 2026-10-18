@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, Phone, MessageSquare, Video, X } from 'lucide-react';
+import IsometricArchitecture from './IsometricArchitecture';
 
 export default function Hero({ onOpenQuote, onOpenBrochure }) {
   const [showCallPopup, setShowCallPopup] = useState(false);
@@ -10,12 +11,6 @@ export default function Hero({ onOpenQuote, onOpenBrochure }) {
         <div className="hero-grid-layout">
           {/* Left Column: Copy & Actions */}
           <div className="hero-content-clean">
-            {/* Editorial Eyebrow with Live Status Indicator */}
-            <div className="hero-status-badge">
-              <span className="status-dot-pulse" aria-hidden="true" />
-              <span className="hero-eyebrow-text">COREDE DIGITAL ECOSYSTEM — LIVE</span>
-            </div>
-
             {/* Fluid Editorial Headline */}
             <h1 className="hero-headline">
               Global IT Partner for <br className="hero-desktop-br" />
@@ -111,15 +106,9 @@ export default function Hero({ onOpenQuote, onOpenBrochure }) {
             </div>
           </div>
 
-          {/* Right Column: Hero Visual Frame */}
+          {/* Right Column: Seamless Isometric Architectural Engineering Diagram */}
           <div className="hero-visual-column">
-            <div className="hero-visual-frame glass-surface">
-              <img 
-                src="/images/Global%20Network%20Innovation%20Dashboard.png" 
-                alt="CoreDe Global Network Innovation Dashboard" 
-                className="hero-dashboard-img" 
-              />
-            </div>
+            <IsometricArchitecture />
           </div>
         </div>
       </div>

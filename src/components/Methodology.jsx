@@ -1,5 +1,6 @@
 import React from 'react';
 import { Compass, PenTool, Code, Rocket } from 'lucide-react';
+import BounceCards from './BounceCards';
 
 export default function Methodology() {
   const steps = [
@@ -39,23 +40,43 @@ export default function Methodology() {
           </h2>
         </div>
 
-        {/* Numbered Editorial Timeline Grid */}
-        <div className="methodology-timeline-grid">
-          {steps.map((step, idx) => {
-            const Icon = step.icon;
-            return (
-              <div key={idx} className="methodology-step-item glass-surface">
-                <div className="step-item-top">
-                  <span className="step-giant-number">{step.num}</span>
-                  <div className="step-icon-box">
-                    <Icon size={18} strokeWidth={1.8} />
+        {/* Spring Physics BounceCards 4-Step Process Row */}
+        <div className="methodology-bounce-wrapper">
+          <BounceCards
+            cardWidth={260}
+            cardHeight={250}
+            spread={284}
+            rotation={0}
+            arc={0}
+            pushDistance={22}
+            hoverScale={1.05}
+            hoverLift={8}
+            hoverRotate={0}
+            bounciness={0.58}
+            popStiffness={180}
+            moveStiffness={210}
+            animationDelay={0.12}
+            animationStagger={0.09}
+            containerHeight={320}
+          >
+            {steps.map((step, idx) => {
+              const Icon = step.icon;
+              return (
+                <div key={idx} className="process-card-content">
+                  <div className="process-card-header">
+                    <span className="process-card-number">{step.num}</span>
+                    <div className="process-card-icon-badge" aria-hidden="true">
+                      <Icon size={18} strokeWidth={2} />
+                    </div>
+                  </div>
+                  <div className="process-card-body">
+                    <h3 className="process-card-title">{step.title}</h3>
+                    <p className="process-card-desc">{step.desc}</p>
                   </div>
                 </div>
-                <h3 className="step-title">{step.title}</h3>
-                <p className="step-desc">{step.desc}</p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </BounceCards>
         </div>
       </div>
     </section>

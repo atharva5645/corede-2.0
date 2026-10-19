@@ -1,0 +1,465 @@
+/* ==========================================================================
+   Strategic Pillar Discovery — Solid Light-Mode Component Styles
+   Zero Glassmorphism · Crisp High-Contrast Borders · Refined Typography
+   ========================================================================== */
+
+.pillar-discovery-section {
+  padding: clamp(4rem, 6vw, 7rem) 0;
+  background-color: var(--bg-canvas, #eeecea);
+  border-bottom: 1px solid var(--border-hairline, rgba(10, 10, 10, 0.08));
+}
+
+.pillar-discovery-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 3.5rem;
+}
+
+.pillar-heading {
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #0a0a0a;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.pillar-heading-accent {
+  color: #16a34a; /* Verified Green Accent */
+}
+
+.pillar-subtitle {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #52525b;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Solid White Interactive Shell (Zero Glass / Blur)
+   ========================================================================== */
+.pillar-solid-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: clamp(2rem, 4vw, 3.5rem);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s ease-out;
+}
+
+/* Header Bar Inside Card */
+.pillar-card-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.pillar-step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748b;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 6px 14px;
+  border-radius: 9999px;
+}
+
+.pillar-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.pillar-back-link:hover {
+  color: #0a0a0a;
+  background: #f1f5f9;
+}
+
+/* ==========================================================================
+   STEP 1: 2x2 Objective Grid View
+   ========================================================================== */
+.pillar-question-heading {
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  font-weight: 700;
+  color: #0a0a0a;
+  letter-spacing: -0.015em;
+  margin-bottom: 2rem;
+}
+
+.pillar-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.pillar-option-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.75rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              box-shadow 0.2s ease;
+  width: 100%;
+}
+
+.pillar-option-card:hover {
+  background-color: #f8fafc;
+  border-color: #0a0a0a;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.06);
+}
+
+.pillar-option-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.pillar-option-card:hover .pillar-option-icon-box {
+  background: #0a0a0a;
+  border-color: #0a0a0a;
+  color: #ffffff;
+}
+
+.pillar-option-text-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pillar-option-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #0a0a0a;
+  line-height: 1.35;
+}
+
+.pillar-option-subtext {
+  font-size: 0.8125rem;
+  color: #64748b;
+  margin-top: 3px;
+}
+
+.pillar-option-arrow {
+  color: #94a3b8;
+  flex-shrink: 0;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+}
+
+.pillar-option-card:hover .pillar-option-arrow {
+  transform: translateX(4px);
+  color: #0a0a0a;
+}
+
+/* ==========================================================================
+   STEP 2: Tab Switcher Bar
+   ========================================================================== */
+.pillar-switcher-tabs {
+  display: flex;
+  background: #f1f5f9;
+  padding: 5px;
+  border-radius: 12px;
+  gap: 4px;
+  margin-bottom: 2.5rem;
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+}
+
+.pillar-tab-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.pillar-tab-btn:hover {
+  color: #0a0a0a;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.pillar-tab-btn.is-active {
+  background: #ffffff;
+  color: #0a0a0a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.pillar-tab-icon {
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   STEP 2: Split Strategy Result View
+   ========================================================================== */
+.pillar-split-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+/* Left Column: Solution Brief */
+.pillar-strategy-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.pillar-strategy-title {
+  font-size: clamp(1.75rem, 2.5vw, 2.35rem);
+  font-weight: 800;
+  color: #0a0a0a;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+
+.pillar-strategy-desc {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #475569;
+  margin-bottom: 2rem;
+}
+
+/* Deliverables Pill Chips */
+.pillar-deliverables-wrap {
+  margin-bottom: 2.5rem;
+}
+
+.pillar-deliverables-label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 0.75rem;
+}
+
+.pillar-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pillar-chip {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #334155;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+/* CTA Actions */
+.pillar-cta-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.pillar-blueprint-btn {
+  height: 52px;
+  padding: 0 28px;
+  background: #0a0a0a;
+  color: #ffffff;
+  border-radius: 9999px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: 1px solid #0a0a0a;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.pillar-blueprint-btn:hover {
+  background: #27272a;
+  transform: translateY(-1px);
+}
+
+.pillar-switch-link-btn {
+  height: 52px;
+  padding: 0 20px;
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.pillar-switch-link-btn:hover {
+  background: #f1f5f9;
+  color: #0a0a0a;
+  border-color: #cbd5e1;
+}
+
+/* ==========================================================================
+   Right Column: Solid Light Metric Indicator Cards
+   ========================================================================== */
+.pillar-strategy-right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pillar-metrics-panel {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pillar-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.pillar-panel-tag {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.pillar-metric-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  transition: border-color 0.2s ease;
+}
+
+.pillar-metric-card:hover {
+  border-color: #cbd5e1;
+}
+
+.pillar-metric-value-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.pillar-metric-val {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0a0a0a;
+  letter-spacing: -0.02em;
+}
+
+.pillar-metric-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.pillar-metric-delta {
+  font-size: 0.8125rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 960px) {
+  .pillar-split-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .pillar-options-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .pillar-solid-card {
+    padding: 1.75rem 1.25rem;
+    border-radius: 16px;
+  }
+
+  .pillar-switcher-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pillar-tab-btn {
+    padding: 8px 12px;
+    font-size: 0.8125rem;
+  }
+
+  .pillar-cta-row {
+    flex-direction: column;
+  }
+
+  .pillar-blueprint-btn,
+  .pillar-switch-link-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

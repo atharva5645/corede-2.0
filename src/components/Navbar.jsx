@@ -25,7 +25,10 @@ export default function Navbar({ onOpenBrochure, onOpenQuote }) {
   const mobileMenuOpenRef = useRef(mobileMenuOpen);
   mobileMenuOpenRef.current = mobileMenuOpen;
 
-  // Scroll direction detection — hides on scroll-down, pops on scroll-up
+  const scrolledRef = useRef(false);
+  const navHiddenRef = useRef(false);
+
+  // Scroll direction detection — throttled with strict state-change guards
   useEffect(() => {
     const handleScroll = () => {
       if (!ticking.current) {
@@ -35,15 +38,30 @@ export default function Navbar({ onOpenBrochure, onOpenQuote }) {
 
           // At top of page — always show, transparent
           if (currentScrollY < 20) {
-            setNavHidden(false);
-            setScrolled(false);
-          } else {
-            setScrolled(true);
-            // Sensitive to scroll direction changes (> 6px) — do NOT hide if dropdown is open!
-            if (diff > 6 && !mobileMenuOpenRef.current && !activeDropdownRef.current) {
-              setNavHidden(true);
-            } else if (diff < -6) {
+            if (navHiddenRef.current) {
+              navHiddenRef.current = false;
               setNavHidden(false);
+            }
+            if (scrolledRef.current) {
+              scrolledRef.current = false;
+              setScrolled(false);
+            }
+          } else {
+            if (!scrolledRef.current) {
+              scrolledRef.current = true;
+              setScrolled(true);
+            }
+            // Sensitive to scroll direction changes (> 8px) — do NOT hide if dropdown is open!
+            if (diff > 8 && !mobileMenuOpenRef.current && !activeDropdownRef.current) {
+              if (!navHiddenRef.current) {
+                navHiddenRef.current = true;
+                setNavHidden(true);
+              }
+            } else if (diff < -8) {
+              if (navHiddenRef.current) {
+                navHiddenRef.current = false;
+                setNavHidden(false);
+              }
             }
           }
 

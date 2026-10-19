@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Standing Upright Mobile Visual Styles & Seamless 4.5s Motion Loop
+   ========================================================================== */
+
+.isometric-showcase-container {
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  user-select: none;
+}
+
+.standing-phone-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 24px 44px rgba(0, 0, 0, 0.5));
+}
+
+/* Pause animations when off-screen to preserve GPU frame rate */
+.isometric-showcase-container:not(.is-in-view) .standing-phone-rig,
+.isometric-showcase-container:not(.is-in-view) .floating-left-badge-group,
+.isometric-showcase-container:not(.is-in-view) .standing-ground-shadow,
+.isometric-showcase-container:not(.is-in-view) .live-dot-pulse,
+.isometric-showcase-container:not(.is-in-view) .tracker-ping {
+  animation-play-state: paused !important;
+}
+
+/* 1. Main Standing Phone Rig Hover (Straight Upright, Not Sleeping) */
+.standing-phone-rig {
+  transform-origin: 370px 300px;
+  animation: standing-phone-float 4.5s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+  will-change: transform;
+}
+
+@keyframes standing-phone-float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* 2. Floating 2.5D Badge on the Left (Independent Parallax Float) */
+.floating-left-badge-group {
+  transform-origin: 140px 160px;
+  animation: left-badge-independent-float 4.5s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+  will-change: transform;
+}
+
+@keyframes left-badge-independent-float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* 3. Ground Shadow Breathing as Phone Rises */
+.standing-ground-shadow {
+  transform-origin: 370px 565px;
+  animation: ground-shadow-breathe 4.5s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+}
+
+@keyframes ground-shadow-breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(0.92);
+    opacity: 0.45;
+  }
+}
+
+/* 4. Live Operational Green Dot Pulse */
+.live-dot-pulse {
+  animation: live-indicator-ping 2.25s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes live-indicator-ping {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.9);
+  }
+}
+
+/* 5. Active Tracker Beacon Pulse */
+.tracker-ping {
+  animation: beacon-ping 1.5s ease-out infinite;
+  transform-origin: center;
+}
+
+@keyframes beacon-ping {
+  0% {
+    r: 6;
+    opacity: 0.8;
+  }
+  70% {
+    r: 12;
+    opacity: 0.1;
+  }
+  100% {
+    r: 15;
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Accessibility: prefers-reduced-motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .standing-phone-rig,
+  .floating-left-badge-group,
+  .standing-ground-shadow,
+  .live-dot-pulse,
+  .tracker-ping,
+  animateMotion {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   Responsive Scaling
+   ========================================================================== */
+@media (max-width: 960px) {
+  .isometric-showcase-container {
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 640px) {
+  .isometric-showcase-container {
+    max-width: 100%;
+  }
+}

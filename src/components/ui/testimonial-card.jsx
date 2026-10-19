@@ -23,7 +23,6 @@ export function TestimonialCard({
     <CardWrapper 
       className={cn(
         "testimonial-marquee-card",
-        "glass-surface",
         className
       )}
       {...wrapperProps}
@@ -36,6 +35,7 @@ export function TestimonialCard({
               alt={author?.name || 'Client Avatar'} 
               className="testimonial-avatar-img" 
               loading="lazy"
+              decoding="async"
             />
           </div>
         )}

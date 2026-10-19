@@ -55,6 +55,7 @@ export default function MarketEvidence() {
                   alt={card.title} 
                   className="evidence-card-img" 
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
 

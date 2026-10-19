@@ -174,7 +174,7 @@ export default function BounceCards({
 
     const frame = now => {
       raf = 0;
-      if (!alive) return;
+      if (!alive || !state.inView) return;
       const s = settingsRef.current;
       const dt = Math.min(1 / 30, Math.max(1 / 240, (now - last) / 1000));
       last = now;
@@ -249,7 +249,7 @@ export default function BounceCards({
     };
 
     const wake = () => {
-      if (raf || !alive) return;
+      if (raf || !alive || !state.inView) return;
       last = performance.now();
       raf = requestAnimationFrame(frame);
     };
@@ -276,6 +276,10 @@ export default function BounceCards({
             }
           } else if (entry.intersectionRatio <= 0) {
             state.inView = false;
+            if (raf) {
+              cancelAnimationFrame(raf);
+              raf = 0;
+            }
             const s = settingsRef.current;
             for (let i = 0; i < s.slots.length; i++) {
               if (bodies[i] && !reduce) {

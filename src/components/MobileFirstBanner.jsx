@@ -1,6 +1,8 @@
 import React from 'react';
 import { Zap, TrendingUp, Smartphone, ArrowRight } from 'lucide-react';
 
+import IsometricMobileVisual from './IsometricMobileVisual';
+
 export default function MobileFirstBanner({ onOpenQuote }) {
   return (
     <section className="mobile-first-section" id="mobile-first" aria-label="Mobile First Platform">
@@ -8,23 +10,9 @@ export default function MobileFirstBanner({ onOpenQuote }) {
         <div className="mobile-first-panel-dark">
           <div className="mobile-first-grid">
             
-            {/* Left Column: Visual Showcase Card */}
+            {/* Left Column: Isometric Animated Visual */}
             <div className="mobile-first-visual-wrap">
-              <div className="mobile-first-image-card">
-                <img 
-                  src="/images/b2b_mobile_dashboard_ui.jpg" 
-                  alt="Modern B2B enterprise mobile analytics dashboard interface" 
-                  className="mobile-first-bg-img"
-                />
-                <div className="trend-overlay-badge glass-surface">
-                  <div className="trend-badge-header">
-                    <span className="trend-icon">📱</span>
-                    <span className="trend-label">B2B TREND</span>
-                  </div>
-                  <p className="trend-quote">“70% of B2B buyers now research exclusively via Mobile.”</p>
-                  <span className="trend-source">— Source: Google/HubSpot Research</span>
-                </div>
-              </div>
+              <IsometricMobileVisual />
             </div>
 
             {/* Right Column: Editorial Statement Column */}

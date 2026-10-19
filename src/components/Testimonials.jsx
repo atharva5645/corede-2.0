@@ -8,8 +8,22 @@ export function TestimonialsSection({
   testimonials = [],
   className = ""
 }) {
+  const sectionRef = React.useRef(null);
+  const [inView, setInView] = React.useState(true);
+
+  React.useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      setInView(entry.isIntersecting);
+    }, { rootMargin: '150px 0px' });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section 
+      ref={sectionRef}
       className={cn(
         "testimonials-section",
         "bg-background text-foreground",
@@ -32,9 +46,12 @@ export function TestimonialsSection({
 
       {/* Infinite Horizontal Marquee Carousel with Edge Fades */}
       <div className="testimonials-marquee-wrapper relative flex w-full flex-col items-center justify-center overflow-hidden">
-        <div className="group flex overflow-hidden p-2 [--gap:1.25rem] [gap:var(--gap)] flex-row [--duration:40s]">
-          <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row group-hover:[animation-play-state:paused]">
-            {[...Array(4)].map((_, setIndex) => (
+        <div className="group flex overflow-hidden p-2 [--gap:1.25rem] [gap:var(--gap)] flex-row [--duration:35s]">
+          <div 
+            className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row group-hover:[animation-play-state:paused]"
+            style={{ animationPlayState: inView ? 'running' : 'paused' }}
+          >
+            {[...Array(2)].map((_, setIndex) => (
               testimonials.map((testimonial, i) => (
                 <TestimonialCard 
                   key={`${setIndex}-${i}`}

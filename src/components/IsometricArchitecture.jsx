@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React, { useId, useMemo, useRef, useState, useEffect } from 'react';
 
 /**
  * IsometricArchitecture
@@ -7,33 +7,52 @@ import React, { useId } from 'react';
  */
 export default function IsometricArchitecture() {
   const uid = useId().replace(/:/g, '');
+  const containerRef = useRef(null);
+  const [inView, setInView] = useState(true);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      setInView(entry.isIntersecting);
+    }, { rootMargin: '100px 0px' });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   // Generate crisp isometric floor grid lines (viewBox: 0 0 800 600)
-  // Slope +tan(30°) = 0.57735 and -tan(30°) = -0.57735
-  const gridLines = [];
-  const spacing = 36;
-  const halfSpan = 480;
-  
-  // Diagonal lines direction 1 (+30 deg)
-  for (let offset = -440; offset <= 440; offset += spacing) {
-    const x1 = 400 - halfSpan;
-    const y1 = 330 + offset - halfSpan * 0.57735;
-    const x2 = 400 + halfSpan;
-    const y2 = 330 + offset + halfSpan * 0.57735;
-    gridLines.push({ x1, y1, x2, y2, key: `g1-${offset}` });
-  }
+  // Slope +tan(30°) = 0.57735 and -tan(30°) = -0.57735 (Memoized for zero re-computation)
+  const gridLines = useMemo(() => {
+    const lines = [];
+    const spacing = 36;
+    const halfSpan = 480;
+    
+    // Diagonal lines direction 1 (+30 deg)
+    for (let offset = -440; offset <= 440; offset += spacing) {
+      const x1 = 400 - halfSpan;
+      const y1 = 330 + offset - halfSpan * 0.57735;
+      const x2 = 400 + halfSpan;
+      const y2 = 330 + offset + halfSpan * 0.57735;
+      lines.push({ x1, y1, x2, y2, key: `g1-${offset}` });
+    }
 
-  // Diagonal lines direction 2 (-30 deg)
-  for (let offset = -440; offset <= 440; offset += spacing) {
-    const x1 = 400 - halfSpan;
-    const y1 = 330 + offset + halfSpan * 0.57735;
-    const x2 = 400 + halfSpan;
-    const y2 = 330 + offset - halfSpan * 0.57735;
-    gridLines.push({ x1, y1, x2, y2, key: `g2-${offset}` });
-  }
+    // Diagonal lines direction 2 (-30 deg)
+    for (let offset = -440; offset <= 440; offset += spacing) {
+      const x1 = 400 - halfSpan;
+      const y1 = 330 + offset + halfSpan * 0.57735;
+      const x2 = 400 + halfSpan;
+      const y2 = 330 + offset - halfSpan * 0.57735;
+      lines.push({ x1, y1, x2, y2, key: `g2-${offset}` });
+    }
+    return lines;
+  }, []);
 
   return (
-    <div className="hero-iso-container" aria-label="CoreDe Isometric Enterprise Architecture Diagram">
+    <div 
+      ref={containerRef}
+      className={`hero-iso-container ${inView ? 'is-in-view' : ''}`} 
+      aria-label="CoreDe Isometric Enterprise Architecture Diagram"
+    >
       <svg
         viewBox="85 55 655 455"
         className="hero-iso-svg"
@@ -144,6 +163,14 @@ export default function IsometricArchitecture() {
           .iso-route-flow {
             stroke-dasharray: 6 10;
             animation: dashGlow 2s linear infinite;
+          }
+
+          /* Off-screen battery & GPU optimization */
+          .hero-iso-container:not(.is-in-view) .iso-animated-lid,
+          .hero-iso-container:not(.is-in-view) .iso-animated-middle,
+          .hero-iso-container:not(.is-in-view) .iso-animated-db,
+          .hero-iso-container:not(.is-in-view) .iso-route-flow {
+            animation-play-state: paused !important;
           }
 
           /* Interactive Expansion on Hover */

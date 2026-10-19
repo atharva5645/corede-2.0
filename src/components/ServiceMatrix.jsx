@@ -1,4 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+
+function useWindowWidth() {
+  const [w, setW] = useState(() => (typeof window !== 'undefined' ? window.innerWidth : 1200));
+  useEffect(() => {
+    const h = () => setW(window.innerWidth);
+    window.addEventListener('resize', h, { passive: true });
+    return () => window.removeEventListener('resize', h);
+  }, []);
+  return w;
+}
 import { 
   Monitor, 
   Smartphone, 
@@ -15,6 +25,13 @@ import CardSwap, { Card } from './CardSwap';
 export default function ServiceMatrix() {
   const [activeIndex, setActiveIndex] = useState(0);
   const swapRef = useRef(null);
+  const winWidth = useWindowWidth();
+
+  // Responsive CardSwap dimensions
+  const isMobile = winWidth < 640;
+  const isSmall  = winWidth < 430;
+  const swapWidth  = isSmall ? Math.min(300, winWidth - 48) : isMobile ? Math.min(360, winWidth - 40) : 440;
+  const swapHeight = isSmall ? 280 : isMobile ? 300 : 330;
 
   const serviceCards = [
     {
@@ -23,10 +40,7 @@ export default function ServiceMatrix() {
       title: 'Web Development',
       description: 'Enterprise-grade scalable web portals and applications.',
       icon: Monitor,
-      tags: ['PORTALS', 'DASHBOARDS', 'FINTECH'],
-      highlightPrefix: 'Improved Core Web Vitals by ',
-      highlightMetric: '40%',
-      highlightSuffix: ' for global portal.'
+      tags: ['PORTALS', 'DASHBOARDS', 'FINTECH']
     },
     {
       id: 'mobile-app',
@@ -34,10 +48,7 @@ export default function ServiceMatrix() {
       title: 'Mobile App Development',
       description: 'High-performance mobile apps (iOS, Android, Flutter).',
       icon: Smartphone,
-      tags: ['IOS', 'ANDROID', 'FLUTTER'],
-      highlightPrefix: 'Logistics app used by ',
-      highlightMetric: '1000+',
-      highlightSuffix: ' drivers.'
+      tags: ['IOS', 'ANDROID', 'FLUTTER']
     },
     {
       id: 'ecommerce',
@@ -45,10 +56,7 @@ export default function ServiceMatrix() {
       title: 'Ecommerce Development',
       description: 'High-volume platforms with 99.9% uptime and seamless checkout.',
       icon: ShoppingBag,
-      tags: ['SHOPIFY', 'MAGENTO', 'WORDPRESS'],
-      highlightPrefix: 'Multi-vendor marketplaces with ',
-      highlightMetric: 'zero downtime',
-      highlightSuffix: ' at peak.'
+      tags: ['SHOPIFY', 'MAGENTO', 'WORDPRESS']
     },
     {
       id: 'digital-marketing',
@@ -56,10 +64,7 @@ export default function ServiceMatrix() {
       title: 'Digital Marketing',
       description: 'Traffic is vanity; conversion is sanity. Our Growth Marketing focuses on maximizing ROAS through rigorous data attribution, omni-channel funnels, and technical SEO excellence.',
       icon: Link2,
-      tags: ['PERFORMANCE MARKETING', '360° SEO'],
-      highlightPrefix: 'Achieved a ',
-      highlightMetric: '4.5x ROAS',
-      highlightSuffix: ' for SaaS firm within 120 days.'
+      tags: ['PERFORMANCE MARKETING', '360° SEO']
     },
     {
       id: 'tech-covered',
@@ -67,10 +72,7 @@ export default function ServiceMatrix() {
       title: 'Technologies We Cover',
       description: 'Mastery over industry stacks from Java, Python to MERN and Next.js.',
       icon: Cpu,
-      tags: ['PHP', 'JAVA', 'PYTHON', 'MERN'],
-      highlightPrefix: 'Architected systems processing ',
-      highlightMetric: 'millions daily',
-      highlightSuffix: '.'
+      tags: ['PHP', 'JAVA', 'PYTHON', 'MERN']
     },
     {
       id: 'custom-software',
@@ -78,10 +80,7 @@ export default function ServiceMatrix() {
       title: 'Custom Software Development',
       description: 'ERP, CRM, and enterprise systems tailored to workflow.',
       icon: Database,
-      tags: ['ERP', 'CRM', 'HRM'],
-      highlightPrefix: 'Reduced operational cost by ',
-      highlightMetric: '65%',
-      highlightSuffix: '.'
+      tags: ['ERP', 'CRM', 'HRM']
     }
   ];
 
@@ -161,13 +160,13 @@ export default function ServiceMatrix() {
           <div className="card-swap-stage-wrapper">
             <CardSwap
               ref={swapRef}
-              width={440}
-              height={330}
-              cardDistance={40}
-              verticalDistance={42}
-              depth={75}
-              skewAmount={3}
-              visibleCards={4}
+              width={swapWidth}
+              height={swapHeight}
+              cardDistance={isMobile ? 28 : 40}
+              verticalDistance={isMobile ? 28 : 42}
+              depth={isMobile ? 50 : 75}
+              skewAmount={isMobile ? 2 : 3}
+              visibleCards={isMobile ? 3 : 4}
               delay={4500}
               theme="light"
               cardRadius={16}
@@ -198,15 +197,6 @@ export default function ServiceMatrix() {
                             </span>
                           ))}
                         </div>
-                      </div>
-
-                      <div className="card-editorial-footer">
-                        <span className="card-editorial-dot" aria-hidden="true" />
-                        <span className="card-editorial-metric-text">
-                          {card.highlightPrefix}
-                          <strong className="card-editorial-metric">{card.highlightMetric}</strong>
-                          {card.highlightSuffix}
-                        </span>
                       </div>
                     </div>
                   </Card>

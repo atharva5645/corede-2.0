@@ -2,8 +2,7 @@
    CoreDe Design System — Clay.com Light Editorial Foundation
    Ultra-bold grotesque typography, warm off-white canvas, full device-width.
    ========================================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+/* Typography imported via preconnected links in index.html for zero render blocking */
 
 :root {
   /* ==========================================================================

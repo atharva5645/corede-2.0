@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 export default function ClientLogoMarquee() {
+  const sectionRef = useRef(null);
+  const [inView, setInView] = useState(true);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      setInView(entry.isIntersecting);
+    }, { rootMargin: '100px 0px' });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   const brandLogos = [
     { name: 'Brightex', src: '/Brightex.png' },
     { name: 'Vortech', src: '/vortech.png' },
@@ -24,7 +37,7 @@ export default function ClientLogoMarquee() {
   ];
 
   return (
-    <section className="client-marquee-section" aria-label="Clients & Partners">
+    <section ref={sectionRef} className="client-marquee-section" aria-label="Clients & Partners">
       <div className="clay-container marquee-header-container">
         <span className="clay-eyebrow marquee-eyebrow">
           TRUSTED BY GLOBAL INNOVATORS &amp; ENTERPRISES
@@ -33,15 +46,18 @@ export default function ClientLogoMarquee() {
 
       {/* Hairline-framed infinite marquee ticker */}
       <div className="marquee-hairline-boundary">
-        <div className="marquee-track">
+        <div 
+          className="marquee-track" 
+          style={{ animationPlayState: inView ? 'running' : 'paused' }}
+        >
           {brandLogos.map((logo, idx) => (
             <div key={`logo-1-${idx}`} className="marquee-logo-item">
-              <img src={logo.src} alt={logo.name} className="marquee-logo-img" />
+              <img src={logo.src} alt={logo.name} className="marquee-logo-img" loading="lazy" decoding="async" />
             </div>
           ))}
           {brandLogos.map((logo, idx) => (
             <div key={`logo-2-${idx}`} className="marquee-logo-item">
-              <img src={logo.src} alt={logo.name} className="marquee-logo-img" />
+              <img src={logo.src} alt={logo.name} className="marquee-logo-img" loading="lazy" decoding="async" />
             </div>
           ))}
         </div>

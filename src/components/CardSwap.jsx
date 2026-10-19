@@ -375,7 +375,7 @@ const CardSwap = forwardRef(
           write(card, s);
         }
 
-        if (busy) {
+        if (busy && state.inView) {
           state.raf = requestAnimationFrame(frame);
         } else {
           state.last = 0;
@@ -386,7 +386,7 @@ const CardSwap = forwardRef(
       };
 
       const wake = () => {
-        if (!state.raf) state.raf = requestAnimationFrame(frame);
+        if (!state.raf && state.inView) state.raf = requestAnimationFrame(frame);
       };
 
       const paused = () => {
@@ -666,9 +666,22 @@ const CardSwap = forwardRef(
       const resizeObserver = new ResizeObserver(fit);
       resizeObserver.observe(root);
       const intersectionObserver = new IntersectionObserver(entries => {
-        state.inView = entries[entries.length - 1]?.isIntersecting ?? true;
-        schedule();
-      });
+        const isVisible = entries[entries.length - 1]?.isIntersecting ?? true;
+        state.inView = isVisible;
+        if (isVisible) {
+          wake();
+          schedule();
+        } else {
+          if (state.raf) {
+            cancelAnimationFrame(state.raf);
+            state.raf = 0;
+          }
+          if (state.timer) {
+            clearTimeout(state.timer);
+            state.timer = 0;
+          }
+        }
+      }, { threshold: 0.05 });
       intersectionObserver.observe(root);
       root.addEventListener('pointermove', onMove);
       root.addEventListener('pointerleave', onLeave);

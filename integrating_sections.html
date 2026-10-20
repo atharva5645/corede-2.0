@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17917223846"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17917223846');
+  </script>
+  <title>Services, Careers, Internships &amp; Workshops - CoreDe Technologies</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    window.CASHFREE_APP_ID = "{{ cashfree_app_id }}";
+    window.CASHFREE_MODE = "production";
+  </script>
+  <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+  <style>
+    .section-nav {
+      position: sticky; top: 0; z-index: 999;
+      display: flex; justify-content: center; gap: 10px;
+      padding: 14px 20px;
+      background: rgba(10,10,20,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap;
+    }
+    .section-nav a {
+      padding: 9px 22px; border-radius: 30px;
+      font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; color: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: all 0.25s ease;
+    }
+    .section-nav a:hover,
+    .section-nav a.active {
+      background: linear-gradient(135deg,#7c3aed,#2563eb);
+      color:#fff; border-color:transparent;
+      box-shadow: 0 4px 18px rgba(124,58,237,0.45);
+    }
+    .section-divider {
+      width:100%; height:2px; margin:0;
+      background: linear-gradient(90deg,transparent,rgba(124,58,237,0.5),transparent);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== SECTION NAVIGATION ===== -->
+<nav class="section-nav" id="sectionNav">
+  <a href="#services"    class="active" onclick="setActive(this)">&#x1F4BB; Services</a>
+  <a href="#careers"    onclick="setActive(this)">&#x1F4BC; Careers</a>
+  <a href="#internship" onclick="setActive(this)">&#x1F680; Internship</a>
+  <a href="#workshop"   onclick="setActive(this)">&#x1F393; Workshop</a>
+</nav>
+
+<!-- ===== SECTION 1: SERVICES ===== -->
+<div id="services">
+
+<section class="services-overview-section">
+  <div class="services-overview-header">
+    <span class="badge">&#x1F4BB; Our Services</span>
+    <h2>Full-Spectrum Digital &amp; Technology Services</h2>
+    <p>From concept to execution — we power your entire digital journey with expert teams and proven strategies.</p>
+  </div>
+
+  <div class="services-mega-grid">
+
+    <div class="service-category-card">
+      <div class="service-cat-icon">&#x1F4CA;</div>
+      <h3>Digital Marketing</h3>
+      <ul>
+        <li>Influence Marketing</li>
+        <li>Creative Advertising</li>
+        <li>B2B Lead Generation</li>
+        <li>Affiliate Marketing – Amazon Ads</li>
+        <li>Online Reputation Management</li>
+        <li>Email Marketing</li>
+      </ul>
+    </div>
+
+    <div class="service-category-card">
+      <div class="service-cat-icon">&#x1F3AF;</div>
+      <h3>Brand Performance</h3>
+      <ul>
+        <li>Performance Marketing</li>
+        <li>PPC Services</li>
+        <li>Media Buying</li>
+        <li>AI Adoption</li>
+      </ul>
+    </div>
+
+    <div class="service-category-card">
+      <div class="service-cat-icon">&#x1F4F1;</div>
+      <h3>Social Media Marketing</h3>
+      <ul>
+        <li>Instagram Marketing</li>
+        <li>Facebook Marketing</li>
+        <li>LinkedIn Marketing</li>
+        <li>YouTube Monetize</li>
+      </ul>
+    </div>
+
+    <div class="service-category-card">
+      <div class="service-cat-icon">&#x1F50D;</div>
+      <h3>Search Engine Optimization</h3>
+      <ul>
+        <li>SEO Overview</li>
+        <li>Ecommerce SEO</li>
+        <li>SEO Audit Services</li>
+        <li>AI SEO &amp; Local SEO</li>
+        <li>Link Building</li>
+        <li>Conversion Rate Optimization</li>
+      </ul>
+    </div>
+
+    <div class="service-category-card">
+      <div class="service-cat-icon">&#x1F3A8;</div>
+      <h3>Design &amp; UI/UX</h3>
+      <ul>
+        <li>Graphic Design &amp; Brand Identity</li>
+        <li>UI Design &amp; UX Research</li>
+        <li>Wireframing &amp; Prototyping</li>
+        <li>Web Design &amp; Landing Pages</li>
+        <li>Logo Design &amp; Rebranding</li>
+      </ul>
+    </div>
+
+    <div class="service-category-card">
+      <div class="service-cat-icon">&#x270D;&#xFE0F;</div>
+      <h3>Content Strategy</h3>
+      <ul>
+        <li>Content Marketing Strategy</li>
+        <li>Blog &amp; SEO Content Writing</li>
+        <li>Copywriting &amp; Ad Copy</li>
+        <li>Social Media Content</li>
+        <li>Email Campaign Content</li>
+      </ul>
+    </div>
+
+    <div class="service-category-card">
+      <div class="service-cat-icon">&#x1F3AC;</div>
+      <h3>Video &amp; Production</h3>
+      <ul>
+        <li>Corporate &amp; Brand Films</li>
+        <li>TV Commercials &amp; Digital Ads</li>
+        <li>2D / 3D Animation</li>
+        <li>Motion Graphics</li>
+        <li>Photography &amp; Post Production</li>
+      </ul>
+    </div>
+
+    <div class="service-category-card">
+      <div class="service-cat-icon">&#x1F4BB;</div>
+      <h3>Technology</h3>
+      <ul>
+        <li>Web &amp; Mobile App Development</li>
+        <li>E-commerce Development</li>
+        <li>Backend &amp; API Development</li>
+        <li>Cloud &amp; DevOps (AWS, Azure)</li>
+        <li>AI &amp; Machine Learning</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .services-overview-section {
+    padding: 60px 40px;
+    background: linear-gradient(180deg, rgba(15,15,30,0.98) 0%, rgba(10,10,20,0.98) 100%);
+  }
+  .services-overview-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .services-overview-header h2 {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    margin: 16px 0 12px;
+  }
+  .services-overview-header p {
+    color: rgba(255,255,255,0.65);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .services-mega-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .service-category-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: all 0.3s ease;
+  }
+  .service-category-card:hover {
+    background: rgba(124,58,237,0.12);
+    border-color: rgba(124,58,237,0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(124,58,237,0.2);
+  }
+  .service-cat-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+  .service-category-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #fff;
+  }
+  .service-category-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .service-category-card ul li {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .service-category-card ul li:last-child { border-bottom: none; }
+  .service-category-card ul li::before {
+    content: "→ ";
+    color: #7c3aed;
+    font-weight: 700;
+  }
+</style>
+
+<section class="market-section">
+
+  <div class="market-header">
+    <p class="market-tag">MARKET EVIDENCE</p>
+
+    <h2>
+      Research from 
+      <span class="highlight">Google & HubSpot</span><br>
+      proves: 70% of B2B buyers search<br>
+      via Mobile.
+    </h2>
+  </div>
+
+  <div class="market-cards">
+
+    <div class="market-card">
+      <div class="icon orange">⚡</div>
+      <h3>Speed Optimized</h3>
+      <p>
+        Every piece of software we ship is optimized for millisecond-level
+        responsiveness. Performance isn’t just a feature; it’s our baseline.
+      </p>
+    </div>
+
+    <div class="market-card">
+      <div class="icon green">🔍</div>
+      <h3>SEO Integrated</h3>
+      <p>
+        We build code that search engines love. From structural Schema to semantic
+        HTML5, your visibility is baked into the development.
+      </p>
+    </div>
+
+    <div class="market-card">
+      <div class="icon pink">📱</div>
+      <h3>Mobile First</h3>
+      <p>
+        Our designs prioritize the mobile touchpoint first, ensuring a seamless
+        high-convert UX across every device and browser.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="matrix-section">
+
+  <div class="matrix-header">
+    <p class="matrix-tag">SERVICE EXCELLENCE PILLARS</p>
+
+    <div class="matrix-top">
+      <h2>
+        The Corede <span>Service Matrix</span>:<br>
+        Engineering B2B Dominance.
+      </h2>
+
+  
+    </div>
+
+    <p class="matrix-desc">
+      We provide a full-spectrum technology stack designed to empower global enterprises
+      with a resilient, scalable, and highly performant digital footprint.
+    </p>
+  </div>
+
+  <div class="matrix-grid">
+
+    <!-- CARD -->
+        <div class="matrix-card">
+      <div class="icon-box green"><i class="fas fa-desktop"></i></div>
+      <h3>Web Development</h3>
+      <p>Enterprise-grade scalable web portals and applications.</p>
+
+      <div class="tags">
+        <span>PORTALS</span><span>DASHBOARDS</span><span>FINTECH</span>
+      </div>
+
+      <div class="highlight">
+        <span></span>
+        Improved Core Web Vitals by 40% for global portal.
+      </div>
+    </div>
+
+        <div class="matrix-card">
+      <div class="icon-box pink"><i class="fas fa-mobile-alt"></i></div>
+      <h3>Mobile App Development</h3>
+      <p>High-performance mobile apps (iOS, Android, Flutter).</p>
+
+      <div class="tags">
+        <span>IOS</span><span>ANDROID</span><span>FLUTTER</span>
+      </div>
+
+      <div class="highlight red-dot">
+        <span></span>
+        Logistics app used by 1000+ drivers.
+      </div>
+    </div>
+
+        <div class="matrix-card">
+      <div class="icon-box red"><i class="fas fa-cubes"></i></div>
+      <h3>Ecommerce Development</h3>
+      <p>High-volume platforms with 99.9% uptime and seamless checkout.</p>
+
+      <div class="tags">
+        <span>SHOPIFY</span><span>MAGENTO</span><span>WORDPRESS</span>
+      </div>
+
+      <div class="highlight red-dot">
+        <span></span>
+        Multi-vendor marketplaces with zero downtime at peak.
+      </div>
+    </div>
+
+        <div class="matrix-card">
+      <div class="icon-box yellow"><i class="fas fa-link"></i></div>
+      <h3>Digital Marketing</h3>
+      <p>Traffic is vanity; conversion is sanity. Our Growth Marketing focuses on maximizing ROAS through rigorous data attribution, omni-channel funnels, and technical SEO excellence.</p>
+
+      <div class="tags">
+        <span>Performance Marketing</span><span>360-Degree SEO</span>
+      </div>
+
+      <div class="highlight yellow-dot">
+        <span></span>
+        
+Spotlight: Achieved a 4.5x ROAS for a SaaS firm within the first 120 days of performance-led marketing overhaul.
+      </div>
+    </div>
+
+    <div class="matrix-card">
+      <div class="icon-box green"><i class="fas fa-microchip"></i></div>
+      <h3>Technologies We Cover</h3>
+      <p>Mastery over industry stacks from Java, Python to MERN and Next.js.</p>
+
+      <div class="tags">
+        <span>PHP</span><span>JAVA</span><span>PYTHON</span><span>MERN</span>
+      </div>
+
+      <div class="highlight">
+        <span></span>
+        Architected high-concurrency systems processing millions daily.
+      </div>
+    </div>
+
+    <!-- CARD -->
+
+
+    <!-- CARD -->
+
+
+    <!-- CARD -->
+
+
+    <!-- CARD -->
+
+
+    <!-- CARD -->
+    <div class="matrix-card">
+      <div class="icon-box green"><i class="fas fa-database"></i></div>
+      <h3>Custom Software Development</h3>
+      <p>ERP, CRM, and enterprise systems tailored to workflow.</p>
+
+      <div class="tags">
+        <span>ERP</span><span>CRM</span><span>HRM</span>
+      </div>
+
+      <div class="highlight">
+        <span></span>
+        Reduced operational cost by 65%.
+      </div>
+    </div>
+
+    <!-- BIG CARD -->
+
+
+  </div>
+
+</section>
+
+<section class="process-section">
+
+  <div class="process-header">
+    <p>OUR METHODOLOGY</p>
+    <h2>
+      The <span>Enterprise Delivery</span> Framework.
+    </h2>
+  </div>
+
+  <div class="process-container">
+
+    <div class="process-line"></div>
+
+    <!-- STEP -->
+    <div class="process-card">
+      <div class="icon-box"><i class="fas fa-search"></i></div>
+      <h3>Define</h3>
+      <p>Deep requirement gathering and KPI alignment.</p>
+    </div>
+
+    <div class="process-card">
+      <div class="icon-box"><i class="fas fa-paint-brush"></i></div>
+      <h3>Design</h3>
+      <p>Interactive Wireframes and UI/UX prototypes.</p>
+    </div>
+
+    <div class="process-card">
+      <div class="icon-box"><i class="fas fa-code"></i></div>
+      <h3>Develop</h3>
+      <p>Agile sprints with CI/CD deployments.</p>
+    </div>
+
+    <div class="process-card">
+      <div class="icon-box"><i class="fas fa-globe"></i></div>
+      <h3>Deploy</h3>
+      <p>Cloud optimization and go-live security.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="tech-section">
+
+  <div class="tech-header">
+    <p>TECHNOLOGY STACK</p>
+    <h2>Mission-Critical Technologies We Master.</h2>
+  </div>
+
+  <div class="tech-grid">
+
+    <!-- FRONTEND -->
+    <div class="tech-group">
+      <h4>FRONTEND</h4>
+      <div class="tech-items">
+        <span>React</span>
+        <span>Next.js</span>
+        <span>TypeScript</span>
+        <span>Vue.js</span>
+        <span>Angular</span>
+      </div>
+    </div>
+
+    <!-- BACKEND -->
+    <div class="tech-group">
+      <h4>BACKEND</h4>
+      <div class="tech-items">
+        <span>Node.js</span>
+        <span>.Net Core</span>
+        <span>Laravel</span>
+        <span>Python</span>
+        <span>Go</span>
+      </div>
+    </div>
+
+    <!-- DATABASE -->
+    <div class="tech-group">
+      <h4>DATABASE</h4>
+      <div class="tech-items">
+        <span>PostgreSQL</span>
+        <span>MongoDB</span>
+        <span>MySQL</span>
+        <span>Redis</span>
+        <span>ElasticSearch</span>
+      </div>
+    </div>
+
+    <!-- CLOUD -->
+    <div class="tech-group">
+      <h4>CLOUD & DEVOPS</h4>
+      <div class="tech-items">
+        <span>AWS</span>
+        <span>Azure</span>
+        <span>Docker</span>
+        <span>Kubernetes</span>
+        <span>Terraform</span>
+      </div>
+    </div>
+
+    <!-- BLOCKCHAIN -->
+    <div class="tech-group full">
+      <h4>BLOCKCHAIN</h4>
+      <div class="tech-items">
+        <span>Ethereum</span>
+        <span>Solidity</span>
+        <span>Polkadot</span>
+        <span>Rust</span>
+        <span>Hyperledger</span>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="mobile-first-section">
+
+  <div class="mobile-container">
+
+    <!-- LEFT IMAGE -->
+    <div class="mobile-image">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="mountain">
+
+      <!-- FLOATING CARD -->
+      <div class="floating-card">
+        <p class="tag">📱 B2B TREND</p>
+        <h4>"70% of B2B buyers now research exclusively via Mobile."</h4>
+        <small>— Source: Google/HubSpot Research</small>
+      </div>
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="mobile-content">
+
+      <p class="top-tag">EVIDENCE-BASED DEVELOPMENT</p>
+
+      <h2>
+        Why a <span>Mobile-First</span><br>
+        Approach is Non-Negotiable.
+      </h2>
+
+      <p class="desc">
+        The B2B buying journey has undergone a massive paradigm shift.
+        High-ticket decision-makers are no longer tethered to desktops.
+        They research, compare, and engage on the go.
+      </p>
+
+      <p class="desc">
+        Our <strong>Speed-Optimized development</strong> ensures seamless
+        performance across all devices and networks.
+      </p>
+
+      <!-- BUTTON TAGS -->
+      <div class="mobile-tags">
+        <span>⚡ Sub-2s Load Time</span>
+        <span>📈 Enhanced ROAS</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="consult-section">
+
+  <div class="consult-header">
+    <p class="tag">STRATEGIC PILLAR DISCOVERY</p>
+    <h2>
+      Not Sure Where to Start?
+      <span>Find Your Pillar.</span>
+    </h2>
+    <p class="sub">
+      Use our interactive consultant to identify the high-impact solution for your business.
+    </p>
+  </div>
+
+  <div class="consult-box">
+
+    <p class="step">STEP 1 OF 2</p>
+    <h3>What is your primary digital objective?</h3>
+
+    <div class="consult-grid">
+
+      <div class="consult-card">
+        <div class="icon">📈</div>
+        <p>Maximize ROI & Sales</p>
+      </div>
+
+      <div class="consult-card">
+        <div class="icon">⚙️</div>
+        <p>Scale Tech Infrastructure</p>
+      </div>
+
+      <div class="consult-card">
+        <div class="icon">💻</div>
+        <p>Launch High-Perf Website</p>
+      </div>
+
+      <div class="consult-card">
+        <div class="icon">📱</div>
+        <p>Build Mobile Ecosystem</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="faq-section">
+
+  <div class="faq-header">
+    <p>COMMON ENQUIRIES</p>
+    <h2>FAQs & <span>Expert Insights.</span></h2>
+  </div>
+
+  <div class="faq-container">
+
+    <!-- ITEM -->
+    <div class="faq-item">
+      <div class="faq-question">
+        Why choose an India-based Offshore Development Team for my software?
+        <span>⌄</span>
+      </div>
+      <div class="faq-answer">
+        India offers cost-effective, highly skilled developers with strong communication and global experience.
+      </div>
+    </div>
+
+    <div class="faq-item active">
+      <div class="faq-question">
+        What exactly is AI Engine Optimization (AIEO)?
+        <span>⌄</span>
+      </div>
+      <div class="faq-answer">
+        AIEO ensures your brand is optimized for AI-driven search engines like ChatGPT, Gemini, and SGE.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        How does Corede Technologies handle data security in  Development?
+        <span>⌄</span>
+      </div>
+      <div class="faq-answer">
+        We implement secure smart contracts, encryption, and decentralized architecture.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        What is your typical project delivery timeline?
+        <span>⌄</span>
+      </div>
+      <div class="faq-answer">
+        Timelines vary but typically range from 2–12 weeks depending on complexity.
+      </div>
+    </div>
+
+  </div>
+
+</section>
+</div>
+
+
+<div class="section-divider"></div>
+
+
+<!-- ===== SECTION 2: CAREERS ===== -->
+<div id="careers">
+<!-- ================= HERO ================= -->
+<section class="career-hero">
+  <div class="hero-content">
+    <span class="badge">● Now Hiring</span>
+
+    <h1>Build the Future with Us</h1>
+
+    <p>
+      At Corede Technologies, we’re looking for passionate, driven individuals
+      to join our team of innovators and creators.
+    </p>
+
+    <a href="#apply" class="hero-btn">
+      View Open Positions ↓
+    </a>
+  </div>
+</section>
+
+
+<!-- ================= WHY JOIN ================= -->
+<section class="why-section">
+  <h2>Why Join Corede Technologies?</h2>
+
+  <p>
+    We offer more than just a job — we offer a career where you can grow and learn.
+  </p>
+
+  <div class="why-cards">
+
+    <div class="why-card">
+      <div class="icon">👥</div>
+      <h3>Great Culture</h3>
+      <p>Collaborative, inclusive environment where every voice is heard.</p>
+    </div>
+
+    <div class="why-card">
+      <div class="icon">💡</div>
+      <h3>Innovation First</h3>
+      <p>Work with cutting-edge technologies and real-world challenges.</p>
+    </div>
+
+    <div class="why-card">
+      <div class="icon">☕</div>
+      <h3>Excellent Perks</h3>
+      <p>Flexible working hours and continuous learning opportunities.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= APPLY SECTION ================= -->
+<section class="apply-section" id="apply">
+
+  <div class="apply-left">
+    <h2>Ready to take the next step?</h2>
+
+    <p>
+      Whether you are experienced or a fresher, we want to hear from you.
+    </p>
+
+    <!-- IT TRAINERS VACANCY -->
+    <div class="vacancy-card">
+      <div class="vacancy-header">
+        <h3>🖥️ IT Trainers</h3>
+        <span class="vacancy-badge it-badge">IT</span>
+      </div>
+
+      <div class="vacancy-content">
+        <p><strong>Position:</strong> Training Instructors (Full-time & Part-time)</p>
+        
+        <div class="requirements">
+          <h4>Required Skills:</h4>
+          <ul>
+            <li>✓ Python, Java, or JavaScript expertise</li>
+            <li>✓ Web Development (HTML, CSS, React)</li>
+            <li>✓ Database Management (MySQL, MongoDB)</li>
+            <li>✓ API Development & REST Services</li>
+            <li>✓ Cloud Platforms (AWS, Azure)</li>
+            <li>✓ Teaching & mentoring experience</li>
+          </ul>
+        </div>
+
+        <div class="benefits">
+          <p><strong>What We Offer:</strong></p>
+          <p>Competitive salary • Flexible hours • Career growth • Training materials provided</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NON-IT TRAINERS VACANCY -->
+    <div class="vacancy-card">
+      <div class="vacancy-header">
+        <h3>📊 Non-IT Trainers</h3>
+        <span class="vacancy-badge non-it-badge">Non-IT</span>
+      </div>
+
+      <div class="vacancy-content">
+        <p><strong>Position:</strong> Training Instructors (Full-time & Part-time)</p>
+        
+        <div class="requirements">
+          <h4>Required Skills:</h4>
+          <ul>
+            <li>✓ Digital Marketing expertise</li>
+            <li>✓ Business Management knowledge</li>
+            <li>✓ Communication & soft skills</li>
+            <li>✓ Data Analysis & reporting</li>
+            <li>✓ HR & recruitment experience</li>
+            <li>✓ Strong presentation abilities</li>
+          </ul>
+        </div>
+
+        <div class="benefits">
+          <p><strong>What We Offer:</strong></p>
+          <p>Competitive salary • Flexible schedule • Professional development • Team collaboration</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="roles-footer-note">
+      📝 Don't see your role? We accept general applications via the form below.
+    </div>
+  </div>
+
+<div class="apply-form">
+  <h3>APPLICATION FORM</h3>
+
+<form id="careerForm" method="POST" action="/apply" enctype="multipart/form-data">
+
+  <input type="text" id="name" name="name" placeholder="Your Name">
+  <span class="error" id="nameError"></span>
+
+  <input type="email" id="email" name="email" placeholder="Email">
+  <span class="error" id="emailError"></span>
+
+  <input type="tel" id="phone" name="phone" placeholder="Phone">
+  <span class="error" id="phoneError"></span>
+
+  <input type="text" id="position" name="position" placeholder="Position (e.g. Web Developer)">
+  <span class="error" id="positionError"></span>
+
+  <textarea id="message" name="message" placeholder="Message"></textarea>
+  <span class="error" id="messageError"></span>
+
+  <input type="file" id="cv" name="resume">
+
+  <button type="submit">SUBMIT</button>
+
+</form>
+</div>
+
+</section>
+
+
+<!-- JS (always at bottom) -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</div>
+
+
+<div class="section-divider"></div>
+
+
+<!-- ===== SECTION 3: INTERNSHIP ===== -->
+<div id="internship">
+<!-- Navbar same as index -->
+
+<section class="internship-section">
+
+    <div class="internship-header">
+        <span class="badge">🚀 Internship Program</span>
+
+        <h2>
+            Kickstart Your Career With Real-Time Industry Projects
+        </h2>
+
+        <p>
+            Learn from experts, build live projects, and gain practical
+            experience with secure enterprise-level development standards.
+        </p>
+    </div>
+
+    <div class="internship-grid">
+
+        
+
+        <!-- Frontend -->
+        <div class="internship-card" data-course="frontend">
+            
+            <div class="card-shine"></div>
+            
+
+            <div class="card-top">
+                <h3>Frontend Developer Intern</h3>
+
+                <span class="duration">
+                    ⏳ 45 Days
+                </span>
+            </div>
+
+            <div class="skills">
+                HTML • CSS • JavaScript • React
+            </div>
+
+            <p class="card-text">
+                Work on modern responsive UI projects and real-time frontend applications.
+            </p>
+
+            <div class="button-group">
+                <button class="view-details-btn" onclick="openCourseDetails('frontend')">
+                    View Details →
+                </button>
+                <button class="apply-btn" onclick="openApply('Frontend Developer Intern')">
+                    Apply Now
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Backend -->
+        <div class="internship-card" data-course="backend">
+            <div class="card-shine"></div>
+
+            <div class="card-top">
+                <h3>Backend Developer Intern</h3>
+
+                <span class="duration">
+                    ⏳ 45 Days
+                </span>
+            </div>
+
+            <div class="skills">
+                Python • FastAPI • MySQL • APIs
+            </div>
+
+            <p class="card-text">
+                Build scalable backend systems, APIs, authentication, and secure server-side logic.
+            </p>
+
+            <div class="button-group">
+                <button class="view-details-btn" onclick="openCourseDetails('backend')">
+                    View Details →
+                </button>
+                <button class="apply-btn" onclick="openApply('Backend Developer Intern')">
+                    Apply Now
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Full Stack -->
+        <div class="internship-card" data-course="fullstack">
+            <div class="card-shine"></div>
+
+            <div class="card-top">
+                <h3>Full Stack Developer Intern</h3>
+
+                <span class="duration">
+                    ⏳ 45 Days
+                </span>
+            </div>
+
+            <div class="skills">
+               • Python • React • SQL • APIs
+            </div>
+
+            <p class="card-text">
+                Develop secure enterprise applications with payment-ready architecture and authentication best practices.
+            </p>
+
+            <div class="button-group">
+                <button class="view-details-btn" onclick="openCourseDetails('fullstack')">
+                    View Details →
+                </button>
+                <button class="apply-btn" onclick="openApply('Full Stack Developer Intern')">
+                    Apply Now
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Non-IT Internships Section -->
+    <div class="trainer-section">
+        <h2>📊 Non-IT Internship Programs</h2>
+        <p>Master digital marketing, design, business, and professional skills.</p>
+
+        <div class="internship-grid">
+            <!-- 1. Digital Marketing Internship -->
+            <div class="internship-card" data-course="digitalmarketing">
+                <div class="card-shine"></div>
+                <div class="card-top">
+                    <h3>Digital Marketing Internship</h3>
+                    <span class="duration">⏳ 45 Days</span>
+                </div>
+                <div class="skills">Marketing • Content • Strategy • Analytics</div>
+                <p class="card-text">Learn comprehensive digital marketing strategies and campaign management.</p>
+                <div class="button-group">
+                    <button class="view-details-btn" onclick="openCourseDetails('digitalmarketing')">View Details →</button>
+                    <button class="apply-btn" onclick="openApply('Digital Marketing Internship')">Apply Now</button>
+                </div>
+            </div>
+
+            <!-- 2. Meta & Google Ads Internship -->
+            <div class="internship-card" data-course="googleads">
+                <div class="card-shine"></div>
+                <div class="card-top">
+                    <h3>Meta & Google Ads Internship</h3>
+                    <span class="duration">⏳ 45 Days</span>
+                </div>
+                <div class="skills">Google Ads • Meta Ads</div>
+                <p class="card-text">Master paid advertising platforms and optimize ad campaigns for maximum ROI.</p>
+                <div class="button-group">
+                    <button class="view-details-btn" onclick="openCourseDetails('googleads')">View Details →</button>
+                    <button class="apply-btn" onclick="openApply('Meta & Google Ads Internship')">Apply Now</button>
+                </div>
+            </div>
+
+            <!-- 3. Social Media Marketing Internship -->
+            <div class="internship-card" data-course="socialmedia">
+                <div class="card-shine"></div>
+                <div class="card-top">
+                    <h3>Social Media Marketing Internship</h3>
+                    <span class="duration">⏳ 45 Days</span>
+                </div>
+                <div class="skills">Social Media • Content Creation • Engagement • Community</div>
+                <p class="card-text">Build and manage social media presence across all major platforms.</p>
+                <div class="button-group">
+                    <button class="view-details-btn" onclick="openCourseDetails('socialmedia')">View Details →</button>
+                    <button class="apply-btn" onclick="openApply('Social Media Marketing Internship')">Apply Now</button>
+                </div>
+            </div>
+
+            <!-- 4. AI Graphic Design Internship -->
+            <div class="internship-card" data-course="aidesign">
+                <div class="card-shine"></div>
+                <div class="card-top">
+                    <h3>AI Graphic Design Internship</h3>
+                    <span class="duration">⏳ 45 Days</span>
+                </div>
+                <div class="skills">AI Tools • Design • Canva • Figma • Automation</div>
+                <p class="card-text">Create stunning designs using AI-powered tools and modern design software.</p>
+                <div class="button-group">
+                    <button class="view-details-btn" onclick="openCourseDetails('aidesign')">View Details →</button>
+                    <button class="apply-btn" onclick="openApply('AI Graphic Design Internship')">Apply Now</button>
+                </div>
+            </div>
+
+            <!-- 5. AI Video Design Internship -->
+            <div class="internship-card" data-course="aivideo">
+                <div class="card-shine"></div>
+                <div class="card-top">
+                    <h3>AI Video Design Internship</h3>
+                    <span class="duration">⏳ 45 Days</span>
+                </div>
+                <div class="skills">Video Editing • AI Tools • Animation • Effects</div>
+                <p class="card-text">Master video production and AI-powered video design for marketing campaigns.</p>
+                <div class="button-group">
+                    <button class="view-details-btn" onclick="openCourseDetails('aivideo')">View Details →</button>
+                    <button class="apply-btn" onclick="openApply('AI Video Design Internship')">Apply Now</button>
+                </div>
+            </div>
+
+
+
+            <!-- 7. SEO & SEM Internship -->
+            <div class="internship-card" data-course="seosem">
+                <div class="card-shine"></div>
+                <div class="card-top">
+                    <h3>SEO & SEM Internship</h3>
+                    <span class="duration">⏳ 45 Days</span>
+                </div>
+                <div class="skills">SEO • SEM • Keywords • Ranking • Traffic</div>
+                <p class="card-text">Learn search engine optimization and marketing to drive organic and paid traffic.</p>
+                <div class="button-group">
+                    <button class="view-details-btn" onclick="openCourseDetails('seosem')">View Details →</button>
+                    <button class="apply-btn" onclick="openApply('SEO & SEM Internship')">Apply Now</button>
+                </div>
+            </div>
+
+            <!-- 8. Business Operations & Sales Internship -->
+            <div class="internship-card" data-course="operations">
+                <div class="card-shine"></div>
+                <div class="card-top">
+                    <h3>Business Operations & Sales Internship</h3>
+                    <span class="duration">⏳ 45 Days</span>
+                </div>
+                <div class="skills">Sales • Operations • CRM • Business Process</div>
+                <p class="card-text">Develop business operations and sales skills for enterprise growth and customer success.</p>
+                <div class="button-group">
+                    <button class="view-details-btn" onclick="openCourseDetails('operations')">View Details →</button>
+                    <button class="apply-btn" onclick="openApply('Business Operations & Sales Internship')">Apply Now</button>
+                </div>
+            </div>
+
+            <!-- 9. HR Human Resource Internship -->
+            <div class="internship-card" data-course="hrhr">
+                <div class="card-shine"></div>
+                <div class="card-top">
+                    <h3>HR Human Resource Internship</h3>
+                    <span class="duration">⏳ 45 Days</span>
+                </div>
+                <div class="skills">Recruitment • HR • Compliance • Culture • Training</div>
+                <p class="card-text">Master HR functions including recruitment, compliance, and employee development.</p>
+                <div class="button-group">
+                    <button class="view-details-btn" onclick="openCourseDetails('hrhr')">View Details →</button>
+                    <button class="apply-btn" onclick="openApply('HR Human Resource Internship')">Apply Now</button>
+                </div>
+            </div>
+
+            <!-- 10. Business Development Internship -->
+            <div class="internship-card" data-course="bizdev">
+                <div class="card-shine"></div>
+                <div class="card-top">
+                    <h3>Business Development Internship</h3>
+                    <span class="duration">⏳ 45 Days</span>
+                </div>
+                <div class="skills">Strategy • Partnership • Growth • Market Analysis</div>
+                <p class="card-text">Learn business development strategies, partnerships, and growth hacking techniques.</p>
+                <div class="button-group">
+                    <button class="view-details-btn" onclick="openCourseDetails('bizdev')">View Details →</button>
+                    <button class="apply-btn" onclick="openApply('Business Development Internship')">Apply Now</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+        
+
+</section>
+
+<!-- Course Details Modal -->
+<div id="courseDetailsModal" class="course-details-modal">
+    <div class="details-modal-content">
+        <button class="close-details-btn" onclick="closeCourseDetails()">✕</button>
+        
+        <div class="details-header" id="detailsHeader"></div>
+        <div class="details-body" id="detailsBody"></div>
+    </div>
+</div>
+
+<!-- Secure Apply Modal -->
+<div id="applyModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-left">
+            <h2>Secure Internship Application</h2>
+
+            <p>
+                Your details are protected with OTP verification
+                and secure payment processing.
+            </p>
+
+            <ul>
+                <li>✅ Secure OTP Verification</li>
+                <li>✅ Cashfree Secure Payment</li>
+                <li>✅ Enterprise Level Security</li>
+            </ul>
+        </div>
+
+        <div class="modal-right">
+
+            <h3 id="internshipTitle">
+                Apply Internship
+            </h3>
+
+            <input type="text"
+                   id="full_name"
+                   placeholder="Full Name">
+
+            <input type="email"
+                   id="email"
+                   placeholder="Email Address">
+
+            <input type="tel"
+                   id="mobile"
+                   placeholder="Mobile Number"
+                   maxlength="10">
+
+            <button onclick="submitInternshipApplication()">
+                Submit Application
+            </button>
+
+            <button onclick="closeApplyModal()"
+                    class="cancel-btn">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</div>
+
+
+<div class="section-divider"></div>
+
+
+<!-- ===== SECTION 4: WORKSHOP ===== -->
+<div id="workshop">
+<section class="workshop-section">
+
+    <div class="workshop-container">
+
+        <!-- TITLE -->
+
+        <h1>
+            Workshop Booking
+        </h1>
+
+        <p>
+            Schedule your professional workshop
+            and receive certificate after completion.
+        </p>
+
+        <!-- FORM -->
+
+        <form id="workshopForm">
+
+            <!-- FULL NAME -->
+
+            <input type="text"
+                   id="name"
+                   placeholder="Full Name"
+                   required>
+
+            <!-- PHONE -->
+
+            <input type="tel"
+                   id="phone"
+                   placeholder="Phone Number"
+                   maxlength="10"
+                   required>
+
+            <!-- EMAIL -->
+
+            <input type="email"
+                   id="email"
+                   placeholder="Email Address"
+                   required>
+
+            <!-- CATEGORY -->
+
+            <select id="category" required>
+
+                <option value="">
+                    Select Category
+                </option>
+
+                <option value="IT">
+                    IT Workshops
+                </option>
+
+                <option value="Non-IT">
+                    Non-IT Workshops
+                </option>
+
+            </select>
+
+            <!-- WORKSHOP TYPE -->
+
+            <select id="type" required>
+
+                <option value="">
+                    Select Workshop Type
+                </option>
+
+            </select>
+
+            <!-- DATE -->
+
+            <input type="date"
+                   id="date"
+                   min="{{ current_date }}"
+                   required>
+
+            <!-- DURATION -->
+
+       <select id="hours" required>
+
+    <option value="">
+        Select Workshop Mode
+    </option>
+
+    <option value="1 Day">
+        One Day Workshop - ₹999
+    </option>
+
+    <option value="2 Days">
+        Two Day Workshop - ₹1499
+    </option>
+
+</select>
+
+            <!-- SLOT -->
+
+            <select id="time" required>
+
+                <option value="">
+                    Select Time Slot
+                </option>
+
+                <option value="09:00 AM - 12:00 PM">
+                    09:00 AM - 12:00 PM
+                </option>
+
+                <option value="10:00 AM - 01:00 PM">
+                    10:00 AM - 01:00 PM
+                </option>
+
+                <option value="02:00 PM - 05:00 PM">
+                    02:00 PM - 05:00 PM
+                </option>
+
+                <option value="03:00 PM - 06:00 PM">
+                    03:00 PM - 06:00 PM
+                </option>
+
+                <option value="03:00 PM - 06:00 PM">
+                    06:00 PM - 08:00 PM
+                </option>
+                
+                <option value="03:00 PM - 06:00 PM">
+                    07:00 PM - 09:00 PM
+                </option>
+
+            </select>
+
+            <!-- SLOT INFO -->
+
+            <div class="slot-info">
+
+                Limited Seats Available Per Slot
+
+            </div>
+
+            <!-- PAYMENT INFO -->
+
+            <div class="payment-info">
+
+                <h3 id="priceText">
+
+                    Workshop Fee: ₹999
+
+                </h3>
+
+            </div>
+
+            <!-- TERMS -->
+
+            <div class="terms-box">
+
+                <input type="checkbox"
+                       id="terms"
+                       required>
+
+                <label for="terms">
+
+                    I agree to the Terms &
+                    Conditions and Refund Policy
+
+                </label>
+
+            </div>
+
+            <!-- BUTTON -->
+
+            <button type="submit">
+
+                Book Workshop
+
+            </button>
+
+            <!-- CERTIFICATE -->
+
+            <p class="certificate-info">
+
+                🎓 Certificate Provided After Completion
+
+            </p>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- MAIN JAVASCRIPT -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<script>
+  function setActive(el) {
+    document.querySelectorAll('.section-nav a').forEach(a => a.classList.remove('active'));
+    el.classList.add('active');
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    const ids = ['services','careers','internship','workshop'];
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const lnk = document.querySelector('.section-nav a[href="#'+e.target.id+'"]');
+          if (lnk) {
+            document.querySelectorAll('.section-nav a').forEach(a => a.classList.remove('active'));
+            lnk.classList.add('active');
+          }
+        }
+      });
+    }, {threshold: 0.2});
+    ids.forEach(id => { const el = document.getElementById(id); if(el) obs.observe(el); });
+  });
+</script>
+
+</body>
+</html>

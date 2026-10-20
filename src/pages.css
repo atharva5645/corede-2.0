@@ -1,0 +1,1627 @@
+/* ============================================================
+   SECTION PAGES — Enterprise SaaS Design (Career, Internship, Workshop)
+   Color System: Emerald #10b981 | Slate Navy #0b1120 | Slate-50 #f8fafc
+   ============================================================ */
+
+/* ── Shared base ── */
+.cp-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+  color: #0f172a;
+}
+
+/* Keep legacy light-page alias working */
+.light-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+  color: #0f172a;
+}
+
+/* ── Error spans ── */
+.lp-err { display: block; color: #ef4444; font-size: 0.78rem; margin: -6px 0 8px; }
+
+/* ============================================================
+   CAREER PAGE
+   ============================================================ */
+
+/* Hero */
+.cp-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-canvas, #eeecea);
+  background-image: 
+    radial-gradient(ellipse 65% 55% at 50% 25%, rgba(26, 108, 255, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 45% at 85% 35%, rgba(22, 163, 74, 0.05) 0%, transparent 60%);
+  padding: 125px 24px 90px;
+  text-align: center;
+  margin-top: 0;
+  border-bottom: 1px solid var(--border-hairline, rgba(10, 10, 10, 0.08));
+}
+.cp-hero-glow {
+  position: absolute;
+  top: 45%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 680px; height: 320px;
+  background: radial-gradient(circle, rgba(26, 108, 255, 0.08) 0%, rgba(16, 185, 129, 0.06) 50%, transparent 75%);
+  filter: blur(80px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.cp-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.cp-now-hiring {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border-radius: 9999px;
+  background: rgba(10, 10, 10, 0.04);
+  border: 1px solid rgba(10, 10, 10, 0.09);
+  color: var(--ink-primary, #0a0a0a);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.cp-pulse {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--color-green, #16a34a);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.22);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+.cp-hero-h1 {
+  font-size: clamp(2.3rem, 5vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--ink-primary, #0a0a0a) !important;
+  margin: 0 0 20px;
+  line-height: 1.08;
+}
+.cp-hero-p {
+  font-size: clamp(1.02rem, 1.8vw, 1.18rem);
+  color: var(--ink-muted, #5a5a5a);
+  max-width: 620px;
+  margin: 0 auto 36px;
+  line-height: 1.7;
+}
+.cp-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 34px;
+  border-radius: 9999px;
+  background: var(--ink-primary, #0a0a0a);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transition: all 0.25s ease;
+}
+.cp-hero-cta:hover {
+  background: #222222;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* Why section */
+.cp-why-section {
+  background: #ffffff;
+  padding: 80px 24px;
+}
+.cp-section-inner { max-width: 1200px; margin: 0 auto; }
+.cp-section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 56px;
+}
+.cp-section-header h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  margin: 0 0 12px;
+}
+.cp-section-header p { color: #475569; font-size: 0.98rem; margin: 0; line-height: 1.7; }
+
+.cp-perks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.cp-perk-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+}
+.cp-perk-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.1); transform: translateY(-4px); }
+.cp-perk-icon {
+  width: 58px; height: 58px;
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+.perk-icon-blue  { background: rgba(59,130,246,0.1); color: #2563eb; }
+.perk-icon-amber { background: rgba(245,158,11,0.1); color: #d97706; }
+.perk-icon-emerald { background: rgba(16,185,129,0.1); color: #059669; }
+.cp-perk-card h3 { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 10px; }
+.cp-perk-card p { font-size: 0.88rem; color: #64748b; line-height: 1.65; margin: 0; }
+.cp-perk-text { flex: 1; min-width: 0; }
+.cp-perk-text h3 { margin: 0 0 6px; }
+.cp-perk-text p { margin: 0; }
+
+/* Apply section */
+.cp-apply-section {
+  background: #f1f5f9;
+  border-top: 1px solid #e2e8f0;
+  padding: 72px 24px;
+}
+.cp-apply-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 48px;
+  align-items: start;
+}
+@media (max-width: 960px) { .cp-apply-inner { grid-template-columns: 1fr; } }
+
+/* Jobs column */
+.cp-jobs-col {}
+.cp-jobs-header { margin-bottom: 32px; }
+.cp-jobs-header h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 800; color: #0f172a; margin: 0 0 8px; letter-spacing: -0.02em; }
+.cp-jobs-header p { color: #64748b; font-size: 0.95rem; margin: 0; }
+
+.cp-job-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  transition: all 0.25s ease;
+}
+.cp-job-card:hover { border-color: rgba(16,185,129,0.4); box-shadow: 0 6px 24px rgba(0,0,0,0.08); }
+.cp-job-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.cp-job-title-row { display: flex; align-items: flex-start; gap: 14px; }
+.cp-job-icon-wrap {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: rgba(10, 10, 10, 0.05);
+  border: 1px solid var(--border-hairline, rgba(10, 10, 10, 0.08));
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cp-job-icon-svg { color: var(--ink-primary, #0a0a0a); }
+.cp-job-title { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 3px; }
+.cp-job-position { font-size: 0.82rem; color: #64748b; margin: 0; font-weight: 500; }
+
+.cp-job-badge {
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.job-badge-blue { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+.job-badge-purple { background: #faf5ff; color: #6d28d9; border-color: #ddd6fe; }
+
+.cp-skills-section { margin-top: 20px; }
+.cp-skills-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  margin: 0 0 12px;
+}
+.cp-skills-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media (max-width: 620px) { .cp-skills-list { grid-template-columns: 1fr; } }
+.cp-skills-list li {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 0.85rem; color: #334155;
+}
+.cp-check-icon { color: #10b981; flex-shrink: 0; margin-top: 2px; }
+
+.cp-offers-section { margin-top: 20px; padding-top: 18px; border-top: 1px solid #f1f5f9; }
+.cp-offer-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.cp-offer-pill {
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 8px;
+}
+
+/* Form column */
+.cp-form-col { position: sticky; top: 110px; }
+.cp-form-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 36px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+}
+.cp-form-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  color: #059669; margin-bottom: 8px;
+}
+.cp-form-title { font-size: 1.4rem; font-weight: 800; color: #0f172a; margin: 0 0 24px; letter-spacing: -0.02em; }
+
+.cp-form { display: flex; flex-direction: column; gap: 0; }
+.cp-field { display: flex; flex-direction: column; margin-bottom: 14px; }
+.cp-field label { font-size: 0.75rem; font-weight: 700; color: #374151; margin-bottom: 6px; }
+.cp-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 0; }
+@media (max-width: 480px) { .cp-field-row { grid-template-columns: 1fr; } }
+
+.cp-form input,
+.cp-form textarea,
+.cp-form select {
+  width: 100%;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.88rem;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.cp-form input:focus,
+.cp-form textarea:focus,
+.cp-form select:focus {
+  border-color: #10b981;
+  background: #f0fdf9;
+  box-shadow: 0 0 0 3px rgba(16,185,129,0.12);
+}
+.cp-form textarea { min-height: 82px; resize: vertical; }
+
+/* Dropzone */
+.cp-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px;
+  border: 2px dashed #e2e8f0;
+  border-radius: 14px;
+  cursor: pointer;
+  background: #f8fafc;
+  transition: all 0.25s;
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.cp-dropzone:hover { background: rgba(16,185,129,0.04); border-color: #10b981; color: #059669; }
+.cp-dropzone input.hidden { display: none; }
+.cp-upload-icon { color: #10b981; }
+
+/* Status */
+.cp-status-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; border-radius: 10px; padding: 12px 16px; margin: 8px 0 14px; font-size: 0.86rem; }
+.cp-status-error { background: #fee2e2; border: 1px solid #fca5a5; color: #991b1b; border-radius: 10px; padding: 12px 16px; margin: 8px 0 14px; font-size: 0.86rem; }
+
+/* Submit btn */
+.cp-submit-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 14px;
+  background: #10b981;
+  color: #fff;
+  border: none; border-radius: 14px;
+  font-size: 0.92rem; font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 6px 22px rgba(16,185,129,0.3);
+  transition: all 0.3s ease;
+}
+.cp-submit-btn:hover { background: #059669; transform: translateY(-1px); box-shadow: 0 10px 30px rgba(16,185,129,0.4); }
+.cp-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+/* ============================================================
+   INTERNSHIP PAGE
+   ============================================================ */
+.ip-section {
+  background: #f8fafc;
+  padding: 100px 24px 80px;
+}
+.ip-section-inner { max-width: 1280px; margin: 0 auto; }
+
+.ip-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 56px;
+}
+.ip-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.25);
+  color: #059669;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.ip-header h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+  margin: 0 0 16px;
+  line-height: 1.15;
+}
+.ip-header > p { color: #475569; font-size: 1rem; line-height: 1.7; margin: 0 0 32px; }
+
+/* Filter tabs */
+.ip-filter-tabs {
+  display: inline-flex;
+  padding: 6px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  gap: 4px;
+}
+.ip-tab {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.ip-tab:hover { color: #0f172a; }
+.ip-tab-active { background: #fff; color: #0f172a; box-shadow: 0 1px 6px rgba(0,0,0,0.1); }
+
+/* Cards grid */
+.ip-grid-wrap { margin-bottom: 60px; }
+.ip-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+.ip-intern-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.ip-intern-card:hover { box-shadow: 0 14px 44px rgba(0,0,0,0.11); transform: translateY(-5px); }
+
+.ip-card-img-wrap { position: relative; height: 200px; overflow: hidden; background: #0f172a; }
+.ip-card-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+.ip-intern-card:hover .ip-card-img { transform: scale(1.06); }
+.ip-card-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(15,23,42,0.55) 0%, transparent 60%);
+}
+.ip-card-dur-badge {
+  position: absolute; bottom: 12px; left: 14px;
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.95);
+  color: #0f172a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.ip-card-dur-badge svg { color: #10b981; }
+
+.ip-card-body { padding: 22px 22px 20px; display: flex; flex-direction: column; flex: 1; }
+.ip-card-title {
+  font-size: 1.05rem; font-weight: 800; color: #0f172a; margin: 0 0 12px;
+  transition: color 0.2s;
+}
+.ip-intern-card:hover .ip-card-title { color: #10b981; }
+
+.ip-skill-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.ip-skill-pill {
+  background: #f1f5f9; color: #334155;
+  font-size: 0.72rem; font-weight: 600;
+  padding: 4px 10px; border-radius: 6px;
+}
+
+.ip-card-text { font-size: 0.85rem; color: #64748b; line-height: 1.65; margin: 0 0 20px; flex: 1; }
+
+.ip-card-footer {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding-top: 16px; border-top: 1px solid #f1f5f9;
+}
+.ip-details-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.83rem; font-weight: 700; color: #475569;
+  background: transparent; border: none; cursor: pointer;
+  font-family: inherit;
+  transition: color 0.2s;
+  padding: 0;
+}
+.ip-details-btn:hover { color: #0f172a; }
+.ip-apply-btn {
+  padding: 9px 20px;
+  border-radius: 999px;
+  background: #10b981;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: none; cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 4px 14px rgba(16,185,129,0.28);
+  transition: all 0.25s;
+}
+.ip-apply-btn:hover { background: #059669; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(16,185,129,0.38); }
+
+/* Sub-header for Non-IT */
+.ip-sub-header {
+  text-align: center; max-width: 620px; margin: 0 auto 36px;
+}
+.ip-sub-header h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 800; color: #0f172a; margin: 0 0 10px; letter-spacing: -0.02em; }
+.ip-sub-header p { color: #64748b; font-size: 0.93rem; margin: 0; }
+
+/* ============================================================
+   WORKSHOP PAGE
+   ============================================================ */
+.wp-outer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 105px 24px 80px;
+}
+
+/* Hero banner — Light editorial card matching Clay design system */
+.wp-hero-banner {
+  background: #ffffff;
+  background-image:
+    radial-gradient(circle at 90% 15%, rgba(26, 108, 255, 0.06) 0%, transparent 60%),
+    radial-gradient(circle at 10% 80%, rgba(22, 163, 74, 0.05) 0%, transparent 50%);
+  border: 1px solid var(--border-hairline, rgba(10, 10, 10, 0.08));
+  border-radius: 28px;
+  padding: 56px 52px;
+  margin-bottom: 60px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 36px -6px rgba(0, 0, 0, 0.06);
+}
+.wp-hero-glow {
+  position: absolute;
+  right: -60px; top: -60px;
+  width: 450px; height: 450px;
+  background: radial-gradient(circle, rgba(26, 108, 255, 0.08) 0%, rgba(16, 185, 129, 0.06) 50%, transparent 75%);
+  filter: blur(80px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.wp-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  color: var(--ink-primary, #0a0a0a);
+}
+.wp-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  background: rgba(22, 163, 74, 0.08);
+  border: 1px solid rgba(22, 163, 74, 0.22);
+  color: var(--color-green-dark, #15803d);
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+.wp-hero-content h1 {
+  font-size: clamp(2rem, 3.8vw, 3.2rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--ink-primary, #0a0a0a) !important;
+  margin: 0 0 16px !important;
+  line-height: 1.12 !important;
+}
+.wp-hero-content p {
+  font-size: 1.05rem !important;
+  color: var(--ink-muted, #5a5a5a) !important;
+  line-height: 1.7 !important;
+  margin: 0 0 32px !important;
+  max-width: 640px;
+}
+.wp-hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.wp-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  border-radius: 9999px;
+  background: var(--ink-primary, #0a0a0a);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transition: all 0.25s ease;
+}
+.wp-hero-cta:hover {
+  background: #222222;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+.wp-hero-cert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--ink-muted, #5a5a5a);
+  font-weight: 600;
+}
+.wp-cert-icon {
+  color: var(--color-green, #16a34a);
+  flex-shrink: 0;
+}
+
+/* Featured cards grid */
+.wp-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+  margin-bottom: 72px;
+}
+.wp-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  display: flex; flex-direction: column;
+  transition: all 0.3s ease;
+}
+.wp-card:hover { box-shadow: 0 14px 40px rgba(0,0,0,0.1); transform: translateY(-4px); }
+
+.wp-card-img-wrap { position: relative; height: 200px; overflow: hidden; }
+.wp-card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.wp-card-mode-badge {
+  position: absolute; top: 12px; left: 12px;
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 12px; border-radius: 999px;
+  background: rgba(15,23,42,0.85);
+  color: #fff;
+  font-size: 0.72rem; font-weight: 700;
+  backdrop-filter: blur(4px);
+}
+.wp-card-mode-badge svg { color: #34d399; }
+
+.wp-card-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+.wp-card-audience {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 0.75rem; font-weight: 700; color: #059669;
+  margin-bottom: 10px;
+}
+.wp-card-title { font-size: 1.05rem; font-weight: 800; color: #0f172a; margin: 0 0 18px; }
+.wp-highlights {
+  list-style: none; padding: 0; margin: 0 0 20px;
+  display: flex; flex-direction: column; gap: 8px; flex: 1;
+}
+.wp-highlights li {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 0.85rem; color: #475569;
+}
+.wp-check-icon { color: #10b981; flex-shrink: 0; margin-top: 1px; }
+.wp-card-btn {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%; padding: 12px;
+  border-radius: 9999px;
+  background: var(--ink-primary, #0a0a0a);
+  color: #fff !important;
+  font-size: 0.85rem; font-weight: 600;
+  border: none; cursor: pointer;
+  font-family: inherit;
+  transition: all 0.25s;
+}
+.wp-card-btn:hover { background: #222222; transform: translateY(-1px); }
+
+/* Booking section */
+.wp-booking-wrap { }
+.wp-booking-header {
+  text-align: center;
+  max-width: 600px; margin: 0 auto 36px;
+}
+.wp-booking-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  color: #059669; margin-bottom: 10px;
+}
+.wp-booking-header h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800; color: #0f172a;
+  letter-spacing: -0.02em; margin: 0 0 10px;
+}
+.wp-booking-header p { color: #64748b; font-size: 0.95rem; margin: 0; }
+.wp-booking-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 44px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.07);
+  max-width: 1060px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   SHARED WORKSHOP FORM (reused across pages)
+   ============================================================ */
+.lp-workshop-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.lp-ws-input, .lp-ws-select {
+  width: 100%;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: #0f172a;
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.lp-ws-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px 16px;
+  padding-right: 40px;
+  cursor: pointer;
+}
+.lp-ws-input:focus, .lp-ws-select:focus {
+  border-color: #10b981;
+  background: #f0fdf9;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+}
+.lp-ws-select option { background: #fff; color: #0f172a; }
+
+.lp-ws-col-empty { min-height: 1px; }
+
+.lp-slot-info,
+.lp-payment-info,
+.lp-ws-terms,
+.lp-ws-status,
+.lp-ws-book-btn,
+.lp-cert-info {
+  grid-column: 1 / -1;
+}
+
+.lp-slot-info {
+  background: #fff8e7;
+  padding: 11px 20px;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #c47a2e;
+  border-left: 4px solid #ffb347;
+  margin-top: 4px;
+}
+
+.lp-payment-info {
+  background: #f0fdfa;
+  border: 1.5px solid #99f6e4;
+  border-radius: 16px;
+  padding: 16px 20px;
+  text-align: center;
+  margin-top: 4px;
+}
+.lp-payment-info h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #059669;
+  margin: 0;
+}
+
+.lp-ws-terms {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border-radius: 12px;
+  margin-top: 4px;
+}
+.lp-ws-terms input[type="checkbox"] {
+  width: 18px; height: 18px;
+  accent-color: #10b981;
+  cursor: pointer;
+  margin: 0; flex-shrink: 0;
+}
+.lp-ws-terms label {
+  font-size: 0.88rem;
+  color: #475569;
+  cursor: pointer;
+  user-select: none;
+}
+
+.lp-ws-book-btn {
+  width: 100%; padding: 16px;
+  background: linear-gradient(95deg, #10b981, #059669);
+  color: #fff;
+  border: none; border-radius: 40px;
+  font-size: 1.05rem; font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+  margin-top: 6px;
+  transition: all 0.25s ease;
+}
+.lp-ws-book-btn:hover {
+  background: linear-gradient(95deg, #059669, #047857);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(16, 185, 129, 0.4);
+}
+.lp-ws-book-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.lp-cert-info {
+  text-align: center;
+  font-size: 0.88rem;
+  color: #10b981;
+  margin: 8px 0 0;
+  font-weight: 600;
+}
+
+.lp-ws-status { padding: 12px 16px; border-radius: 10px; font-size: 0.88rem; font-weight: 500; }
+.lp-ws-status.success { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+.lp-ws-status.error { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+
+@media (max-width: 860px) {
+  .wp-outer { padding: 90px 16px 60px; }
+  .wp-hero-banner { padding: 40px 28px; border-radius: 20px; }
+  .wp-booking-card { padding: 28px 20px; }
+  .lp-workshop-form { grid-template-columns: 1fr; gap: 14px; }
+  .lp-ws-col-empty { display: none; }
+}
+
+/* ============================================================
+   INTERNSHIP MODALS (unchanged logic / reused styling)
+   ============================================================ */
+.lp-modal-overlay {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(0,0,0,0.55);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+.lp-details-modal {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px 36px;
+  max-width: 580px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+.lp-modal-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 32px; height: 32px;
+  border-radius: 8px; border: none;
+  background: #f1f5f9; color: #64748b;
+  font-size: 0.9rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.lp-modal-close:hover { background: #e2e8f0; }
+.lp-modal-head { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
+.lp-modal-icon { font-size: 2.2rem; }
+.lp-modal-head h2 { font-size: 1.3rem; font-weight: 800; color: #0f172a; margin: 0 0 4px; }
+.lp-modal-head .lp-dur-tag { margin: 0; }
+.lp-dur-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: #f0fdf8; border: 1px solid #d1fae5;
+  color: #065f46; padding: 4px 12px;
+  border-radius: 20px; font-size: 0.78rem; font-weight: 600;
+  margin-bottom: 12px;
+}
+.lp-modal-section { margin-bottom: 18px; }
+.lp-modal-section h3 { font-size: 0.9rem; font-weight: 700; color: #374151; margin: 0 0 8px; }
+.lp-modal-section p { font-size: 0.88rem; color: #64748b; margin: 0; line-height: 1.6; }
+.lp-skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.lp-skill-tag {
+  background: #eff6ff; color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  padding: 4px 12px; border-radius: 20px;
+  font-size: 0.78rem; font-weight: 600;
+}
+.lp-outcome-list { list-style: none; padding: 0; margin: 0; }
+.lp-outcome-list li { font-size: 0.85rem; color: #4b5563; padding: 5px 0; display: flex; gap: 8px; }
+.lp-outcome-list li::before { content: "✓"; color: #10b981; font-weight: 700; flex-shrink: 0; }
+.lp-highlight-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.lp-highlight-tag {
+  background: #d1fae5; color: #065f46;
+  border: 1px solid #6ee7b7;
+  padding: 5px 14px; border-radius: 20px;
+  font-size: 0.78rem; font-weight: 600;
+}
+.lp-modal-apply-btn {
+  display: block; width: 100%; padding: 14px;
+  background: #10b981; color: #fff;
+  border: none; border-radius: 12px;
+  font-size: 0.95rem; font-weight: 700;
+  cursor: pointer; margin-top: 20px;
+  transition: all 0.3s; font-family: inherit;
+}
+.lp-modal-apply-btn:hover { background: #059669; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(16,185,129,0.4); }
+
+/* Apply/OTP Modal */
+.lp-apply-modal-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #fff;
+  border-radius: 20px;
+  max-width: 780px; width: 100%;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+}
+@media (max-width: 640px) { .lp-apply-modal-box { grid-template-columns: 1fr; } }
+.lp-modal-left {
+  background: linear-gradient(135deg, #0b1120, #1a3a5c);
+  padding: 40px 32px;
+  color: #fff;
+}
+.lp-modal-left h2 { font-size: 1.2rem; font-weight: 800; margin: 0 0 12px; }
+.lp-modal-left p { font-size: 0.88rem; color: rgba(255,255,255,0.7); margin: 0 0 20px; line-height: 1.6; }
+.lp-modal-left ul { list-style: none; padding: 0; margin: 0; }
+.lp-modal-left ul li { font-size: 0.85rem; color: rgba(255,255,255,0.8); padding: 6px 0; }
+.lp-modal-right { padding: 40px 32px; }
+.lp-modal-right h3 { font-size: 1rem; font-weight: 700; color: #0f172a; margin: 0 0 20px; }
+.lp-modal-right input {
+  width: 100%;
+  background: #f8fafc; border: 1.5px solid #e2e8f0;
+  border-radius: 10px; padding: 12px 16px;
+  color: #0f172a; font-size: 0.9rem;
+  margin-bottom: 12px; outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box; font-family: inherit;
+}
+.lp-modal-right input:focus { border-color: #10b981; }
+.lp-modal-right input:disabled { opacity: 0.5; background: #f1f5f9; }
+.lp-modal-action-btn {
+  width: 100%; padding: 13px;
+  background: #10b981; color: #fff;
+  border: none; border-radius: 10px;
+  font-size: 0.9rem; font-weight: 700;
+  cursor: pointer; margin-bottom: 10px;
+  transition: all 0.3s; font-family: inherit;
+}
+.lp-modal-action-btn:hover { background: #059669; }
+.lp-modal-action-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.lp-modal-cancel-btn {
+  width: 100%; padding: 11px;
+  background: #f1f5f9; color: #64748b;
+  border: none; border-radius: 10px;
+  font-size: 0.88rem; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+  font-family: inherit;
+}
+.lp-modal-cancel-btn:hover { background: #e2e8f0; }
+.lp-modal-status {
+  font-size: 0.85rem; color: #f59e0b;
+  margin-top: 8px; padding: 8px 12px;
+  background: #fffbeb; border-radius: 8px;
+  border: 1px solid #fde68a;
+}
+
+/* ============================================================
+   SUCCESS PAGES
+   ============================================================ */
+.lp-success-page {
+  min-height: 100vh; background: #f8fafc;
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px 20px;
+}
+.lp-success-box {
+  background: #fff; border-radius: 24px;
+  padding: 60px 48px; text-align: center;
+  max-width: 500px; width: 100%;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+}
+.lp-success-box h1 { font-size: 2rem; font-weight: 800; color: #0f172a; margin: 0 0 14px; }
+.lp-success-box p { color: #64748b; font-size: 0.95rem; margin: 0 0 28px; }
+.lp-success-btn {
+  display: inline-block; background: #10b981; color: #fff;
+  font-weight: 700; padding: 14px 32px; border-radius: 30px;
+  text-decoration: none; transition: all 0.3s;
+}
+.lp-success-btn:hover { background: #059669; transform: translateY(-2px); }
+
+/* ============================================================
+   BACKGROUND THEME — Match landing page Clay.com palette
+   ============================================================ */
+
+/* Career page base */
+.cp-page {
+  background: var(--bg-canvas, #eeecea);
+}
+
+/* Career apply section: match landing page subtle bg */
+.cp-apply-section {
+  background: var(--bg-subtle, #e6e4e0);
+  border-top: 1px solid var(--border-hairline, rgba(10, 10, 10, 0.08));
+}
+
+/* Career "Why Join" section: white surface */
+.cp-why-section {
+  background: var(--bg-white, #ffffff);
+  border-top: 1px solid var(--border-hairline, rgba(10, 10, 10, 0.08));
+  border-bottom: 1px solid var(--border-hairline, rgba(10, 10, 10, 0.08));
+}
+
+/* Internship page base */
+.ip-section {
+  background: var(--bg-canvas, #eeecea);
+}
+
+/* Workshop outer wrapper */
+.wp-outer {
+  background: var(--bg-canvas, #eeecea);
+}
+
+/* Workshop booking card */
+.wp-booking-card {
+  background: var(--bg-white, #ffffff);
+}
+
+/* Workshop featured cards */
+.wp-card {
+  background: var(--bg-white, #ffffff);
+}
+
+/* Career job cards / perk cards */
+.cp-job-card,
+.cp-perk-card {
+  background: var(--bg-white, #ffffff);
+}
+
+/* Career apply-section bg */
+.cp-form-card {
+  background: var(--bg-white, #ffffff);
+}
+
+/* Internship intern cards */
+.ip-intern-card {
+  background: var(--bg-white, #ffffff);
+}
+
+/* ============================================================
+   iOS FORM FONT-SIZE FIX (prevents zoom on focus)
+   ============================================================ */
+.cp-form input,
+.cp-form textarea,
+.cp-form select,
+.lp-ws-input,
+.lp-ws-select,
+.lp-modal-right input {
+  font-size: 1rem; /* 16px minimum — overrides 0.88rem/0.92rem */
+}
+
+/* ============================================================
+   SERVICES SECTION — Mobile optimization + palette alignment
+   ============================================================ */
+.services-overview-section {
+  background: var(--bg-canvas, #eeecea) !important;
+  padding: 72px 24px;
+}
+
+.services-overview-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.services-overview-header .badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  background: rgba(10, 10, 10, 0.05);
+  border: 1px solid rgba(10, 10, 10, 0.1);
+  color: var(--ink-primary, #0a0a0a);
+  margin-bottom: 16px;
+}
+
+.services-overview-header h2 {
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ink-primary, #0a0a0a);
+  margin: 0 0 12px;
+}
+
+.services-overview-header p {
+  color: var(--ink-muted, #5a5a5a);
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.services-mega-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-category-card {
+  background: var(--bg-white, #ffffff);
+  border: 1px solid var(--border-hairline, rgba(10, 10, 10, 0.08));
+  border-radius: 16px;
+  padding: 28px 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.service-category-card:hover {
+  border-color: rgba(26, 108, 255, 0.25);
+  box-shadow: 0 10px 32px rgba(26, 108, 255, 0.1);
+  transform: translateY(-3px);
+}
+
+.service-cat-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.service-category-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--ink-primary, #0a0a0a);
+}
+
+.service-category-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-category-card ul li {
+  font-size: 0.88rem;
+  color: var(--ink-muted, #5a5a5a);
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border-hairline, rgba(10, 10, 10, 0.06));
+  line-height: 1.5;
+}
+
+.service-category-card ul li:last-child { border-bottom: none; }
+
+.service-category-card ul li::before {
+  content: "→ ";
+  color: var(--color-blue, #1a6cff);
+  font-weight: 700;
+}
+
+/* ============================================================
+   RESPONSIVE — ALL 3 PAGES
+   Breakpoints: 1100 / 960 / 768 / 640 / 480 / 430 / 390 / 320
+   ============================================================ */
+
+/* ---------- 1100px: Hero type tuning ---------------------- */
+@media (max-width: 1100px) {
+  .wp-outer { padding: 100px 20px 72px; }
+}
+
+/* ---------- 960px: Grid collapses, sticky form off --------- */
+@media (max-width: 960px) {
+  /* Career apply: stack columns */
+  .cp-apply-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /* Unstick form so it doesn't get trapped on small screens */
+  .cp-form-col {
+    position: static;
+    top: auto;
+  }
+
+  /* Services grid: 2 col on tablet */
+  .services-mega-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------- 768px ----------------------------------------- */
+@media (max-width: 768px) {
+  /* Career hero */
+  .cp-hero {
+    padding: calc(76px + 1.5rem) 20px 64px;
+  }
+
+  /* Career apply section */
+  .cp-apply-section {
+    padding: 48px 20px;
+  }
+
+  /* Career job card: tighten padding */
+  .cp-job-card {
+    padding: 22px 18px;
+  }
+
+  /* Career job top: allow wrapping of badge */
+  .cp-job-top {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* Career form card */
+  .cp-form-card {
+    padding: 28px 22px;
+  }
+
+  /* Career perk grid: 1 col on small tablet */
+  .cp-perks-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Career perk card: horizontal layout */
+  .cp-perk-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 18px;
+    text-align: left;
+    padding: 24px 20px;
+  }
+
+  .cp-perk-icon {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  /* Internship */
+  .ip-section {
+    padding: calc(76px + 1.5rem) 16px 56px;
+  }
+
+  .ip-header {
+    margin: 0 auto 40px;
+  }
+
+  /* Internship filter tabs: allow wrapping */
+  .ip-filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 16px;
+    justify-content: center;
+  }
+
+  /* Workshop hero banner */
+  .wp-hero-banner {
+    padding: 40px 28px;
+    border-radius: 18px;
+    margin-bottom: 40px;
+  }
+
+  /* Workshop booking card */
+  .wp-booking-card {
+    padding: 28px 20px;
+  }
+
+  /* Workshop booking header */
+  .wp-booking-header {
+    margin-bottom: 28px;
+  }
+
+  /* Workshop form: full single col */
+  .lp-workshop-form {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .lp-ws-col-empty {
+    display: none;
+  }
+
+  /* Workshop cert info */
+  .wp-hero-cert {
+    font-size: 0.82rem;
+  }
+
+  /* Services: 1 col on mobile */
+  .services-mega-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .services-overview-section {
+    padding: 56px 16px;
+  }
+}
+
+/* ---------- 640px ----------------------------------------- */
+@media (max-width: 640px) {
+  /* Career hero: fluid padding respecting 76px navbar */
+  .cp-hero {
+    padding: calc(76px + 1rem) 16px 52px;
+  }
+
+  /* Career hero headline */
+  .cp-hero-h1 {
+    font-size: clamp(1.9rem, 8.5vw, 2.8rem);
+  }
+
+  /* Career hero: CTA full width */
+  .cp-hero-cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Career apply section */
+  .cp-apply-section {
+    padding: 40px 16px;
+  }
+
+  /* Career form field row: stack to 1 col */
+  .cp-field-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  /* Career skills list: 1 col */
+  .cp-skills-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* Career perk: already horizontal, tighten gap */
+  .cp-perk-card {
+    gap: 14px;
+  }
+
+  /* Internship header */
+  .ip-header h1 {
+    font-size: clamp(1.7rem, 7vw, 2.4rem);
+  }
+
+  /* Internship cards: single col */
+  .ip-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Internship card image: slightly shorter on small phones */
+  .ip-card-img-wrap {
+    height: 185px;
+  }
+
+  /* Internship card footer: stack buttons */
+  .ip-card-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .ip-details-btn {
+    justify-content: center;
+    padding: 11px;
+    border-radius: 8px;
+    background: rgba(10, 10, 10, 0.04);
+  }
+
+  .ip-apply-btn {
+    padding: 13px 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  /* Internship modal: single col */
+  .lp-apply-modal-box {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 16px;
+  }
+
+  /* Hide the left info panel on small screens to save space */
+  .lp-modal-left {
+    padding: 24px 20px;
+    border-radius: 0;
+  }
+
+  .lp-modal-left ul { display: none; }
+  .lp-modal-left p  { display: none; }
+
+  .lp-modal-right {
+    padding: 24px 20px;
+  }
+
+  /* Details modal: full width */
+  .lp-details-modal {
+    padding: 28px 20px;
+    border-radius: 16px;
+    margin: 0;
+  }
+
+  /* Workshop outer: reduce top padding */
+  .wp-outer {
+    padding: calc(76px + 0.75rem) 16px 56px;
+  }
+
+  /* Workshop hero banner */
+  .wp-hero-banner {
+    padding: 32px 22px;
+    border-radius: 16px;
+    margin-bottom: 32px;
+  }
+
+  /* Workshop hero headline */
+  .wp-hero-content h1 {
+    font-size: clamp(1.6rem, 7vw, 2.4rem) !important;
+  }
+
+  /* Workshop hero actions: stack */
+  .wp-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .wp-hero-cta {
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Workshop cards: single col */
+  .wp-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Workshop booking header h2 */
+  .wp-booking-header h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  /* Slot info: tighten radius on small screen */
+  .lp-slot-info {
+    border-radius: 12px;
+    font-size: 0.82rem;
+  }
+
+  /* Success page box */
+  .lp-success-box {
+    padding: 36px 24px;
+  }
+
+  .lp-success-box h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ---------- 480px ----------------------------------------- */
+@media (max-width: 480px) {
+  /* Career job card */
+  .cp-job-card {
+    padding: 18px 14px;
+  }
+
+  /* Career form card */
+  .cp-form-card {
+    padding: 22px 16px;
+    border-radius: 18px;
+  }
+
+  /* Internship badge: allow wrapping */
+  .ip-filter-tabs {
+    gap: 6px;
+    padding: 5px;
+  }
+
+  .ip-tab {
+    padding: 8px 14px;
+    font-size: 0.75rem;
+  }
+
+  /* Workshop booking card */
+  .wp-booking-card {
+    padding: 22px 14px;
+    border-radius: 18px;
+  }
+
+  /* Modal overlay padding: tighter on 480 */
+  .lp-modal-overlay {
+    padding: 12px;
+  }
+}
+
+/* ---------- 430px ----------------------------------------- */
+@media (max-width: 430px) {
+  .cp-hero-h1 {
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
+  }
+
+  .ip-header h1 {
+    font-size: clamp(1.55rem, 8vw, 2.2rem);
+  }
+
+  .wp-hero-content h1 {
+    font-size: clamp(1.45rem, 8.5vw, 2rem) !important;
+  }
+
+  /* Filter tabs: full-width wrap */
+  .ip-filter-tabs {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* ---------- 390px ----------------------------------------- */
+@media (max-width: 390px) {
+  .cp-hero {
+    padding: calc(76px + 0.75rem) 14px 44px;
+  }
+
+  .cp-hero-h1 {
+    font-size: clamp(1.65rem, 9.5vw, 2.2rem);
+  }
+
+  .wp-outer {
+    padding: calc(76px + 0.5rem) 12px 48px;
+  }
+
+  .wp-hero-banner {
+    padding: 28px 18px;
+  }
+
+  .ip-section {
+    padding: calc(76px + 0.75rem) 14px 48px;
+  }
+
+  /* Career: remove sticky entirely */
+  .cp-form-col {
+    position: static !important;
+  }
+}
+
+/* ---------- 320px ----------------------------------------- */
+@media (max-width: 360px) {
+  .cp-hero-h1 {
+    font-size: 1.65rem;
+    letter-spacing: -0.02em;
+  }
+
+  .ip-header h1,
+  .wp-hero-content h1 {
+    font-size: 1.5rem !important;
+    letter-spacing: -0.02em;
+  }
+
+  .cp-perk-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .cp-perk-icon {
+    margin: 0 auto;
+  }
+
+  /* Filter tabs: stack vertically on very small */
+  .ip-filter-tabs {
+    flex-direction: column;
+    border-radius: 12px;
+    width: 100%;
+  }
+
+  .ip-tab {
+    width: 100%;
+    justify-content: center;
+    border-radius: 8px;
+  }
+
+  /* Booking btn */
+  .lp-ws-book-btn {
+    font-size: 0.95rem;
+    padding: 14px 12px;
+  }
+
+  /* Apply modal: tightest */
+  .lp-modal-right {
+    padding: 18px 14px;
+  }
+
+  .lp-modal-left {
+    padding: 16px 14px;
+  }
+}
+
+/* ============================================================
+   GLOBAL OVERFLOW GUARD for page files
+   ============================================================ */
+.cp-page,
+.ip-section,
+.wp-outer,
+.cp-hero,
+.cp-apply-section,
+.cp-why-section,
+.ip-section-inner,
+.wp-hero-banner,
+.wp-booking-card,
+.lp-details-modal,
+.lp-apply-modal-box {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+/* Prevent images from breaking layout */
+.ip-card-img,
+.wp-card-img {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Min tap target for buttons */
+.ip-details-btn,
+.ip-apply-btn,
+.cp-hero-cta,
+.wp-hero-cta,
+.wp-card-btn,
+.cp-submit-btn,
+.lp-ws-book-btn,
+.lp-modal-action-btn,
+.lp-modal-cancel-btn {
+  min-height: 44px;
+}

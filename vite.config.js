@@ -13,4 +13,16 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    port: 5173,
+    proxy: {
+      '/send-otp': 'http://127.0.0.1:5000',
+      '/verify-otp': 'http://127.0.0.1:5000',
+      '/save-internship': 'http://127.0.0.1:5000',
+      '/save-workshop': 'http://127.0.0.1:5000',
+      '/create-order': 'http://127.0.0.1:5000',
+      '/apply': 'http://127.0.0.1:5000',
+      '/verify-payment': 'http://127.0.0.1:5000',
+    },
+  },
 })

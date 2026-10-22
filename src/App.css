@@ -258,13 +258,54 @@
   background: rgba(10, 10, 10, 0.05);
 }
 
-/* Clay "Contact" dark pill CTA — enlarged */
+/* Light Radiant Yellow Glassmorphic CTA Pill */
 .navbar-cta-btn {
-  height: 54px;
-  padding: 0 32px;
-  font-size: 1.125rem;
+  height: 52px;
+  padding: 0 30px;
+  font-size: 1.05rem;
   font-weight: 700;
   gap: 8px;
+  background: linear-gradient(180deg, #fef08a 0%, #facc15 50%, #eab308 100%) !important;
+  color: #1f2937 !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 
+    0 1.5px 0 rgba(255, 255, 255, 0.8) inset,
+    0 -1px 0 rgba(202, 138, 4, 0.25) inset,
+    0 8px 24px -4px rgba(250, 204, 21, 0.45),
+    0 3px 8px rgba(234, 179, 8, 0.2) !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.navbar-cta-btn svg {
+  color: #1f2937 !important;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.4));
+  transition: transform 0.2s ease;
+}
+
+.navbar-cta-btn:hover {
+  background: linear-gradient(180deg, #fef9c3 0%, #fde047 50%, #facc15 100%) !important;
+  color: #111827 !important;
+  transform: translateY(-1.5px);
+  box-shadow: 
+    0 1.5px 0 rgba(255, 255, 255, 0.95) inset,
+    0 -1px 0 rgba(202, 138, 4, 0.25) inset,
+    0 12px 28px -4px rgba(250, 204, 21, 0.55),
+    0 4px 10px rgba(234, 179, 8, 0.25) !important;
+}
+
+.navbar-cta-btn:hover svg {
+  transform: translateX(3px);
+}
+
+.navbar-cta-btn:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 4px 12px rgba(250, 204, 21, 0.35) !important;
 }
 
 /* Brochure dropdown — light */
@@ -564,6 +605,20 @@
 .hero-headline-accent {
   color: var(--color-blue);
 }
+
+/* ── Typewriter blinking cursor ── */
+.tw-cursor {
+  display: inline-block;
+  font-weight: 300;
+  color: var(--color-blue);
+  animation: tw-blink 0.85s step-end infinite;
+  margin-left: 2px;
+}
+@keyframes tw-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
 
 .hero-summary {
   font-size: var(--text-lead);

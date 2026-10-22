@@ -7,8 +7,13 @@ import WhatsAppButton from '../components/WhatsAppButton';
 import Footer from '../components/Footer';
 import '../pages.css';
 import { Rocket, Clock, ArrowRight, Code, Briefcase } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 // ─── Course data ──────────────────────────────────────────────────────────────
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
 const COURSE_DETAILS = {
   frontend: {
     title: 'Frontend Developer Intern', duration: '45 Days', icon: '🎨',
@@ -176,34 +181,34 @@ function CourseDetailsModal({ courseKey, onClose, onApply }) {
         <div className="lp-modal-head">
           <span className="lp-modal-icon">{c.icon}</span>
           <div>
-            <h2>{c.title}</h2>
+            <motion.h2 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>{c.title}</motion.h2>
             <span className="lp-dur-tag">⏳ {c.duration}</span>
           </div>
         </div>
         <div className="lp-modal-section">
-          <h3>📚 About This Program</h3>
+          <motion.h3 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>📚 About This Program</motion.h3>
           <p>{c.description}</p>
         </div>
         <div className="lp-modal-section">
-          <h3>🛠️ Tech Stack</h3>
+          <motion.h3 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>🛠️ Tech Stack</motion.h3>
           <div className="lp-skill-tags">
             {c.skills.map((s) => <span key={s} className="lp-skill-tag">{s}</span>)}
           </div>
         </div>
         <div className="lp-modal-section">
-          <h3>🎯 What You'll Learn</h3>
+          <motion.h3 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>🎯 What You'll Learn</motion.h3>
           <ul className="lp-outcome-list">
             {c.outcomes.map((o) => <li key={o}>{o}</li>)}
           </ul>
         </div>
         <div className="lp-modal-section">
-          <h3>⭐ Program Highlights</h3>
+          <motion.h3 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>⭐ Program Highlights</motion.h3>
           <div className="lp-highlight-tags">
             {c.highlights.map((h) => <span key={h} className="lp-highlight-tag">{h}</span>)}
           </div>
         </div>
         <div className="lp-modal-section">
-          <h3>📋 Prerequisites</h3>
+          <motion.h3 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>📋 Prerequisites</motion.h3>
           <p>{c.prerequisites}</p>
         </div>
         <button className="lp-modal-apply-btn" onClick={() => { onClose(); onApply(c.title); }}>
@@ -316,7 +321,7 @@ export default function InternshipPage() {
               <Rocket size={15} />
               Internship Program
             </div>
-            <h1>Kickstart Your Career With Real-Time Industry Projects</h1>
+            <motion.h1 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>Kickstart Your Career With Real-Time Industry Projects</motion.h1>
             <p>
               Learn from industry experts, build production-ready live projects, and gain hands-on
               experience with enterprise development standards.
@@ -360,7 +365,7 @@ export default function InternshipPage() {
           {(filter === 'all' || filter === 'non-it') && (
             <div className="ip-grid-wrap">
               <div className="ip-sub-header">
-                <h2>Non-IT Internship Programs</h2>
+                <motion.h2 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>Non-IT Internship Programs</motion.h2>
                 <p>Master digital marketing, growth analytics, brand design, and core business skills.</p>
               </div>
               <div className="ip-cards-grid">

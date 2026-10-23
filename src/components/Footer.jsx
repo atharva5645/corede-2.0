@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, ArrowRight, Download } from 'lucide-react';
 
 export default function Footer({ onOpenBrochure, onOpenQuote }) {
@@ -39,9 +40,9 @@ export default function Footer({ onOpenBrochure, onOpenQuote }) {
         <div className="footer-columns-grid">
           {/* Column 1: Brand & Socials */}
           <div className="footer-brand-col">
-            <a href="/" className="footer-brand-logo-link" aria-label="CoreDe Home">
+            <Link to="/" className="footer-brand-logo-link" aria-label="CoreDe Home">
               <img src="/logo.png" alt="CoreDe Logo" className="footer-brand-logo" />
-            </a>
+            </Link>
             <p className="footer-brand-summary">
               Leading Software Development &amp; Digital Marketing LLP, providing innovative solutions for global clients.
             </p>
@@ -113,9 +114,9 @@ export default function Footer({ onOpenBrochure, onOpenQuote }) {
           <div className="footer-links-col">
             <h4 className="footer-col-heading">Quick Links</h4>
             <ul className="footer-nav-list">
-              <li><a href="/">Home</a></li>
+              <li><Link to="/">Home</Link></li>
               <li><a href="/about">About</a></li>
-              <li><a href="/internship">Internship</a></li>
+              <li><Link to="/internship">Internship</Link></li>
               <li><a href="/privacy-policy">Privacy Policy</a></li>
               <li><a href="/terms-and-conditions">Terms &amp; Conditions</a></li>
               <li><a href="/refund-policy">Refund Policy</a></li>

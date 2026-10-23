@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { Link } from 'react-router-dom';
 import { 
   ChevronDown, 
   Download, 
@@ -204,14 +205,14 @@ export default function Navbar({ onOpenBrochure, onOpenQuote }) {
     >
       <div className="clay-container navbar-inner">
         {/* Brand Logo */}
-        <a href="/" className="navbar-brand" aria-label="CoreDe Home">
+        <Link to="/" className="navbar-brand" aria-label="CoreDe Home">
           <img 
             src="/logo.png" 
             alt="CoreDe Logo" 
             className="navbar-logo-img" 
             style={{ filter: 'none' }}
           />
-        </a>
+        </Link>
 
         {/* Desktop Navigation Links */}
         <nav className="navbar-links" aria-label="Main Navigation">
@@ -266,23 +267,23 @@ export default function Navbar({ onOpenBrochure, onOpenQuote }) {
 
           {/* Careers */}
           <div className="nav-item-dropdown">
-            <a href="/career" className="nav-link-btn">
+            <Link to="/career" className="nav-link-btn">
               <span>Careers</span>
-            </a>
+            </Link>
           </div>
 
           {/* Internship */}
           <div className="nav-item-dropdown">
-            <a href="/internship" className="nav-link-btn">
+            <Link to="/internship" className="nav-link-btn">
               <span>Internship</span>
-            </a>
+            </Link>
           </div>
 
           {/* Workshop */}
           <div className="nav-item-dropdown">
-            <a href="/workshop/" className="nav-link-btn">
+            <Link to="/workshop" className="nav-link-btn">
               <span>Workshop</span>
-            </a>
+            </Link>
           </div>
         </nav>
 
@@ -355,9 +356,9 @@ export default function Navbar({ onOpenBrochure, onOpenQuote }) {
         <div className="mobile-drawer-overlay" onClick={() => setMobileMenuOpen(false)}>
           <div className="mobile-drawer-sheet" onClick={(e) => e.stopPropagation()}>
             <div className="mobile-drawer-header">
-              <a href="/" onClick={() => setMobileMenuOpen(false)}>
+              <Link to="/" onClick={() => setMobileMenuOpen(false)}>
                 <img src="/logo.png" alt="CoreDe Logo" className="mobile-logo" style={{ filter: 'none' }} />
-              </a>
+              </Link>
               <button 
                 type="button" 
                 className="close-drawer-btn"
@@ -371,9 +372,9 @@ export default function Navbar({ onOpenBrochure, onOpenQuote }) {
             <nav className="mobile-drawer-nav">
               <span className="mobile-nav-eyebrow">NAVIGATION</span>
               <a href="#services" onClick={() => setMobileMenuOpen(false)}>Services</a>
-              <a href="/career" onClick={() => setMobileMenuOpen(false)}>Careers</a>
-              <a href="/internship" onClick={() => setMobileMenuOpen(false)}>Internship</a>
-              <a href="/workshop/" onClick={() => setMobileMenuOpen(false)}>Workshop</a>
+              <Link to="/career" onClick={() => setMobileMenuOpen(false)}>Careers</Link>
+              <Link to="/internship" onClick={() => setMobileMenuOpen(false)}>Internship</Link>
+              <Link to="/workshop" onClick={() => setMobileMenuOpen(false)}>Workshop</Link>
               
               <div className="mobile-nav-divider" />
               

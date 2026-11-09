@@ -30,11 +30,6 @@ function Typewriter({ text, speed = 45, delay = 0 }) {
   return <>{display}</>;
 }
 
-// ─── Blinking cursor ──────────────────────────────────────────────────────────
-function Cursor() {
-  return <span className="tw-cursor">|</span>;
-}
-
 // ─── CountUp — animates a number from 0 → end when scrolled into view ────────
 function CountUp({ end, suffix = '', duration = 2000 }) {
   const [count, setCount] = useState(0);
@@ -108,7 +103,6 @@ export default function Hero({ onOpenQuote }) {
                 <Typewriter text={L2} speed={SPEED} delay={L1_DONE} />
               </span>{' '}
               <Typewriter text={L3} speed={SPEED} delay={L2_DONE} />
-              <Cursor />
             </motion.h1>
 
             {/* Lead Summary */}

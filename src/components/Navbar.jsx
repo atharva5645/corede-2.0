@@ -11,7 +11,7 @@ import {
   Mail
 } from 'lucide-react';
 
-export default function Navbar({ onOpenBrochure, onOpenQuote }) {
+export default function Navbar({ onOpenBrochure, onOpenQuote, theme = 'light' }) {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [brochureDropdownOpen, setBrochureDropdownOpen] = useState(false);
@@ -199,7 +199,7 @@ export default function Navbar({ onOpenBrochure, onOpenQuote }) {
 
   return (
     <header 
-      className={`clay-navbar ${scrolled ? 'is-scrolled' : ''} ${navHidden ? 'is-hidden' : ''}`} 
+      className={`clay-navbar ${theme === 'dark' ? 'nav-theme-dark' : ''} ${scrolled ? 'is-scrolled' : ''} ${navHidden ? 'is-hidden' : ''}`} 
       ref={navRef}
     >
       <div className="clay-container navbar-inner">
@@ -249,7 +249,12 @@ export default function Navbar({ onOpenBrochure, onOpenQuote }) {
                           <ul className="mega-list">
                             {sub.items.map((item, iIdx) => (
                               <li key={iIdx}>
-                                <a href="#services" onClick={() => setActiveDropdown(null)}>
+                                <a
+                                  href={`https://wa.me/918951029849?text=${encodeURIComponent(`Hi CoreDe, I'd like to enquire about your *${item}* service. Please share more details.`)}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={() => setActiveDropdown(null)}
+                                >
                                   {item}
                                 </a>
                               </li>
@@ -271,19 +276,18 @@ export default function Navbar({ onOpenBrochure, onOpenQuote }) {
             </a>
           </div>
 
-          {/* Internship */}
+          {/* [ARCHIVED] Internship & Workshop links hidden from website
           <div className="nav-item-dropdown">
             <a href="/internship" className="nav-link-btn">
               <span>Internship</span>
             </a>
           </div>
-
-          {/* Workshop */}
           <div className="nav-item-dropdown">
             <a href="/workshop/" className="nav-link-btn">
               <span>Workshop</span>
             </a>
           </div>
+          */}
         </nav>
 
         {/* Right Actions: Brochure + Quote CTA */}
@@ -372,8 +376,10 @@ export default function Navbar({ onOpenBrochure, onOpenQuote }) {
               <span className="mobile-nav-eyebrow">NAVIGATION</span>
               <a href="#services" onClick={() => setMobileMenuOpen(false)}>Services</a>
               <a href="/career" onClick={() => setMobileMenuOpen(false)}>Careers</a>
+              {/* [ARCHIVED] Internship & Workshop mobile links hidden from website
               <a href="/internship" onClick={() => setMobileMenuOpen(false)}>Internship</a>
               <a href="/workshop/" onClick={() => setMobileMenuOpen(false)}>Workshop</a>
+              */}
               
               <div className="mobile-nav-divider" />
               

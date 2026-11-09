@@ -4,10 +4,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import CareerPage from './pages/CareerPage.jsx'
-import InternshipPage from './pages/InternshipPage.jsx'
-import WorkshopPage from './pages/WorkshopPage.jsx'
-import InternshipSuccessPage from './pages/InternshipSuccessPage.jsx'
-import WorkshopSuccessPage from './pages/WorkshopSuccessPage.jsx'
+// [ARCHIVED] Internship & Workshop pages hidden from website
+// import InternshipPage from './pages/InternshipPage.jsx'
+// import WorkshopPage from './pages/WorkshopPage.jsx'
+// import InternshipSuccessPage from './pages/InternshipSuccessPage.jsx'
+// import WorkshopSuccessPage from './pages/WorkshopSuccessPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,13 +19,13 @@ createRoot(document.getElementById('root')).render(
 
         {/* Standalone section pages */}
         <Route path="/career"             element={<CareerPage />} />
+        {/* [ARCHIVED] Internship & Workshop routes hidden from website
         <Route path="/internship"         element={<InternshipPage />} />
         <Route path="/workshop"           element={<WorkshopPage />} />
         <Route path="/workshop/"          element={<WorkshopPage />} />
-
-        {/* Success pages */}
         <Route path="/internship-success" element={<InternshipSuccessPage />} />
         <Route path="/workshop-success"   element={<WorkshopSuccessPage />} />
+        */}
       </Routes>
     </BrowserRouter>
   </StrictMode>,

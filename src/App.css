@@ -59,6 +59,46 @@
   }
 }
 
+/* Dark theme variant for pages with dark hero banners */
+.clay-navbar.nav-theme-dark:not(.is-scrolled) {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.clay-navbar.nav-theme-dark:not(.is-scrolled) .nav-link-btn {
+  color: #ffffff !important;
+}
+
+.clay-navbar.nav-theme-dark:not(.is-scrolled) .nav-link-btn:hover,
+.clay-navbar.nav-theme-dark:not(.is-scrolled) .nav-link-btn.active {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.14) !important;
+}
+
+.clay-navbar.nav-theme-dark:not(.is-scrolled) .nav-caret {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.clay-navbar.nav-theme-dark:not(.is-scrolled) .navbar-brochure-btn {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.clay-navbar.nav-theme-dark:not(.is-scrolled) .navbar-brochure-btn:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.clay-navbar.nav-theme-dark:not(.is-scrolled) .mobile-toggle-btn {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
 .navbar-inner {
   display: flex;
   align-items: center;

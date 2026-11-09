@@ -115,7 +115,7 @@ export default function Footer({ onOpenBrochure, onOpenQuote }) {
             <ul className="footer-nav-list">
               <li><a href="/">Home</a></li>
               <li><a href="/about">About</a></li>
-              <li><a href="/internship">Internship</a></li>
+              {/* [ARCHIVED] <li><a href="/internship">Internship</a></li> */}
               <li><a href="/privacy-policy">Privacy Policy</a></li>
               <li><a href="/terms-and-conditions">Terms &amp; Conditions</a></li>
               <li><a href="/refund-policy">Refund Policy</a></li>
